@@ -6,8 +6,11 @@ WIN_COMBINATIONS = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[6,4,2],[0,4
 
 def won?(board)
   WIN_COMBINATIONS.detect do |win_combo| 
+    if win_combo.all? == false
+      return false
     win_combo.all? { |obj| board[obj]}
   end
+
 end
 
 
