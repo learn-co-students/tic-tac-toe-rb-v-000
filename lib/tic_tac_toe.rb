@@ -1,7 +1,16 @@
-require 'pry'
+# require 'pry'
 ### rspec spec/01_tic_tac_toe_spec.rb
 WIN_COMBINATIONS = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[6,4,2],[0,4,8]]
 # match  positions:  1,2,3   4,5,6   7,8,9   1,4,7   2,5,8   3,6,9   7,5,3   1,5,9
+
+
+def won?(board)
+  WIN_COMBINATIONS.detect do |win_combo| 
+    win_combo.all? { |obj| board[obj]}
+  end
+end
+
+
 
 
 def display_board(board)
@@ -10,22 +19,6 @@ def display_board(board)
   puts " #{board[3]} | #{board[4]} | #{board[5]} "
   puts "-----------"
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
-end
-
-#won?
-
-# Your #won? method should accept a board as an argument and return false/nil if there is no win combination present in the board and return the winning combination indexes as an array if there is a win. Use your WIN_COMBINATIONS constant in this method.
-#                  ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
-#determine if there is a winner
-#return false if no one won
-#return how they won
-
-###    [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[6,4,2],[0,4,8]]
-
-def won?(board)  
-    WIN_COMBINATIONS.detect do |win_combo|
-    win_combo.all? { |combo| board[combo]} 
-  end
 end
 
 
@@ -114,22 +107,15 @@ def over?(board)
   end
 end
   
-
-# def winner(board)
-#   if won?(board) == true
-#   board.all? do |token| token 
-#     return token
-#   end
-# end
-
-
+##############################################################################################
+################################### NEED HELP  ###############################################
 def winner(board)
-  if won?(board) == true
-    return board(winner)
-  end
+    won?(board) != false
+    return
 end
 
-
+##############################################################################################
+##############################################################################################
 
 def play(board)
   while over?(board) == false
