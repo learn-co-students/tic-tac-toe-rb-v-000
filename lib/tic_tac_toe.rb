@@ -9,11 +9,7 @@ def won?(board)
     win_combo.all? { |obj| board[obj] == "X"} == true || win_combo.all? { |obj| board[obj] == "O"}
   end
 end
-#################################################################
-# Although ths won? method passes its own tests for true/false, 
-# when using it as a helper method elsewhere, there seems to be 
-# a difference between (== true) vs (!= false).
-#################################################################
+
 
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
@@ -116,44 +112,7 @@ def play(board)
   end
 end
 
-#####################################################################
-#####################################################################
-#####################################################################
-#          QUESTIONS BELOW
 
-# draw?(board)
-
-# Below are various attempts at '#draw?' and '#winner' methods.
-# While the #draw method may pass its own truth test, it seems to fail
-# "truthy" tests of the #winner method. 
-
-# winner(board)
-# I can get the winner method to show X or O, but cannot get it to also 
-# pass the required 'nil' test. 
-
-# won?(board)
-# these methods are dependent on the #won?(board) method working right.
-# there seems to be a difference between "!= false" vs "== true", especially
-# when combined (&&) with other statements like #full?(board).
-#
-
-
-      # Question:   How literal is the rspec test result, when it says that the #won
-      # method returned "true" for board submitted by the "#won rspec test"...versus....
-      # the board submitted in the "#winner rspec test" or the "#draw? rspec test"?
-
-      # Question:   If refactor my #won? method, will that fix the issue I'm
-      # having with #draw and #winner?
-
-#####################################################################
-# draw?(board) examples
-
-      # REQUIREMENTS: 
-          # returns true for a draw
-          # returns false for a won game (FAILED - 1)
-          # returns false for an in-progress game
-
-# EXAMPLE 1 ---------fails the "true for draw" test---------------
 def draw?(board)
   if full?(board) && won?(board)
       return false 
@@ -166,87 +125,15 @@ def draw?(board)
   end
 end
 
-        # ERROR:
-            # returns true for a draw (FAILED - 1)
-            # returns false for a won game
-            # returns false for an in-progress game
-
-             #  1) ./lib/tic_tac_toe.rb #draw? returns true for a draw
-             # Failure/Error: expect(draw?(board)).to be_truthy
-             #   expected: truthy value
-             #        got: false
-             # # ./spec/01_tic_tac_toe_spec.rb:160:in `block (3 levels) in <top (required)>'
-
-
-
-# EXAMPLE 2 -----------fails the "false for won game" test ------
-# the only change is in the 'if' statement (changed to won?(board) == true)
-
-
-# def draw?(board)
-#   if full?(board) == true && won?(board) == true
-#       return false 
-  
-#   elsif won?(board) != true && full?(board) == true
-#     return true      # true for draw
-
-#   else won?(board) == true || full?(board) == false
-#     return false     # false for win or in-progress
-#   end
-# end
-       
-        # ERROR:
-            # returns true for a draw
-            # returns false for a won game (FAILED - 1)
-            # returns false for an in-progress game
-
-# EXAMPLE 3 ---------fails the "true for draw" test---------------
-#           ---------blows up the #over method, too---------------
-
-
-# def draw?(board)
-#     if won?(board) == true
-#       return false
-#     elsif board[won?(board)[0]] == "X"
-#       return false     # attempting to define a "win" explicitly 
-#     elsif board[won?(board)[0]] == "O"
-#       return false     # attempting to define a "win" explicitly 
-#     elsif won?(board) != true && full?(board) == true
-#       return true
-#     elsif won?(board) != true && full?(board) != true
-#       return false
-#     else  
-#   end
-# end
-
-        # ERRORS: 
-
-        # #draw?
-        #   returns true for a draw (FAILED - 1)
-        #   returns false for a won game
-        #   returns false for an in-progress game
-
-        # #over?
-        #     returns true for a draw (FAILED - 2)
-        #     returns true for a won game
-        #     returns false for an in-progress game (FAILED - 3
-
-
-
 #####################################################################
-
-
-
 #  VARIOUS EXAMPLES FOR 'winner(board) method'
 ####################################################################
 #################  returns X or O, but FAILS NIL ###################
-def winner(board)
-  if won?(board) != false || won?(board) == true
-    return board[won?(board)[0]]
-  elsif over?(board) == true
-    return board[won?(board)[0]]
- end
-end
+# def winner(board)
+#   if won?(board)
+#     return board[won?(board)[0]]
+#   else
+#  end
 ####################################################################
 #################  returns X or O, but FAILS NIL ###################
 # def winner(board)
@@ -268,10 +155,9 @@ end
 ####################################################################
 #################  returns X or O, but FAILS NIL ###################
 def winner(board)
-  if won?(board) != false || won?(board) == true
+  if won?(board)
     return board[won?(board)[0]]
-  elsif over?(board) == true
-    return board[won?(board)[0]]
+else
  end
 end
 ####################################################################
