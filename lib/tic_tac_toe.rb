@@ -155,7 +155,7 @@ end
 
 # EXAMPLE 1 ---------fails the "true for draw" test---------------
 def draw?(board)
-  if full?(board) == true && won?(board) != false
+  if full?(board) && won?(board)
       return false 
   
   elsif won?(board) != true && full?(board) == true
