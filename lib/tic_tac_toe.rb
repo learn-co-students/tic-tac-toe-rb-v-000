@@ -43,14 +43,14 @@ end
 def turn(board)
     puts "Please enter 1-9:"
     position = gets.strip
-      if valid_move?(board,position) == true
+      if valid_move?(board,position)
         then move(board,position,current_player(board))
           display_board(board)
-      elsif  valid_move?(board,position) != true
+      elsif  valid_move?(board,position) == false
         loop do
           puts "Sorry, please try a valid entry from 1-9:"
             position = gets.strip
-      if valid_move?(board,position) == true
+      if valid_move?(board,position)
         then move(board,position,current_player(board))
           display_board(board)
         break
@@ -85,29 +85,14 @@ end
 
 
 def over?(board)
-  if draw?(board) == true
+  if draw?(board)
       return true
-    elsif full?(board) == true
+    elsif full?(board)
       return true
-    elsif full?(board) == false && won?(board) == true
+    elsif full?(board) == false && won?(board)
       return false
-    elsif won?(board) == true
+    elsif won?(board)
       return true
-    else
-  end
-end
-
-
-
-def play(board)
-  while over?(board) == false
-        turn(board)
-        draw?(board) == true
-    end
-  if draw?(board) == true
-      puts "Cats Game!"
-    elsif won?(board) != false
-      puts "Congratulations #{winner(board)}!"
     else
   end
 end
@@ -116,49 +101,30 @@ end
 def draw?(board)
   if full?(board) && won?(board)
       return false 
-  
-  elsif won?(board) != true && full?(board) == true
-    return true      # true for draw
-
-  else won?(board) == true || full?(board) == false
-    return false     # false for win or in-progress
+  elsif full?(board) && won?(board) != true
+    return true    
+  else won?(board) || full?(board) == false
+    return false  
   end
 end
 
-#####################################################################
-#  VARIOUS EXAMPLES FOR 'winner(board) method'
-####################################################################
-#################  returns X or O, but FAILS NIL ###################
-# def winner(board)
-#   if won?(board)
-#     return board[won?(board)[0]]
-#   else
-#  end
-####################################################################
-#################  returns X or O, but FAILS NIL ###################
-# def winner(board)
-#   if won?(board) != false || won?(board) == true
-#     return board[won?(board)[0]]
-#   elsif over?(board) == true
-#     return board[won?(board)[0]]
-#   else
-#   end
-# end
-####################################################################
-#################  FAILS X or O, but returns NIL ###################
-# def winner(board)
-#  if over?(board) == true
-#     return board[won?(board)[0]]
-#   else
-#   end
-# end
-####################################################################
-#################  returns X or O, but FAILS NIL ###################
+
 def winner(board)
   if won?(board)
     return board[won?(board)[0]]
 else
  end
 end
-####################################################################
+
+
+def play(board)
+  until over?(board) || won?(board) 
+      turn(board) 
+  end 
+    if won?(board)
+        puts "Congratulations #{winner(board)}!"
+    else draw?(board)
+        puts "Cats Game!"
+  end
+end
 
