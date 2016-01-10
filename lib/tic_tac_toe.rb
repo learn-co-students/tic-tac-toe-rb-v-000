@@ -55,7 +55,6 @@ def turn_count(board)
   board.each do |turn|
     if turn == "X" || turn == "O"
     turn_number += 1
-      else
     end
   end
   return turn_number
