@@ -41,12 +41,7 @@ def turn(board)
   puts "Please enter 1-9:"
   position = gets.chomp
   turn_count(board)
-  if turn_count(board)%2 == 0
-    character = "X"
-  else
-    character = "O"
-  end
-
+  character = current_player(board)
   if valid_move?(board, position)
     move(board, position, character)
   else
