@@ -1,0 +1,106 @@
+WIN_COMBINATIONS = [
+  [0,1,2],
+  [3,4,5],
+  [6,7,8],
+  [0,3,6],
+  [1,4,7],
+  [2,5,8],
+  [0,4,8],
+  [6,4,2]
+]
+
+board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+
+def display_board(board)
+  puts " #{board[0]} | #{board[1]} | #{board[2]} "
+  puts "-----------"
+  puts " #{board[3]} | #{board[4]} | #{board[5]} "
+  puts "-----------"
+  puts " #{board[6]} | #{board[7]} | #{board[8]} "
+end
+
+def move(board, position, value = "X")
+  position = position.to_i - 1
+  board[position] = value
+end
+
+def position_taken?(board, location)
+  !(board[location].nil? || board[location] == " ")
+end
+
+def valid_move?(board, location)
+  if location.to_i.between?(1,9)
+    if !position_taken?(board, location.to_i-1)
+      true
+    end
+  end
+end
+
+def turn(board)
+  puts "Please enter 1-9:"
+  input = gets.strip
+  if valid_move?(board, input) == true
+    move(board, input, valor = "X")
+    display_board(board)
+  else
+    until valid_move?(board, input) == true
+    input = gets.strip
+    end
+    move(board, input, valor = "X")
+    display_board(board)
+  end
+end
+
+def turn_count(board)
+  turns = 0
+  board.each do |taken|
+    if taken == "X" || taken == "O"
+      turns += 1
+    end
+  end
+  turns
+end
+
+def current_player(board)
+  turn_count(board) % 2 == 0 ? "X" : "O"
+end
+
+def won?(board)
+  WIN_COMBINATIONS.detect do |combo|
+    board[combo[0]] == board[combo[1]] &&
+    board[combo[1]] == board[combo[2]] &&
+    position_taken?(board, combo[0])
+  end
+end
+
+def full?(board)
+  board.all?{|token| token == "X" || token == "O"}
+end
+
+def draw?(board)
+  full?(board) && !won?(board)
+end
+
+def over?(board)
+  won?(board) || full?(board)
+end
+
+def winner(board)
+  if winning_combo = won?(board)
+    board[winning_combo.first]
+  end
+end
+
+def play(board)
+  until over?(board) == true
+    turn(board)
+    turn(board)
+  end
+
+  if won?(board) == true
+    puts "Congratulations #{winner}"
+  else draw?(board) == true
+    puts "Cats Game!"
+  end
+end
+
