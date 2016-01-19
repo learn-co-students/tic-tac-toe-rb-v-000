@@ -39,16 +39,11 @@ end
 def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
-  if valid_move?(board, input) == true
-    move(board, input, valor = "X")
-    display_board(board)
-  else
-    until valid_move?(board, input) == true
-    input = gets.strip
-    end
-    move(board, input, valor = "X")
-    display_board(board)
+  if !valid_move?(board, input)
+    turn(board)
   end
+  move(board, input, current_player(board))
+  display_board(board)
 end
 
 def turn_count(board)
@@ -82,7 +77,7 @@ def draw?(board)
 end
 
 def over?(board)
-  won?(board) || full?(board)
+  won?(board) || draw?(board)
 end
 
 def winner(board)
@@ -92,14 +87,13 @@ def winner(board)
 end
 
 def play(board)
-  until over?(board) == true
-    turn(board)
+  while !over?(board)
     turn(board)
   end
 
-  if won?(board) == true
-    puts "Congratulations #{winner}"
-  else draw?(board) == true
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
     puts "Cats Game!"
   end
 end
