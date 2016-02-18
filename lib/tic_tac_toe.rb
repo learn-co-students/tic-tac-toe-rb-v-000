@@ -32,7 +32,7 @@ def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
   if valid_move?(board, input)
-    move(board, input)
+    move(board, input, current_player(board))
   else
     turn(board)
   end
@@ -112,8 +112,6 @@ end
 def play(board)
 	until over?(board)
 		turn(board)
-		current_player(board)
-		turn_count(board)
 	end
 	if won?(board)
 		puts "Congratulations #{winner(board)}!"
