@@ -132,11 +132,3 @@ def play(board)
     puts "Cats Game!"
   end
 end
-
-=begin
-if the game was won
-  congratulate the winner
-else if the game was a draw
-  tell the players it has been a draw
-end
-=end
