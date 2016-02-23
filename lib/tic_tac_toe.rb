@@ -33,20 +33,23 @@ def valid_move?(board, position)
 end
 
    def turn(board)
+current_player(board)
   puts "Please enter 1-9:"
   input = gets.strip
   if valid_move?(board, input)
-    move(board, input)
+    move(board, input, current_player(board))
   else
     turn(board)
   end
   display_board(board)
+
 end
 
 def turn_count(board)
   # board.count{|token| token == "X" || token == "O"}
 
   turns = 0
+
   board.each do |token|
     if token == "X" || token == "O"
       turns += 1
@@ -93,11 +96,9 @@ end
 
 def play(board)
 turn(board) until over?(board)
-    puts "Congratulations #{winner(board)}!" if won?(board)
-  puts "Cats Game!" if draw?(board)
-  board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-allow($stdout).to receive(:puts)
-allow(self).to receive(:over?).and_return(false, true)
-expect(self).to receive(:gets).at_least(:once).and_return("1")
-play(board)
+if won?(board)
+      puts "Congratulations #{winner(board)}!" 
+    elsif draw?(board)     
+  puts "Cats Game!" 
+  end 
 end
