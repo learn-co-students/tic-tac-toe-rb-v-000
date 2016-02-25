@@ -65,11 +65,11 @@ def full?(board)
 end
 
 def draw?(board)
-  won?(board) == false
+  !won?(board) && full?(board)
 end
 
 def over?(board)
-    won?(board) || full?(board)
+  won?(board) || draw?(board)
 end
 
 def winner(board)
@@ -90,9 +90,9 @@ def play(board)
     print "taking a turn"
   end
     if won?(board)
-    puts "Congratulations #{winner(board)}"
+    puts "Congratulations #{winner(board)}!"
   else
-    puts "Cat's Game!"
+    puts "Cats Game!"
   end
 end
 
