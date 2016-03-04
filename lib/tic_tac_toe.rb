@@ -1,8 +1,3 @@
-# Helper Method
-def position_taken?(board, location)
-  !(board[location].nil? || board[location] == " ")
-end
-
 # Define your WIN_COMBINATIONS constant
 WIN_COMBINATIONS = [
   [0,1,2],
@@ -16,11 +11,11 @@ WIN_COMBINATIONS = [
 ]
 
 def display_board(board)
-  print "  #{board[0]} | #{board[1]} | #{board[2]} "
-  print " -----------"
-  print "  #{board[3]} | #{board[4]} | #{board[5]} "
-  print " -----------"
-  print "  #{board[6]} | #{board[7]} | #{board[8]} "
+  print "  #{board[0]} | #{board[1]} | #{board[2]} \n"
+  print " -----------\n"
+  print "  #{board[3]} | #{board[4]} | #{board[5]} \n"
+  print " -----------\n"
+  print "  #{board[6]} | #{board[7]} | #{board[8]} \n"
 end
 
 def move(board, position, value ="X")
@@ -82,7 +77,7 @@ def won?(board)
 end
 
 def over?(board)
-  full?(board) || won?(board) || draw?(board)
+  won?(board) || draw?(board)
 end
 
 def full?(board)
@@ -98,13 +93,14 @@ def winner(board)
 end
 
 def play(board)
-  while !(over?(board))
+  if !(over?(board))
     turn(board)
     play(board)
   end
   if won?(board)
     puts "Congratulations #{winner(board)}!"
-  elsif draw?(board)
+  end
+  if draw?(board)
     puts "Cats Game!"
   end
 end
