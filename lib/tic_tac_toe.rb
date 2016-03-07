@@ -61,9 +61,6 @@ def turn(board)
     puts "Please enter 1-9:"
     input = gets.chomp.strip.to_i
     valid_move?(board, input)
-    if input == "exit"
-      return
-    end
   end
   value = current_player(board) #find out who the current player is, then pass it to #move
   move(board, input, value)
