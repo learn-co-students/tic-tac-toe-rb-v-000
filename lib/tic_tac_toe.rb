@@ -46,24 +46,17 @@ end
 def turn(board)
     puts "Please enter a number between 1 and 9:"
     input = gets.to_i
-    if valid_move?(board, input)
-        move(board, input)
-    else
+    if !valid_move?(board, input)
         puts "Please enter a number between 1 and 9:"
         input = gets.to_i
     end
+    move(board, input, current_player(board))
     display_board(board)
 end
 
 #turn_count will return how many turns have been played
 def turn_count(board)
-    counter = 0
-    board.each do |current_player|
-        if !(current_player.nil? || current_player == " ")
-            counter += 1
-        end
-    end
-    return counter
+    board.count{|token| token == "X" || token == "O"}
 end
 
 #current_player determines which player turn it is
@@ -96,7 +89,7 @@ end
 
 #over? determines if the game is over
 def over?(board)
-    won?(board) || full?(board) || draw?(board)
+    won?(board) || draw?(board)
 end
 
 #winner determines which player won the game
@@ -115,7 +108,12 @@ def play(board)
     until over?(board)
         turn(board)
     end
-    turn(board)
+
+    if over?(board) && won?(board)
+        puts "Congratulations #{winner(board)}!"
+    else
+        puts "Cats Game!"
+    end
 end
 
 
