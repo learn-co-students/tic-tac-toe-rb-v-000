@@ -29,12 +29,13 @@ end
 def turn(board)
   puts "Please enter 1-9:"
   position = gets.strip
-  if valid_move?(board,position) == true
+  if valid_move?(board, position) == true
     move(board, position, current_player(board))
   else turn(board)
   end
-  puts display_board(board)
+  display_board(board)
 end
+
 
 def turn_count(board)
   counter = 0
@@ -55,31 +56,34 @@ def current_player(board)
 end
 
 def won?(board)
-  WIN_COMBINATIONS.any? do |combination|
-    if (board[combination[0]] == "X" || board[combination[0]] == "O") && board[combination[0]] == board[combination[1]] && board[combination[1]] == board[combination[2]]
-      return combination
+  WIN_COMBINATIONS.detect do |combo| #the 8 nested arrays
+    if board[combo[0]] == board[combo[1]] && board[combo[1]] == board[combo[2]] && position_taken?(board, combo[0])
+      combo #returns the winning array of 3 numbers
+    else
+      false
     end
   end
 end
 
 def full?(board)
-  if board.any?{|spot| spot == " " || spot == nil}
-    return false
+  if board.include?(" ")
+    false
   else
     true
   end
 end
 
 def draw?(board)
-  if full?(board) == true && won?(board) == false
-    return true
-  else
-    return false
+  if won?(board) || !full?(board)
+    false
+  else full?(board) && !won?(board)
+    true
   end
 end
 
+
 def over?(board)
-  if won?(board) == true || full?(board) == true
+  if won?(board) || draw?(board) || full?(board)
     true
   else
     false
@@ -87,19 +91,25 @@ def over?(board)
 end
 
 def winner(board)
-  if won?(board)
-    board[won?(board)[0]]
+  combo = won?(board) # either returns array or nil
+  if combo
+    board[combo[0]] #returns the token itself. "X" OR "O" No need to overcomplicate things, keep it simple.
+  else
+    nil
   end
 end
 
+
+# Define your play method below
 def play(board)
   until over?(board)
     turn(board)
   end
-  if won?(board) == true
-    return "Congratulations " + winner(board) + "!"
+
+combo = won?(board)
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
   elsif draw?(board)
-      puts "Cats Game!"
+    puts "Cats Game!"
   end
 end
-
