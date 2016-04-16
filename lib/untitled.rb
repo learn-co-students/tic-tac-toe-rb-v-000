@@ -49,11 +49,10 @@ def valid_move?(board, position)
 end
 
 def turn(board)
-  player = current_player(board)
   puts "Please enter 1-9:"
   input = gets.strip
   if valid_move?(board, input) 
-    move(board, input, player)
+    move(board, input)
   else
     turn(board)
   end
@@ -117,12 +116,12 @@ def won?(board)
     false
   end
 
-  def winner(board)
+  def winner (board)
       winning_comination = won?(board)
       if winning_comination
       return board[winning_comination[0]]
   end
-  #nil
+  nil
 end
 
 #def play(board)
@@ -136,20 +135,13 @@ end
 
 
 def play(board)
+  winning_player = won?(board)
   while !over?(board) && turn_count(board) <= 9 do
     turn(board)
-    end
-     if won?(board) 
-      win = winner(board)
-      puts "Congratulations #{win}!"
+    if won?(board)
+      puts "Congratulations #{winning_player}!"
     elsif draw?(board)
       puts "Cats Game!"
     end
   end
-
-
-
-
-
-
-  
+end
