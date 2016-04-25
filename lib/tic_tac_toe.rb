@@ -11,16 +11,6 @@ WIN_COMBINATIONS =
 ]
 
 
-def play(board)
-  until over?(board)
-    turn(board)
-  end
-  if won?(board).class == Array
-    puts "Congratulations #{winner(board)}"
-  elsif draw?(board) == true
-    puts "Cats Game!"
-  end 
-end
 
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
