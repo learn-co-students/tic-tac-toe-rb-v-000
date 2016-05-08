@@ -1,4 +1,5 @@
 # Helper methods
+board = [" "," "," "," "," "," "," "," "," "]
 
 # Define your WIN_COMBINATIONS constant
 WIN_COMBINATIONS = [
@@ -53,7 +54,7 @@ end
 
 # Use turn_count to return current player
 def current_player(board)
-  if turn_count(board) % 2 == 0
+  if turn_count(board) % 2 == 0 # or use ternary operator
     "X"
   else
     "O"
