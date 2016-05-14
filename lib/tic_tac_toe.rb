@@ -125,19 +125,13 @@ end
 
 def play(board)
   until over?(board) do
-    turn(board)
     if won?(board)
-      win_arr = won?(board)
-      if win_arr == nil || win_arr == false
-        return win_arr
-      end
-      winner = board[win_arr[0]]
-      puts "Congratulations #{winner}!"
-      break
+      puts "Congratulations #{winner(board)}!"
+      return true
     end
-    if draw?(board)
-      puts "Cats Game!"
-      break
-    end
+    turn(board)
+  end
+  if draw?(board)
+    puts "Cats Game!"
   end
 end
