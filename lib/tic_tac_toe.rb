@@ -29,3 +29,10 @@ def position_taken?(board, position)
     false
   end
 end
+
+def valid_move?(board, position)
+  position = position.to_i
+  if position.between?(1, 9) && !(position_taken?(board, (position - 1)))
+    true
+  end
+end
