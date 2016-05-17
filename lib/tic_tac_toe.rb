@@ -48,3 +48,14 @@ def turn(board)
     turn(board)
   end
 end
+
+def turn_count(board)
+  turns = 0
+  board.each do |turns_taken|
+    if turns_taken == "X" || turns_taken == "O"
+      turns += 1
+    end
+  end
+  puts turns
+  turns
+end
