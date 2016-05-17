@@ -67,3 +67,48 @@ def current_player(board)
     return "O"
   end
 end
+
+def won?(board)
+  WIN_COMBINATIONS.detect do |win_combination|
+    board1 = win_combination[0]
+    board2 = win_combination[1]
+    board3 = win_combination[2]
+
+   board[board1] == board[board2] && board[board2] == board[board3] && board[board2] != " "
+  end
+end
+
+def full?(board)
+  if board.include?(" ")
+    return false
+  else
+    return true
+  end
+end
+
+def draw?(board)
+  if won?(board) == nil && full?(board) == true
+    true
+  else
+    false
+  end
+end
+
+def over?(board)
+  if won?(board) || draw?(board) || full?(board)
+    true
+  else
+    false
+  end
+end
+
+def winner(board)
+  # index = won?(board).pop
+  if won?(board) == nil
+    nil
+  elsif board[won?(board)[0]] == "X"
+    "X"
+  elsif board[won?(board)[0]] == "O"
+    "O"
+  end
+end
