@@ -18,7 +18,7 @@ def display_board(board)
 end
 
 def move(board, position, player_token)
-  position = position - 1
+  position = position.to_i - 1
   board[position] = player_token
 end
 
@@ -34,5 +34,17 @@ def valid_move?(board, position)
   position = position.to_i
   if position.between?(1, 9) && !(position_taken?(board, (position - 1)))
     true
+  end
+end
+
+def turn(board)
+  char = "X"
+  puts "Please enter 1-9:"
+  position = gets.strip
+  if valid_move?(board, position)
+    move(board, position, char)
+    display_board(board)
+  else
+    turn(board)
   end
 end
