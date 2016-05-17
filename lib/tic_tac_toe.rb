@@ -38,11 +38,10 @@ def valid_move?(board, position)
 end
 
 def turn(board)
-  char = "X"
   puts "Please enter 1-9:"
   position = gets.strip
   if valid_move?(board, position)
-    move(board, position, char)
+    move(board, position, current_player(board))
     display_board(board)
   else
     turn(board)
