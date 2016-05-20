@@ -40,8 +40,8 @@ end
 def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
-  if valid_move?(board, location)
-    move(board, location, current_player)
+  if valid_move?(board, input)
+    move(board, input, current_player(board))
     display_board(board)
   else
     turn(board)
@@ -91,12 +91,11 @@ end
 def draw?(board)
   if won?(board) != false
     return false
-  elsif board.any?{|position| position == " "}
-    return false
+  elsif full?(board) != false
+    return true
   end
-  board.none?{|position| position == " "}
-  return true
 end
+
 
 def over?(board)
   if won?(board) != false
