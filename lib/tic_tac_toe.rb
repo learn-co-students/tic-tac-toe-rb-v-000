@@ -24,7 +24,7 @@ def input_to_index(input)
 end
 
 def move(board, location, current_player)
-  location = input_to_index(input)
+  location = input_to_index(location)
   board[location] = current_player
 end
 
@@ -33,14 +33,14 @@ def position_taken?(board, location)
 end
 
 def valid_move?(board, location)
-  location = input_to_index(input)
+  location = input_to_index(location)
   location.between?(0,8) && !position_taken?(board, location)
 end
 
 def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
-  location = input_to_index(input)
+  location = input_to_index(location)
   if valid_move?(board, location)
     move(board, location, current_player)
     display_board(board)
