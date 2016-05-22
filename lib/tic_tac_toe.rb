@@ -52,7 +52,6 @@ def turn(board)
     move(board,index,token)
     display_board(board)
   else
-    puts "Enter the position you would like to play (1-9): "
     turn(board)
   end
 end
