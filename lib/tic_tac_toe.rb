@@ -31,21 +31,6 @@ def valid_move?(board, position)
 	(position.between?(0,8) && !position_taken?(board, position))
 end
 
-def turn(board)
-	#Get user input
-	puts "Please enter 1-9:"
-	input = gets.strip
-	#validate the move
-	x = "X"
-	o = "O"
-	if valid_move?(board, input) == true
-		move(board, input, x)
-	else
-		turn(board)
-	end
-	display_board(board)
-end
-
 def turn_count(board)
 	turns = []
 	board.select do |marker|
@@ -58,7 +43,6 @@ end
 
 def current_player(board)
 	count = turn_count(board)
-	puts "total turns is #{count} whcih is a #{count.class}"
 	if count.odd?
 		return "O"
 	else
@@ -100,6 +84,40 @@ def winner(board)
 			pos = position[0]
 			marker = board[pos]
 			return marker
+		end
+	end
+end
+
+def turn(board)
+	#Get user input
+	puts "Please enter 1-9:"
+	input = gets.strip
+	#validate the move
+	#x = "X"
+	#o = "O"
+	player = current_player(board)
+	if valid_move?(board, input) == true
+		#move(board, input, player)
+		move(board, input, player)
+	else
+		turn(board)
+	end
+	display_board(board)
+end
+
+def play(board)
+	until over?(board) == true
+		turn(board)
+	end
+	
+	if over?(board) == true
+		if won?(board) == true
+			my_winner = winner(board)
+			puts "Congratulations #{my_winner}"
+			exit
+		elsif draw?(board) == true
+			puts "Cat's Game!"
+			exit
 		end
 	end
 end
