@@ -95,12 +95,13 @@ end
 
 def over?(board)
   board.each do |board_element|
-    if full?(board) || won?(board) || draw?(board)
-      return true
-    end
+  if full?(board) || won?(board) || draw?(board)
+    return true
   end
-  false
 end
+false
+end
+
 
 def winner(board)
   WIN_COMBINATIONS.each do |combination|
@@ -121,10 +122,10 @@ end
 def play(board)
   until over?(board)
     turn(board)
+  end
   if won?(board)
     puts "Congratulations #{winner(board)}!"
   elsif draw?(board)
     puts "Cats Game!"
   end
-end
 end
