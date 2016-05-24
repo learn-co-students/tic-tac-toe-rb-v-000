@@ -89,13 +89,10 @@ def full?(board)
 end
 
 def draw?(board)
-  if won?(board) != false
-    return false
-  elsif full?(board) != false
+  if !won?(board) && full?(board)
     return true
   end
 end
-
 
 def over?(board)
   if won?(board) != false
@@ -126,8 +123,19 @@ end
 
 def play(board)
   counter = 0
-  while counter < 9 
+  until over?(board) || counter >= 9 
     turn(board)
+    input_to_index(input)
+    move(board, location, current_player)
+    over?(board)
     counter += 1
   end
+  if winner(board) == "X"
+    puts "Congratulations Player X"
+  elsif winner(board) == "O"
+    puts "Congratulations Player O"
+  elsif winner(board) == nil
+    puts "Cats Game!"
+  end
 end
+
