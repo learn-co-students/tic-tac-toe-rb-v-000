@@ -115,26 +115,26 @@ def winner(board)
       return "O"
     end
   end
-  false
   if won?(board) != true
     return nil
   end
+  false
 end
 
 def play(board)
   counter = 0
   until over?(board) || counter >= 9 
     turn(board)
-    input_to_index(input)
-    move(board, location, current_player)
+    turn_count(board)
+    current_player(board)
     over?(board)
     counter += 1
   end
   if winner(board) == "X"
-    puts "Congratulations Player X"
+    puts "Congratulations X!"
   elsif winner(board) == "O"
-    puts "Congratulations Player O"
-  elsif winner(board) == nil
+    puts "Congratulations O!"
+  elsif winner(board) != "X" || "O"
     puts "Cats Game!"
   end
 end
