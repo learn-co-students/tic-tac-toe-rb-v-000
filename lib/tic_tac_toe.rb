@@ -123,11 +123,8 @@ end
 
 def play(board)
   counter = 0
-  until over?(board) || counter >= 9 
+  until over?(board)
     turn(board)
-    turn_count(board)
-    current_player(board)
-    over?(board)
     counter += 1
   end
   if winner(board) == "X"
