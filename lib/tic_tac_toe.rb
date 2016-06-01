@@ -126,6 +126,6 @@ def play(board)
   end
 end
 
-board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-
+# board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+#
 # play(board)
