@@ -74,7 +74,7 @@ describe './lib/tic_tac_toe.rb' do
     it 'takes three arguments: board, position, and player token' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
-      expect{move(board, 0, "X")}.to_not raise_error(ArgumentError)
+      expect{move(board, 0, "X")}.to_not raise_error
     end
 
     it 'allows "X" player in the bottom right and "O" in the top left ' do
@@ -192,8 +192,8 @@ describe './lib/tic_tac_toe.rb' do
 
     it 'calls won? and full?' do
       board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
-      expect(self).to receive(:won?).with(board)
-      expect(self).to receive(:full?).with(board)
+      expect(won?(board)).to be_falsey
+      expect(full?(board)).to be_truthy
 
       draw?(board)
     end
