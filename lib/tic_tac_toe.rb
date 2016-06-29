@@ -39,28 +39,20 @@ def turn(board)
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board, index)
-    move(board, index, current_player)
+    move(board, index, current_player(board))
     display_board(board)
   else
     turn(board)
   end
 end
 
-def play(board)
-  counter = 0
-  until counter == 9
-    turn(board)
-    counter += 1
-  end
-
-end
 
 def turn_count(board)
 
- count = 9
+ count = 0
   board.each do |turn|
-    if turn == " "
-      count -= 1
+    if turn == "X" || turn == "O"
+      count += 1
     end
   end
  count
@@ -73,4 +65,58 @@ player = "X"
   else
     player = "O"
   end
+end
+
+def won?(board)
+  WIN_COMBINATIONS.each do |win|
+    if board[win[0]] == "X" && board[win[1]] == "X" && board[win[2]] == "X" || board[win[0]] == "O" && board[win[1]] == "O" && board[win[2]] == "O"
+     return board[win[0]]
+    end
+  end
+return false
+end
+
+def full?(board)
+  if turn_count(board) == 9
+    true
+  else
+    false
+  end
+end
+
+def draw?(board)
+  if !won?(board) && full?(board)
+    true
+  else
+    false
+  end
+end
+
+def over?(board)
+  if won?(board) || full?(board) || draw?(board)
+    true
+  else
+    false
+  end
+end
+
+def winner(board)
+  if won?(board)
+    won?(board)
+  end
+end
+
+def play(board)
+
+  if !over?(board)
+    turn(board)
+    play(board)
+  elsif over?(board)
+    if won?(board)
+      puts "Congratulations #{winner(board)}!"
+    elsif draw?(board)
+      puts "Cats Game!"
+    end
+  end
+
 end
