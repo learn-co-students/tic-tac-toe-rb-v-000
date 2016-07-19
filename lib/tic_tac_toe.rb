@@ -40,7 +40,7 @@ def turn(board)
   end
 end
 
-def play(board)
+def gamer(board)
   for i in 1..9 do 
     turn(board)  
   end
@@ -127,14 +127,6 @@ until over?(board)
     puts "Cats Game!"
   end
 end
-
-board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-puts "Welcome to Tic Tac Toe!"
-puts "Where would you like to go?"
-input = gets.strip
-index = input_to_index(input)
-move(board, index, current_player)
-display_board(board)
 
 
 
