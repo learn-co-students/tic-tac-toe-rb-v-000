@@ -33,7 +33,7 @@ def turn(board)
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board, index)
-    move(board, index, current_player)
+    move(board, index, current_player(board))
     display_board(board)
   else
     turn(board)
@@ -113,16 +113,12 @@ def winner(board)
 end
 
 def play(board)
-input = gets.strip
-index = input_to_index(input)
 until over?(board)
   turn(board)
-  over?(board)
   end
-  if won?(board)
-    puts "Congratulations X!"
-    puts "Congratulations O!"
-    end
+  won?(board)
+  puts "Congratulations X!" if winner(board) == "X"
+  puts "Congratulations O!" if winner(board) == "O"
   if draw?(board)
     puts "Cats Game!"
   end
