@@ -52,7 +52,7 @@ def turn(board)
     move(board, index, current_player(board))
     display_board(board)
   else
-    play(board)
+    turn(board)
   end
 end
 
@@ -141,15 +141,14 @@ def winner(board)
 
 #Play Method
 def play(board)
-#Take turns
-  turn(board)
   #Is game over?
   while !over?(board)
-    play(board)
+    #Take turns
+      turn(board)
     if won?(board)
-      prints "Congratulations #{play(board)}!"
+      puts "Congratulations #{play(board)}!"
     else
-      prints "Cats game!"
+      puts "Cats game!"
     end
   end
 end
