@@ -29,7 +29,7 @@ user_input.to_i - 1
 end
 
 #Define Move Method
-def move(board, index, current_player = "X")
+def move(board, index, current_player)
   board[index] = current_player
 end
 
@@ -49,10 +49,10 @@ def turn(board)
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board, index)
-    move(board, index)
+    move(board, index, current_player(board))
     display_board(board)
   else
-    turn(board)
+    play(board)
   end
 end
 
@@ -111,17 +111,13 @@ def draw?(board)
   #checks if board is NOT won AND board is full
   if !won?(board) && full?(board)
     true
-  else
-    #checks is board is NOT won AND board is NOT full OR board is won
-     !won?(board) && !full?(board) || won?(board)
-    false
   end
 end
 
 #Over? Method
 def over?(board)
-  #checks if board is won OR board is a draw OR board is full
-  if won?(board) || draw?(board) || full?(board)
+  #checks if board is won OR board is a draw
+  if won?(board) || draw?(board)
     true
   else
     false
@@ -130,50 +126,30 @@ end
 
 #Winner Method
 def winner(board)
-  #checks if board is won
-  if won?(board)
   #gets win_combo from board that is won
 	win_combo = won?(board)
-  #index = first array in win_combo out of the 3
-  index=win_combo[0]
-  #returns either X or O from the board index
-  board[index]
+  #if win_combo does not equal nil
+   if win_combo != nil
+     #index = first array in win_combo out of the 3
+     index=win_combo[0]
+     #returns either X or O from the board index
+     board[index]
+   else
+     return nil
+    end
   end
-end
 
 #Play Method
 def play(board)
 #Take turns
   turn(board)
   #Is game over?
-  if !over?(board)
-    turn(board)
-  else
-    over?(board)
+  while !over?(board)
+    play(board)
+    if won?(board)
+      prints "Congratulations #{play(board)}!"
+    else
+      prints "Cats game!"
+    end
   end
-
-def game_over(board)
-# Is game is won?
-    won?(board)
-
-#Declare winner
-      winner(board)
-#Is game a draw?
-    draw?(board)
-
 end
-end
-
-
-
-  #check if game is over
-  #board(over?)
-
-  #if game is not over continue turn
-  #board(turn)
-
-  #if game is over check if game is won
-  #board(won?)
-
-  #if game is over check if game is a draw
-  #board(draw?)
