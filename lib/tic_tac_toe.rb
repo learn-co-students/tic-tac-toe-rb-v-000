@@ -148,7 +148,7 @@ def play(board)
     #Is game won?
     if won?(board)
     #Congratulate winner
-      puts "Congratulations #{turn(board)}!"
+      puts "Congratulations #{current_player)}!"
     else
     #Game is a draw
       puts "Cats game!"
