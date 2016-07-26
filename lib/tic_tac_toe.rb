@@ -145,13 +145,13 @@ def play(board)
   while !over?(board)
     #Take turns
       turn(board)
+  end
     #Is game won?
     if won?(board)
     #Congratulate winner
-      puts "Congratulations #{current_player)}!"
+      puts "Congratulations #{winner(board)}!"
     else
     #Game is a draw
-      puts "Cats game!"
-    end
+      puts "Cats Game!"
   end
 end
