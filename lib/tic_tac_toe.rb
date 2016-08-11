@@ -145,7 +145,7 @@ end
 
 def play(board)
   until over?(board) do
-    turn_count(board)
+    current_player(board)
       if current_player == "X"
         turn(board)
       elsif current_player == "O"
