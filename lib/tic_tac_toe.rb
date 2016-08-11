@@ -1,6 +1,6 @@
 # Define display_board that accepts a board and prints
 # out the current state.
-board = ["   ","   ","   ","   ","   ","   ","   ","   ","   "]
+board = [" "," "," "," "," "," "," "," "," "]
 
 
 def display_board(board)
@@ -40,13 +40,13 @@ def valid_move?(board, index)
   end
 end
 
-def turn(board)
+def turn(board, character = "X")
   puts "Please enter 1-9:"
   input = gets.strip
   index = input.to_i - 1
   input_to_index(input)
   if valid_move?(board, index)
-    move(board, index, character = "X")
+    move(board, index, character)
     display_board(board)
   else
     turn(board)
@@ -56,10 +56,11 @@ end
 
 def turn_count(board)
   counter = 0
-  board.each{|spot|
+  board.each do |spot|
     if spot == "X" || spot == "O"
       counter += 1
-    end}
+    end
+  end
   return counter
 end
 
@@ -84,20 +85,13 @@ WIN_COMBINATIONS = [
   [2,4,6]
 ]
 
-
-
-
 def won?(board)
-  if WIN_COMBINATIONS.find do |win_combination|
-      if win_combination.all? do |index| board[index] == "X"
-      end
-        return win_combination
-      elsif win_combination.all? {|index| board[index] == "O" }
-       return win_combination
-      end
+  WIN_COMBINATIONS.find do |win_combination|
+    if win_combination.all? {|index| board[index] == "X" }
+      return win_combination
+    elsif win_combination.all? {|index| board[index] == "O" }
+      return win_combination
     end
-  else
-    false
   end
 end
 
@@ -130,27 +124,24 @@ def over?(board)
 end
 
 def winner(board)
-  if WIN_COMBINATIONS.find do |win_combination|
-      if win_combination.all? { |index| board[index] == "X" }
-        return "X"
-      elsif win_combination.all? {|index| board[index] == "O" }
-       return "O"
-      end
+  WIN_COMBINATIONS.find do |win_combination|
+    if win_combination.all? {|index| board[index] == "X" }
+      return "X"
+    elsif win_combination.all? {|index| board[index] == "O" }
+      return "O"
     end
-  else
-    nil
   end
 end
 
 
 def play(board)
-  until over?(board) do
+  until over?(board)
     current_player(board)
-      if current_player == "X"
-        turn(board)
-      elsif current_player == "O"
-        turn(board, character = "O")
-      end
+    if current_player == "X"
+      turn(board)
+    elsif current_player == "O"
+      turn(board, character = "O")
+    end
   end
   if won?(board)
     puts "Congratulations, #{winner(board)}!"
