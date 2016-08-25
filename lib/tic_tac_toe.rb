@@ -27,9 +27,10 @@ def position_taken?(board, index)
 end
 
 def valid_move?(board, index)
-    if index.between?(0, 8) && if !position_taken?(board, index)
-        true
-    end
+  if index.between?(0, 8) && !position_taken?(board, index)
+      true
+    else
+      false
   end
 end
 
@@ -81,7 +82,7 @@ def draw?(board)
 end
 
 def over?(board)
-  if won?(board) or full?(board)
+  if won?(board) || full?(board) || draw?(board)
     true
   end
 end
@@ -103,10 +104,9 @@ def play(board)
   end
   if winner(board) == "O"
     puts "Congratulations O!"
-  if winner(board) == "X"
+  elsif winner(board) == "X"
     puts "Congratulations X!"
   elsif draw?(board)
     puts "Cats Game!"
-    end
   end
 end
