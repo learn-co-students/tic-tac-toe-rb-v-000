@@ -1,3 +1,18 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/tic_tac_toe'
+
+board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+
+allow($stdout).to receive(:puts)
+
+allow(self).to receive(:over?).and_return(false, true)
+
+expect(self).to receive(:gets).at_least(:once).and_return("1")
+
+puts "Welcome to Tic Tac Toe!"
+puts "Where would you like to go?"
+input = gets.strip
+index = input_to_index(input)
+display_board(board)
+play(board)
