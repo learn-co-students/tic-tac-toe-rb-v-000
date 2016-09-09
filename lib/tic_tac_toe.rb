@@ -1,3 +1,4 @@
+#require 'pry'
 WIN_COMBINATIONS = [
   [0,1,2], # Top row, #had extra comma&deleted comma, #add comma to delineate element of array WIN_COMBINATIONS
   [3,4,5],  # Middle row, #add comma to delineate element of array WIN_COMBINATIONS
@@ -17,14 +18,6 @@ def display_board (board)
   puts "-----------"
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
-#require_relative '../lib/move.rb'
-#board = [" "," "," "," "," "," "," "," "," "]
-puts "Welcome to Tic Tac Toe!"
-puts "Hi! what's your input?"
-user_input = gets.strip
-index = input_to_index (user_input)
-move(board, index)
-display_board(board) # to call the display_board again with our new updated board
 
 def position_taken? (board, index) # remember to check position_taken_spec.rb for syntax of the conditions
   #board = ["", "","X", "", "", "", "", "", "" ]
@@ -42,25 +35,36 @@ def valid_move?(board, index)
   if board[index] == " "
     #checks to see user entered "index" value is comparable to "", " ", or nil
     true#print true if user entered value is one of 3 conditions r met, i.e user entered "", or " ", or nil
-  elsif board[index] == "X" || "O"
+  elsif board[index] == "X" || board[index] == "O"
     false#print false if user has entered a position
   else
     false
   end
-
 end
-
+#turn
 #NEED TURN METHODS here#######################################################
-ask for input
-get input
-convert input to index
-if move is valid
-  make the move for index and show board
-else
-  ask for input again until you get a valid move
-end
+#ask for input
+#get input
+#convert input to index
+#if move is valid
+#  make the move for index and show board
+#else
+#  ask for input again until you get a valid move
+#end
 ############################################################################
-require 'pry'
+puts "Welcome to Tic Tac Toe!"
+puts "Hi! what's your input?"
+user_input = gets.strip
+index = input_to_index (user_input)
+  if valid_move?(board, index)
+    then move(board, index)
+  else
+    puts "Hi! what's your input?"
+  end
+display_board(board) # to call the display_board again with our new updated board
+
+#define turn_count
+#require 'pry'
 def turn_count (board)
   #if only two occupied position, then player "o" made move
   #if only one occupied position, then player "x" made move
@@ -95,6 +99,7 @@ end
   #desired outcome is number of turns that have been made by
     #setting some counter, starting @ 0, to iterate over each member of
     #board array, to see if element is "x" or "o" by 1 increments
+#define current_player
 def current_player(board) # can't have a space b/f and use parenthesise to hold argument
 #We'll write two separate methods, a method that will tell us how many turns have been played and a method that will return,
 #based on that information, an `"X"` if it is player `"X"`'s turn, and an `"O"` if it is player `"O"`'s turn.
@@ -105,7 +110,7 @@ def current_player(board) # can't have a space b/f and use parenthesise to hold 
   #def current_player (board, first = "X", second = "O")
   if turn_count(board) % 2 == 0 #failed to include turn_count method's argument (board) 1st x; worked after argument inclusion
     return "X"# is the correct line here for instructios states even #'s are to output string "X"'
-#bpry
+#pry
     #return "X"#, no comma is allowed after the value "X" #returns nil. same as print nor put command.
     #instruction calls for X If the turn count is an even number, the `#current_player` method should return `"X"`, otherwise, it should return `"O"`.
   elsif turn_count(board) % 2 == 1
@@ -114,7 +119,7 @@ def current_player(board) # can't have a space b/f and use parenthesise to hold 
   end
   #return "X" #1st x w/ "O"-returned failure/error msg where it expected "X" & got "O"
 end
-
+#define won?
 def won?(board) WIN_COMBINATIONS.find do |win| #FIND the 1 unique combination in the constant WIN_COMBINATIONS
   #when its constant argument,win, is assigned to the board array as part of a local variable
   #that if it passes the logic test of a winning combination, it returns the
@@ -133,7 +138,13 @@ def won?(board) WIN_COMBINATIONS.find do |win| #FIND the 1 unique combination in
     end
                         end
 end
-
+#define full?
+def full?(board) #defines the full? method w/board array
+  board.all? { |elem| # iterate through ALL of the board array
+    elem == "X"  || elem == "O" || elem != " "#value is comparable to X OR O OR is not empty
+  }
+end
+#define draw?
 #accepts a board and returns true if the board has not been won and is full and false if the board is not won and the board is not full,
 #and false if the board is won. You should be able to compose this method solely using the methods you used above with some ruby logic
 def draw?(board)
@@ -144,12 +155,7 @@ def draw?(board)
   end
 end
 
-def full?(board) #defines the full? method w/board array
-  board.all? { |elem| # iterate through ALL of the board array
-    elem == "X"  || elem == "O" || elem != " "#value is comparable to X OR O OR is not empty
-  }
-end
-
+#define over?
 def over?(board)
     if !won?(board) && full?(board) || won?(board)
       true
@@ -157,7 +163,7 @@ def over?(board)
       false
     end
 end
-
+#define winner
 def winner(board)
   win = won?(board) #sets variable to return value
   return if win.nil? # solves for incident when win is nil, for when win is
@@ -177,14 +183,29 @@ def winner(board)
     false
   end
 end
+def turn(board)
+  puts "Please enter 1-9:"
+  input= gets.chomp
+  input= input_to_index(input)
+  if valid_move?(board,input)
+    move(board,input)
+    display_board (board)
+  #move(board, input)  display(board)#here was the mistake, for the method called is not correctly ID
+  #input>=0 || input<=8 move(board,input) this was already validated in valid_move method
+  elsif
+    turn(board) #here is the missing line for 9-12 pm (3 hrs) last nt and 9-11 am (2 hrs today), method calls itself is a new concept
+  end
+end
 #PLAY METHOD###############################
-until the game is over
-  take turns
+def play? (board)
+    if over?(board) == true
+      current_player(board)
+    elsif over?(board) != true
+      turn(board)
+#if the game was won
+    elsif won?(board) == true
+        return "congratulate the winner"
+    elsif draw(board) == true
+        return "it has been a draw"
+    end
 end
-
-if the game was won
-  congratulate the winner
-else if the game was a draw
-  tell the players it has been a draw
-end
-############################################333
