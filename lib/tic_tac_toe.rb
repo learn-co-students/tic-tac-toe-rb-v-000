@@ -10,7 +10,10 @@ WIN_COMBINATIONS = [
   [2,4,6],  #diagnoal from ne to sw#add comma to delineate element of array WIN_COMBINATIONS
   # ETC, an array for each win combination#add comma to delineate element of array WIN_COMBINATIONS
 ]
-
+def input_to_index (user_input)
+  user_input.to_i-1 #converts user_input argument to integer w .to_i
+  #and to match board index position, subtracts 1 from converted user input integer
+end
 def display_board (board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
@@ -55,7 +58,7 @@ end
 puts "Welcome to Tic Tac Toe!"
 puts "Hi! what's your input?"
 user_input = gets.strip
-index = input_to_index (user_input)
+index = input_to_index (user_input) #missing method input_to_index
   if valid_move?(board, index)
     then move(board, index)
   else
@@ -183,10 +186,11 @@ def winner(board)
     false
   end
 end
+
 def turn(board)
   puts "Please enter 1-9:"
   input= gets.chomp
-  input= input_to_index(input)
+  input= input_to_index(input) #missing input_to_index METHOD
   if valid_move?(board,input)
     move(board,input)
     display_board (board)
