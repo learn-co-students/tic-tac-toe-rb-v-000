@@ -182,13 +182,15 @@ end
 #PLAY METHOD###############################
 def play(board)
   input = gets.strip
-    while over?(board) != true # while board is over, either draw or win
+    while over?(board) != true
+      # while board is NOT over,
+      #for there is no draw nor win
       #current_player(board) # print current player (board)
       turn(board)
       #elsif over?(board) == true #
       #current_player(board)
       #turn(board)
-      #binding.pry
+      binding.pry
     end
 #if the game was won
     if won?(board) == true
