@@ -170,8 +170,7 @@ def turn(board)
   if valid_move?(board,input)
     #binding.pry
     move(board,input, current_player(board))
-    #binding.pry
-    # current_player argument inserted,
+      # current_player argument inserted,
     #2nd x = current player removed,
     #3rd x = current_player(board)
     #binding.pry
@@ -181,11 +180,9 @@ def turn(board)
   end
 end
 #PLAY METHOD###############################
-def play(board, input)
+def play(board)
   input = gets.strip
-  #binding.pry
     if over?(board) == true
-      binding.pry
       current_player(board)
     elsif over?(board) != true
       turn(board)
