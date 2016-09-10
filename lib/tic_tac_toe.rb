@@ -183,6 +183,7 @@ end
 def play(board)
   input = gets.strip
     if over?(board) == true
+      #binding.pry
       current_player(board)
     elsif over?(board) != true
       turn(board)
