@@ -191,7 +191,7 @@ def play(board)
 #if the game was won
     elsif won?(board) == true
         return "congratulate the winner"
-    elsif draw(board) == true
+    elsif draw?(board) == true
         return "it has been a draw"
     end
 end
