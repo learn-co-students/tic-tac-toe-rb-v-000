@@ -1,4 +1,4 @@
-#require 'pry'
+require 'pry'
 WIN_COMBINATIONS = [
   [0,1,2], # Top row, #had extra comma&deleted comma, #add comma to delineate element of array WIN_COMBINATIONS
   [3,4,5],  # Middle row, #add comma to delineate element of array WIN_COMBINATIONS
@@ -54,17 +54,6 @@ end
 #else
 #  ask for input again until you get a valid move
 #end
-############################################################################
-puts "Welcome to Tic Tac Toe!"
-puts "Hi! what's your input?"
-user_input = gets.strip
-index = input_to_index (user_input) #missing method input_to_index
-  if valid_move?(board, index)
-    then move(board, index)
-  else
-    puts "Hi! what's your input?"
-  end
-display_board(board) # to call the display_board again with our new updated board
 
 #define turn_count
 #require 'pry'
@@ -213,3 +202,16 @@ def play? (board)
         return "it has been a draw"
     end
 end
+
+############################################################################
+puts "Welcome to Tic Tac Toe!"
+puts "Hi! what's your input?"
+user_input = gets.strip # defines the user input by using gets to obtain
+#user input
+index = input_to_index (user_input) #missing method input_to_index
+  if valid_move?(board, index)
+    then move(board, index)
+  else
+    puts "Hi! what's your input?"
+  end
+display_board(board) # to call the display_board again with our new updated board
