@@ -31,14 +31,30 @@ def position_taken? (board, index) # remember to check position_taken_spec.rb fo
     true
   end
 end
+#############code your input_to_index and #############move method here!
+def input_to_index (user_input)
+  user_input.to_i-1 #converts user_input argument to integer w .to_i
+  #and to match board index position, subtracts 1 from converted user input integer
+end
+
+def move (board, index, current_player) # localized variables used = "board, index,current_player"
+  #Part of your #move method will mean updating the board array passed into it, which is
+  board[index] = current_player #updated board entries
+  #in one line w/ 3 arguments = placeholder for values in the bin/move file
+  #remove space btwn board and its array values
+  #rec'd error for not allowing default 3rd arguments
+end
+##################
 # code your #valid_move? method here
 def valid_move?(board, index)
 # re-define your #position_taken? method here, so that you can use it in the #valid_move? method above.
 # remember to check position_taken_spec.rb for syntax of the conditions
-  if board[index] == " "
+  if board[index] == " " && index.between?(0, 8)# index =>0 && index <=8
+    binding.pry
     #checks to see user entered "index" value is comparable to "", " ", or nil
     true#print true if user entered value is one of 3 conditions r met, i.e user entered "", or " ", or nil
-  elsif board[index] == "X" || board[index] == "O"
+  elsif board[index] == "X" || board[index] == "O" #index <0
+    #binding.pry
     false#print false if user has entered a position
   else
     false
