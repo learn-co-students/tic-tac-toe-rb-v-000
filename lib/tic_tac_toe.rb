@@ -164,14 +164,16 @@ def winner(board)
 end
 
 def turn(board)
-  puts "Please enter 1-9:"
+  #puts "Please enter 1-9:"
   input= gets.strip
   input= input_to_index(input) #missing input_to_index METHOD
   if valid_move?(board,input)
     #binding.pry
-    move(board,input, current_player)
+    move(board,input, current_player(board))
+    #binding.pry
     # current_player argument inserted,
-    #2nd x = current player removed, current_player(board)
+    #2nd x = current player removed,
+    #3rd x = current_player(board)
     #binding.pry
     display_board (board)
   elsif
@@ -179,9 +181,10 @@ def turn(board)
   end
 end
 #PLAY METHOD###############################
-def play? (board)
-  binding.pry
+def play(board)
+  #binding.pry
     if over?(board) == true
+      binding.pry
       current_player(board)
     elsif over?(board) != true
       turn(board)
