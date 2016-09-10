@@ -188,9 +188,9 @@ def play(board)
     else over?(board) != true
       turn(board)
       #binding.pry
-
+    end
 #if the game was won
-    elsif won?(board) == true
+    if won?(board) == true
         return "congratulate the winner"
     elsif draw?(board) == true
         return "it has been a draw"
