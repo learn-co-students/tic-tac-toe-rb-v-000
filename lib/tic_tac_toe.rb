@@ -187,6 +187,7 @@ def play(board)
       current_player(board)
     elsif over?(board) != true
       turn(board)
+      binding.pry
 #if the game was won
     elsif won?(board) == true
         return "congratulate the winner"
