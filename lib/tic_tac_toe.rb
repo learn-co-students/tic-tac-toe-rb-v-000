@@ -181,7 +181,8 @@ def turn(board)
   end
 end
 #PLAY METHOD###############################
-def play(board)
+def play(board, input)
+  input = gets.strip
   #binding.pry
     if over?(board) == true
       binding.pry
