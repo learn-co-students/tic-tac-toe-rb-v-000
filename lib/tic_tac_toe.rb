@@ -129,7 +129,7 @@ end
 #accepts a board and returns true if the board has not been won and is full and false if the board is not won and the board is not full,
 #and false if the board is won. You should be able to compose this method solely using the methods you used above with some ruby logic
 def draw?(board)
-  if !won?(board) && full?(board)
+  if !won?(board) && full?(board) # if not won board and not full board then
     true
   else
     false
@@ -138,8 +138,8 @@ end
 
 #define over?
 def over?(board)
-    if draw?(board) || won?(board)
-      true
+    if draw?(board) || won?(board) # if board is at draw or board is won
+      true # then return true.
     else
       false
     end
@@ -182,11 +182,13 @@ end
 #PLAY METHOD###############################
 def play(board)
   input = gets.strip
-    while over?(board) == true
-      #binding.pry
-      current_player(board)
-    else over?(board) != true
+    while !over?(board) == true # while board is over, either draw or win
+      binding.pry
+      #current_player(board) # print current player (board)
       turn(board)
+      #elsif over?(board) == true #
+      #current_player(board)
+      #turn(board)
       #binding.pry
     end
 #if the game was won
