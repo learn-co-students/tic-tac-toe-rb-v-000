@@ -46,12 +46,13 @@ def move (board, index, current_player) # localized variables used = "board, ind
 end
 ##################
 # code your #valid_move? method here
+
 def valid_move?(board, index)
 # re-define your #position_taken? method here, so that you can use it in the #valid_move? method above.
 # remember to check position_taken_spec.rb for syntax of the conditions
-  if board[index] == " " && index.between?(0, 8)# index =>0 && index <=8
-    binding.pry
+    #binding.pry
     #checks to see user entered "index" value is comparable to "", " ", or nil
+  if board[index] == " " && index.between?(0, 8)# index =>0 && index <=8 failed for short circuit evaluation
     true#print true if user entered value is one of 3 conditions r met, i.e user entered "", or " ", or nil
   elsif board[index] == "X" || board[index] == "O" #index <0
     #binding.pry
@@ -192,11 +193,13 @@ def winner(board)
 end
 
 def turn(board)
-  puts "Please enter 1-9:"
-  input= gets.chomp
+  #puts "Please enter 1-9:"
+  input= gets.strip
   input= input_to_index(input) #missing input_to_index METHOD
   if valid_move?(board,input)
-    move(board,input)
+    binding.pry
+    move(board,input, current_player)
+    #binding.pry
     display_board (board)
   #move(board, input)  display(board)#here was the mistake, for the method called is not correctly ID
   #input>=0 || input<=8 move(board,input) this was already validated in valid_move method

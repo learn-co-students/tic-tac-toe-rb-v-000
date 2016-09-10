@@ -1,3 +1,10 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/tic_tac_toe'
+#board = [" "," "," "," "," "," "," "," "," "]
+puts "Welcome to Tic Tac Toe!"
+puts "Hi! what's your input?"
+user_input = gets.strip
+index = input_to_index (user_input)
+move(board, index)
+display_board(board) # to call the display_board again with our new updated board
