@@ -77,24 +77,9 @@ def turn_count (board)
   #if only two occupied position, then player "o" made move
   #if only one occupied position, then player "x" made move
   counter = 0
-  #if board.each do |item| == "X" || board.each do |item| == "O"
-  #if board.each do |item| =="X" || board.each do |item| =="O"
-  #if board.each do |item| != ""
-  #if board.each do |item| == "X", got sytax error, unexpected ==^ "X"
+#if board.each do |item| == "X", got sytax error, unexpected ==^ "X"
   board.each do |item|#iterate through board array element and pass each value to local variable item
     if item !=" "
-    #if item != " "
-    #if item !==" "
-    #if item !== " "
-    #if item == "X" ; worked
-    #item == "X" # got 2, expected 3 error message
-    #if item = "O" || item = "X"
-    #if item != "O" || item != "X"
-    #while item != ""
-    #item = "X"
-    #if item == "X" || item == "O" #got: ["0", " ", ****]
-    #if item == "X"
-    #if item != ""
     #if item !=""
     counter +=1
   #elsif item == "O"; worked
@@ -104,18 +89,9 @@ def turn_count (board)
   #desired outcome is number of turns that have been made by
   counter #why did this method missing an argument? when it's not here the each block returns the board array instead of a counter value
 end
-  #desired outcome is number of turns that have been made by
-    #setting some counter, starting @ 0, to iterate over each member of
-    #board array, to see if element is "x" or "o" by 1 increments
+
 #define current_player
 def current_player(board) # can't have a space b/f and use parenthesise to hold argument
-#We'll write two separate methods, a method that will tell us how many turns have been played and a method that will return,
-#based on that information, an `"X"` if it is player `"X"`'s turn, and an `"O"` if it is player `"O"`'s turn.
-#start a REPL session
-  #def current_player
-  #def current_player (board) # wrong number of arguments (0 for 1)
-  #def current_player () # wrong number of arguments (1 for 0)
-  #def current_player (board, first = "X", second = "O")
   if turn_count(board) % 2 == 0 #failed to include turn_count method's argument (board) 1st x; worked after argument inclusion
     return "X"# is the correct line here for instructios states even #'s are to output string "X"'
 #pry
@@ -129,10 +105,7 @@ def current_player(board) # can't have a space b/f and use parenthesise to hold 
 end
 #define won?
 def won?(board) WIN_COMBINATIONS.find do |win| #FIND the 1 unique combination in the constant WIN_COMBINATIONS
-  #when its constant argument,win, is assigned to the board array as part of a local variable
-  #that if it passes the logic test of a winning combination, it returns the
-  #winning combination indexes' values
-#binding.pry
+  #binding.pry
     position_1 = board[win[0]]
     position_2 = board[win[1]]
     position_3 = board[win[2]]
@@ -181,8 +154,6 @@ def winner(board)
   position_2 = board[win[1]]
   position_3 = board[win[2]]
   #binding.pry
-  #win[0][0].select{ |i| i.is_X?(String) }
-  #binding.pry
   if position_1 == "X"
     return "X"
   elsif position_1 == "O"
@@ -193,16 +164,16 @@ def winner(board)
 end
 
 def turn(board)
-  #puts "Please enter 1-9:"
+  puts "Please enter 1-9:"
   input= gets.strip
   input= input_to_index(input) #missing input_to_index METHOD
   if valid_move?(board,input)
-    binding.pry
+    #binding.pry
     move(board,input, current_player)
+    # current_player argument inserted,
+    #2nd x = current player removed, current_player(board)
     #binding.pry
     display_board (board)
-  #move(board, input)  display(board)#here was the mistake, for the method called is not correctly ID
-  #input>=0 || input<=8 move(board,input) this was already validated in valid_move method
   elsif
     turn(board) #here is the missing line for 9-12 pm (3 hrs) last nt and 9-11 am (2 hrs today), method calls itself is a new concept
   end
