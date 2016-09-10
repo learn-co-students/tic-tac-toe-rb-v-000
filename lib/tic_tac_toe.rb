@@ -138,7 +138,7 @@ end
 
 #define over?
 def over?(board)
-    if !won?(board) && full?(board) || won?(board)
+    if draw?(board) || won?(board)
       true
     else
       false
@@ -182,12 +182,13 @@ end
 #PLAY METHOD###############################
 def play(board)
   input = gets.strip
-    if over?(board) == true
+    while over?(board) == true
       #binding.pry
       current_player(board)
-    elsif over?(board) != true
+    else over?(board) != true
       turn(board)
-      binding.pry
+      #binding.pry
+
 #if the game was won
     elsif won?(board) == true
         return "congratulate the winner"
