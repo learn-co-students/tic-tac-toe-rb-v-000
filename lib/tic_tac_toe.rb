@@ -205,13 +205,21 @@ def play(board)
 #from parent board array value, located at its' child array ,win array, index 0
   #position_2 = board[win[1]]
   #position_3 = board[win[2]]
-    if won?(board) == true ##&& winner(board) == "X"#&& position_1 == "X"
+    if won?(board)##== true; worked to ensure its OutPUTString is evaluated by test
+      ##&& winner(board) == "X"#&& position_1 == "X"
+      #won?(board) is a string, & according to IRB, if won?(board), puts
+      #print
       #binding.pry
-      puts "Congratulations O!"
+      #puts "Congratulations"
+        puts "Congratulations X!"
+    elsif won?(board) && !current_player(board) == "X"
+        puts "Congratulations O!"
     elsif draw?(board) == true
-        return "it has been a draw"
+        puts "Cats Game!"
+        #return "Cats Game!"; return was the error
     else
-      puts "Congratulations X!"#flatiron, else stmt for won? question mark is
+        puts "  "#flatiron, else stmt for won? question mark is
       #a truthy or false value, hence, it was missing a false value w/ else stmt.
+      #puts "Congratulations", it returned nil
     end
 end
