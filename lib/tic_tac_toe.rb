@@ -196,7 +196,7 @@ def play(board)
       #elsif over?(board) == true #
       #current_player(board)
       #turn(board)
-      binding.pry
+      #binding.pry
     end
 #if the game was won
     if won?(board) == true
