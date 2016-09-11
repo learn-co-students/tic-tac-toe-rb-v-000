@@ -104,9 +104,10 @@ def current_player(board) # can't have a space b/f and use parenthesise to hold 
   #return "X" #1st x w/ "O"-returned failure/error msg where it expected "X" & got "O"
 end
 #define won?
-def won?(board) WIN_COMBINATIONS.find do |win| #FIND the 1 unique combination in the constant WIN_COMBINATIONS
+def won?(board) WIN_COMBINATIONS.find do |win|
+  #FIND the 1 unique combination in the constant WIN_COMBINATIONS
   #binding.pry
-    position_1 = board[win[0]]
+    position_1 = board[win[0]]#assigns variables to board nested array
     position_2 = board[win[1]]
     position_3 = board[win[2]]
     if position_1 == position_2 && position_2 == position_3 && position_1 != " "
@@ -181,9 +182,14 @@ def turn(board)
 end
 #PLAY METHOD###############################
 def play(board)
-  input = gets.strip
-    while over?(board) != true
-      # while board is NOT over,
+  #input = gets.strip
+    while !over?(board)
+      # until the game is over = pseudocode
+      #!draw?(board) && !won?(board)
+      #for there is A draw OR A win
+      # try to be explicit with draw and win condition
+      #removed equiv to true as a condition per flatiron
+      # while board is NOT over, = !
       #for there is no draw nor win
       #current_player(board) # print current player (board)
       turn(board)
