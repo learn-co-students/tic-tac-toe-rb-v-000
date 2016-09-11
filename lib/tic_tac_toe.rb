@@ -1,4 +1,4 @@
-require 'pry'
+#require 'pry'
 WIN_COMBINATIONS = [
   [0,1,2], # Top row, #had extra comma&deleted comma, #add comma to delineate element of array WIN_COMBINATIONS
   [3,4,5],  # Middle row, #add comma to delineate element of array WIN_COMBINATIONS
@@ -111,8 +111,10 @@ def won?(board) WIN_COMBINATIONS.find do |win|
     position_2 = board[win[1]]
     position_3 = board[win[2]]
     if position_1 == position_2 && position_2 == position_3 && position_1 != " "
-      #|| position_1 == position_3
-         return win
+      #variable 1 is comparable to 2 and 2 is comparable to 3 &&
+      #varialbe 1 is not empty
+         return win # returns win which is the 1 win in the constant
+         #WIN_COMBINATIONS
     #elsif position_1 == "X" && position_2 == "O" && position_3 == "X"
         #return true
         else
@@ -199,9 +201,17 @@ def play(board)
       #binding.pry
     end
 #if the game was won
-    if won?(board) == true
-        return "congratulate the winner"
+  #position_1 = board[win[0]] # assignment equality operator to extract
+#from parent board array value, located at its' child array ,win array, index 0
+  #position_2 = board[win[1]]
+  #position_3 = board[win[2]]
+    if won?(board) == true ##&& winner(board) == "X"#&& position_1 == "X"
+      #binding.pry
+      puts "Congratulations O!"
     elsif draw?(board) == true
         return "it has been a draw"
+    else
+      puts "Congratulations X!"#flatiron, else stmt for won? question mark is
+      #a truthy or false value, hence, it was missing a false value w/ else stmt.
     end
 end
