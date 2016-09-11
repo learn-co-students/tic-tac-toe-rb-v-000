@@ -1,4 +1,4 @@
-#require 'pry'
+require 'pry'
 WIN_COMBINATIONS = [
   [0,1,2], # Top row, #had extra comma&deleted comma, #add comma to delineate element of array WIN_COMBINATIONS
   [3,4,5],  # Middle row, #add comma to delineate element of array WIN_COMBINATIONS
@@ -205,14 +205,17 @@ def play(board)
 #from parent board array value, located at its' child array ,win array, index 0
   #position_2 = board[win[1]]
   #position_3 = board[win[2]]
-    if won?(board)##== true; worked to ensure its OutPUTString is evaluated by test
+    if won?(board) && winner(board) == "X"
+      #winner(board)
+      #current_player(board) = "X"
+      ##== true; worked to ensure its OutPUTString is evaluated by test
       ##&& winner(board) == "X"#&& position_1 == "X"
       #won?(board) is a string, & according to IRB, if won?(board), puts
       #print
-      #binding.pry
       #puts "Congratulations"
         puts "Congratulations X!"
-    elsif won?(board) && !current_player(board) == "X"
+    elsif won?(board) && winner(board) == "O" #
+      #!current_player == "X"
         puts "Congratulations O!"
     elsif draw?(board) == true
         puts "Cats Game!"
