@@ -89,13 +89,12 @@ def full?( board)
 end
 
 def draw?( board)
-  full?( board) && !won?( board)
-end
+  if (full?( board) && !won?( board)) #|| won?( board)
+    #puts "Game Over"
 
-def over?( board)
-  if (full?( board) && !won?( board)) || won?( board)
-    puts "Game Over"
-    puts "Its a draw!"
+    true
+  else won?( board)
+    false
   end
 end
 
@@ -104,41 +103,35 @@ def winner( board)
     #puts "#{winning_variable}"
   if winning_variable
     winning_index = winning_variable[0]
-    puts "Game Over"
-    puts "Congratulations #{board[winning_index]}, you won!"
+    #puts "Game Over"
+    puts "Congratulations #{board[winning_index]}!"
     return board[winning_index]
   else
      nil
   end
 end
 
-def other_moves( board)
-  if full?( board) || draw?( board) || over?( board) || winner( board)
-    true
-  else
-    false
-  end
+def over?( board)
+  full?( board) || draw?( board) || won?( board)
 end
-
 
 # Define your play method below
 
 def play( board)
-  counter = 0
-  loop do
-    counter += 1
-    turn( board)
-    if winning_combination = won?(board)
-      #puts "#{winning_combination}"
-      if winner( board)
-        break
+  until over?(board)
+    turn(board)
+  end
+    if won?(board)
+      puts "Congratulations #{winner(board)}"
+      #if winner( board)
+      #  break
       #else over?( board)
       #  break
-      end
-    elsif over?( board)
-      break
-    elsif counter >= 9
-      break
+      #end
+    elsif draw?( board)
+      puts "Cats Game!"
+    #  break
+    #elsif counter >= 9
+    #  break
     end
-  end
 end
