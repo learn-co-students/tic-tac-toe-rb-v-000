@@ -90,10 +90,7 @@ def draw?(board)
 end
 
 def over?(board)
-  #binding.pry
-  if full?(board) == true && draw?(board)== true || won?(board) != nil
-    return true
-  end
+  won?(board) || draw?(board)
 end
 
 #binding.pry
