@@ -52,3 +52,59 @@ def turn(board)
     input = gets.strip
   end
 end
+
+def turn_count(board)
+
+  board.count {|x| x if x =="X" || x == "O" }
+
+end
+
+def current_player(board)
+  if turn_count(board).even?
+    "X"
+  else
+    "O"
+end
+end
+
+def won?(board)
+   WIN_COMBINATIONS.each do |win_combination|
+    win_index_0 = win_combination[0]
+    win_index_1 = win_combination[1]
+    win_index_2 = win_combination[2]
+    win_index_3 = win_combination[3]
+    win_index_4 = win_combination[4]
+    win_index_5 = win_combination[5]
+    win_index_6 = win_combination[6]
+    win_index_7 = win_combination[7]
+
+    if board[win_index_0] == "X" && board[win_index_1] == "X" && board[win_index_2] == "X"
+      return win_combination
+    elsif board[win_index_0] == "O" && board[win_index_1] == "O" && board[win_index_2] == "O"
+      return win_combination
+        elsif board.all? { |i| i == " " }
+      return false
+
+        else
+      next
+    end
+  end
+  false
+end
+
+def full?(board)
+  board.each do |x|
+     if x == ' '
+       return false
+     end
+  end
+  true
+end
+
+def draw?(board)
+  if full?(board) && !won?(board)
+        true
+  else
+    false
+end
+end
