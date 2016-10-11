@@ -83,14 +83,13 @@ end
 
 
 def won?(board)
-    WIN_COMBINATIONS.detect do |win_combination|
-		if board[win_combination[0]] == board[win_combination[1]] && board[win_combination[1]] == board[win_combination[2]] && board[win_combination[0]] != " "
-        return win_combination
-    elsif board == [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-      false
+    if WIN_COMBINATIONS.detect do |win_combination|
+		    if board[win_combination[0]] == board[win_combination[1]] && board[win_combination[1]] == board[win_combination[2]] && board[win_combination[0]] != " "
+          return win_combination
+        end
+    end
     else
       false
-      end
     end
 end
 
@@ -107,7 +106,7 @@ end
 
 
 def over?(board)
-  won?(board) == true || draw?(board) == true
+  won?(board) != false || draw?(board) == true
 end
 
 def winner(board)
@@ -120,11 +119,14 @@ def winner(board)
   end
 end
 
+
+
+
 def play(board)
   until over?(board) == true
   turn(board)
   end
-  if won?(board)
+  if won?(board) == true
     character = current_player(board)
     puts "Congratulations #{character}!"
   elsif draw?(board)
