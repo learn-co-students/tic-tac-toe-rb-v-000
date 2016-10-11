@@ -126,7 +126,7 @@ def play(board)
   until over?(board) == true
   turn(board)
   end
-  if won?(board) == true
+  if won?(board) != false
     character = current_player(board)
     puts "Congratulations #{character}!"
   elsif draw?(board)
