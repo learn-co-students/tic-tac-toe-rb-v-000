@@ -46,10 +46,10 @@ def turn(board)
  input = gets.strip
   index = input_to_index(input)
   if valid_move?(board, index)
-    move(board, index, char = "X")
+    move(board, index, current_player(board))
     display_board(board)
   else
-    input = gets.strip
+    turn(board)
   end
 end
 
@@ -76,7 +76,6 @@ def won?(board)
     win_index_4 = win_combination[4]
     win_index_5 = win_combination[5]
     win_index_6 = win_combination[6]
-    win_index_7 = win_combination[7]
     win_index_8 = win_combination[8]
 
     if board[win_index_0] == "X" && board[win_index_1] == "X" && board[win_index_2] == "X"
@@ -112,11 +111,11 @@ end
 
 
 def over?(board)
-  board.each do |x|
-     if x == ' '
-       return false
+   if draw?(board) || won?(board)
+      true
+    else
+       false
      end
-end
 end
 
 def winner(board)
@@ -131,5 +130,11 @@ end
 def play(board)
   until over?(board) == true
   turn(board)
+  end
+if won?(board) != false
+  character = winner(board)
+  puts "Congratulations #{character}!"
+elsif draw?(board)
+  puts "Cats Game!"
   end
   end
