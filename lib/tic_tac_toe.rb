@@ -77,6 +77,7 @@ def won?(board)
     win_index_5 = win_combination[5]
     win_index_6 = win_combination[6]
     win_index_7 = win_combination[7]
+    win_index_8 = win_combination[8]
 
     if board[win_index_0] == "X" && board[win_index_1] == "X" && board[win_index_2] == "X"
       return win_combination
@@ -103,8 +104,32 @@ end
 
 def draw?(board)
   if full?(board) && !won?(board)
-        true
+      true
   else
     false
 end
 end
+
+
+def over?(board)
+  board.each do |x|
+     if x == ' '
+       return false
+     end
+end
+end
+
+def winner(board)
+ win = won?(board)
+  if win
+    board[win[0]]
+ else
+   nil
+ end
+end
+
+def play(board)
+  until over?(board) == true
+  turn(board)
+  end
+  end
