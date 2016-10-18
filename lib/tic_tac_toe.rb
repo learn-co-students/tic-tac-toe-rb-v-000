@@ -98,13 +98,7 @@ end
     end
 
     def draw?(board)
-      if full?(board) && !won?(board)
-        true
-      elsif won?(board) == true
-        false
-      else
-        false
-      end
+    !won?(board) && full?(board)
     end
 
     def over?(board)
@@ -120,8 +114,7 @@ end
 
 
 def play(board)
-
-  until over?(board)
+  while  !over?(board)
     turn(board)
   end
   if won?(board)
