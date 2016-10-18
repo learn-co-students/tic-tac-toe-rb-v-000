@@ -85,17 +85,28 @@ end
       end
   end
 
-  def full?(board)
-    all_full = true
-    board.each do |position|
-      if position == "X" || position == "O"
-         all_full = true
-       else
-         all_full = false
-      end
-    end
-    all_full
-    end
+#each is going through your array and for each item it is resetting the value of all_full
+#Since 9 is the last number in your array, it is the last item that #each works on
+#because of that, it is the last time that #each will reset the value of all_full
+#So the way you have it set up right now, if 9 is empty, all_full will be set as 'false' and if 9 is full, all_full will be set as 'true'
+  #def full?(board)
+  #  all_full = true
+  #  board.each do |position|
+  #    if position == "X" || position == "O"
+  #       all_full = true
+  #     else
+  #       all_full = false
+  #    end
+  #  end
+  #  all_full
+  #  end
+
+def full?(board)
+  board.all? do |position|
+    position == "X" || position =="O"
+  end
+end
+
 
     def draw?(board)
     !won?(board) && full?(board)
