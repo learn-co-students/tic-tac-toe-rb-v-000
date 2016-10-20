@@ -19,9 +19,6 @@ end
 
 def move(board, index, char = "X")
     board[index] = char
-    if turn_count(board) % 2 == 0
-      char = "O"
-    end
 end
 
 def valid_move?(board, index)
@@ -38,7 +35,7 @@ def turn(board)
   input = gets.chomp
   index = input_to_index(input)
   if valid_move?(board, index)
-    move(board, index, char = "X")
+    move(board, index, current_player(board))
     display_board(board)
   else
     turn(board)
