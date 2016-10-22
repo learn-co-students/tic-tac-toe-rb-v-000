@@ -28,6 +28,7 @@ WIN_COMBINATIONS = [
 ]
 
 def valid_move?(gameboard, position)
+  binding.pry
   if position.between?(0,8)
     if !position_taken?(gameboard, position)
       return true
