@@ -73,7 +73,7 @@ def current_player(board)
 end
 
 def won?(board)
-  WIN_COMBINATIONS.detect? do |combo|
+  WIN_COMBINATIONS.detect do |combo|
   board[combo[0]] == board[combo[1]] &&
   board[combo[1]] == board[combo[2]] &&
   position_taken?(board, combo[0])
@@ -96,4 +96,20 @@ def winner(board)
   if winning_combo = won?(board)
     board[winning_combo.first]
   end
+end
+
+
+def play(board)
+until over?(board)
+index = gets.strip
+  turn(board)
+end
+if won?(board)
+  "Congratulations #{winner(board)}!"
+elsif draw?(board)
+  print "Cats Game!"
+
+
+
+ end
 end
