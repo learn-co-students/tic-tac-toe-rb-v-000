@@ -58,7 +58,6 @@ def won? (board)
       break
     end
   end
-
   win_output
 end
 
@@ -73,7 +72,7 @@ def draw? (board)
 end
 
 def over?(board)
-  won?(board).is_a?(Array) || draw?(board)
+  won?(board) || draw?(board)
 end
 
 def winner(board)
@@ -91,7 +90,7 @@ def turn(board)
   index = input_to_index(user_input)
 
   if valid_move?(board, index)
-    binding.pry
+
     move(board, index, current_player(board))
     display_board(board)
 
