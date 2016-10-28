@@ -42,7 +42,7 @@ end
 
 def turn(board)
   puts "Choose a number between 1- 9. 1 signifies the top left corner and 9 signifies the bottom right corner"
-#index = input_to_index(position)
+index = input_to_index(position)
   if valid_move?(board, index)
     move(board, index, current_player(board))
       display_board(board)
