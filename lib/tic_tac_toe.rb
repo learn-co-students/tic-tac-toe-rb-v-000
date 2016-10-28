@@ -1,3 +1,5 @@
+require 'pry'
+
 WIN_COMBINATIONS = [
   [0, 1, 2],
   [3, 4, 5],
@@ -23,6 +25,7 @@ def input_to_index(position)
   position.to_i - 1
 end
 
+
 def move(board, index, letter)
   board[index] = letter
 end
@@ -39,8 +42,7 @@ end
 
 def turn(board)
   puts "Choose a number between 1- 9. 1 signifies the top left corner and 9 signifies the bottom right corner"
-  position = gets.strip
-index = input_to_index(position)
+#index = input_to_index(position)
   if valid_move?(board, index)
     move(board, index, current_player(board))
       display_board(board)
@@ -53,7 +55,7 @@ end
 def turn_count(board)
   counter = 0
  board.each do|element|
-   if element== "X" || element == "O"
+   if element == "X" || element == "O"
      counter+=1
   end
  end
