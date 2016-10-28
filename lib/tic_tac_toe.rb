@@ -12,12 +12,11 @@ WIN_COMBINATIONS = [
 ]
 
 def play(board)
-  input = gets
   while !over?(board) do
     turn(board)
   end
   if won?(board)
-    puts "congratulate the #{winner(board)}"
+    puts "Congratulations #{winner(board)}!"
   elsif draw?(board)
     puts "Cats Game!"
   end
@@ -122,7 +121,7 @@ end
 
 #over?
 def over?(board)
-  won?(board) || full?(board)
+  won?(board) || draw?(board)
 end
 
 #WINNER
