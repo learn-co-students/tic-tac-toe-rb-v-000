@@ -1,3 +1,5 @@
+# require 'pry'
+
 WIN_COMBINATIONS = [
   [0,1,2], # Top row
   [3,4,5],  # Middle row
@@ -17,7 +19,7 @@ def display_board(board)
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
-def input_to_index(user_input="X")
+def input_to_index(user_input)
   user_input.to_i - 1
 end
 
@@ -43,8 +45,11 @@ def turn(board)
   user_input = gets.strip
   index = input_to_index(user_input)
 
+  # binding.pry
+
   if valid_move?(board, index)
-    move(board, index, "X")
+    character = current_player(board)
+    move(board, index, character)
   else
     turn(board)
   end
@@ -78,13 +83,13 @@ def full?(board)
 end
 
 def draw?(board)
-  if full?(board) && !won?(board)
+  if !won?(board) && full?(board)
     return true
   end
 end
 
 def over?(board)
-  if won?(board) == true || full?(board) == true || draw?(board) == true
+  if won?(board) || full?(board) || draw?(board)
     return true
   end
 end
@@ -93,4 +98,17 @@ def winner(board)
   if won?(board)
    board[won?(board)[0]]
  end
+end
+
+def play(board)
+  until over?(board)
+    turn(board)
+
+  end
+
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cats Game!"
+  end
 end
