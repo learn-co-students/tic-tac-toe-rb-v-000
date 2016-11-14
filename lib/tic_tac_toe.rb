@@ -30,6 +30,7 @@ def turn(board)
     move(board, index, current_player(board))
     display_board(board)
   else
+    puts "Incorrect entry. Try again."
     turn(board)
   end
 end
