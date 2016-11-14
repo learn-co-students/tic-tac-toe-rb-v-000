@@ -30,7 +30,7 @@ def turn(board)
     move(board, index)
     display_board(board)
   else
-    puts "shit's done, son!"
+    puts "ended"
     # turn(board)
     play(board)
   end
