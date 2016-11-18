@@ -17,6 +17,9 @@ def display_board(board)
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
+# def valid_input
+
+
 def input_to_index(user_input)
   user_input.to_i - 1
 end
@@ -123,11 +126,11 @@ def full?(board)
 end
 
 def draw?(board)
-  full?(board) && !won?(board)
+!won?(board) && full?(board)
 end
 
 def over?(board)
-  full?(board) || won?(board) != false
+  draw?(board) || won?(board) != false
 end
 
 def winner(board)
@@ -139,9 +142,15 @@ def winner(board)
 end
 
 def play(board)
-  game_over = false
-  until over?(board) || game_over do
+  until over?(board) do
     turn(board)
-    game_over = true
+  end
+  winner = winner(board)
+  if winner == "X"
+    puts "Congratulations X!"
+  elsif
+    puts "Congratulations O!"
+  elsif draw?(board)
+    puts "Cats Game!"
   end
 end
