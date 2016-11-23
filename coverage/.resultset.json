@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/Hobbes/Development/code/tic-tac-toe-rb-v-000/lib/tic_tac_toe.rb": [
+      "/Users/gabe/dev/tic-tac-toe-rb-v-000/lib/tic_tac_toe.rb": [
         null,
         1,
         25,
@@ -62,7 +62,7 @@
         null,
         null,
         1,
-        344,
+        368,
         null,
         null,
         1,
@@ -72,29 +72,23 @@
         null,
         null,
         1,
-        51,
-        318,
+        54,
+        342,
         23,
         null,
         null,
         null,
         null,
         1,
-        216,
-        10,
-        null,
+        164,
         null,
         null,
         1,
-        20,
-        4,
-        null,
+        23,
         null,
         null,
         1,
         22,
-        10,
-        null,
         null,
         null,
         1,
@@ -102,11 +96,9 @@
         6,
         6,
         null,
-        null,
-        null,
         null
       ]
     },
-    "timestamp": 1466025237
+    "timestamp": 1479761098
   }
 }
