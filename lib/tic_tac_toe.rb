@@ -58,7 +58,7 @@ def current_player(board)
 end
 
 def position_taken?(board, index)
-  !(board[index].nil? || board[index] == " ")
+  board[index] != " "
 end
 
 WIN_COMBINATIONS = [
@@ -76,28 +76,20 @@ def won?(board)
 end
 
 def full?(board)
-  if board.all? {|pos| !(pos.nil? || pos == " ")}
-    return true
-  end
+  board.all? {|pos| pos != " "}
 end
 
 def draw?(board)
-  if full?(board) && won?(board) == false
-    return true
-  end
+  full?(board) && !won?(board)
 end
 
 def over?(board)
-  if won?(board) || full?(board) || draw?(board)
-    return true
-  end
+  won?(board) || draw?(board)
 end
 
 def winner(board)
   if won?(board)
     cmb = won?(board)
     return board[cmb[0]]
-  else
-    return nil
   end
 end
