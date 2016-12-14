@@ -21,14 +21,14 @@ WIN_COMBINATIONS = [
 ]
 
 def play(board)
-until over?(board)
-  turn(board)
-if won?(board)
-  puts "Congratulations #{winner(board)}!"
-else draw?(board)
-  puts "Cat's Game!"
-end
-end
+  while over?(board)
+    turn(board)
+    if won?(board)
+      puts "Congratulations #{winner(board)}!"
+    else draw?(board)
+      puts "Cat's Game"
+    end
+  end
 end
 
 def input_to_index(user_input)
