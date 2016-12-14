@@ -24,9 +24,9 @@ def play(board)
 until over?(board)
   turn(board)
 if won?(board)
-  puts "You are the winner!"
+  puts "Congratulations #{winner(board)}!"
 else draw?(board)
-  puts "It's a draw"
+  puts "Cat's Game!"
 end
 end
 end
