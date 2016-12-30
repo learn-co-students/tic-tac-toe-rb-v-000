@@ -1,6 +1,6 @@
 require_relative '../lib/tic_tac_toe.rb'
 
-describe './lib/tic_tac_toe.rb' do  
+describe './lib/tic_tac_toe.rb' do
   describe '#play' do
     it 'asks for players input on a turn of the game' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
@@ -79,6 +79,7 @@ describe './lib/tic_tac_toe.rb' do
       play(board)
     end
 
+      # Ineffective test. Tests for unrealistic situation. I was able to get the test to pass but the application doesn't run.
     it 'congratulates the winner X' do
       board = ["X", "X", "X", " ", " ", " ", " ", " ", " "]
       allow($stdout).to receive(:puts)
@@ -88,6 +89,7 @@ describe './lib/tic_tac_toe.rb' do
       play(board)
     end
 
+    # Ineffective test. Tests for unrealistic situation. I was able to get the test to pass but the application doesn't run.
     it 'congratulates the winner O' do
       board = [" ", " ", " ", " ", " ", " ", "O", "O", "O"]
       allow($stdout).to receive(:puts)
