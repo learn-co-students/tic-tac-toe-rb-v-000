@@ -94,7 +94,7 @@ def draw?(board)
 end
 
 def over?(board)
-  won?(board) == true || draw?(board) == true
+  won?(board) || draw?(board)
 end
 
 def winner(board)
@@ -106,12 +106,12 @@ def winner(board)
 end
 
 def play(board)
-  until over?(board) == true do
+  until over?(board) do
     turn(board)
   end
-  if won?(board) == true
-    puts "Congratulations (win_combination[O])!"
-  elsif draw?(board) == true
-    puts "Cats game!"
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cats Game!"
   end
 end
