@@ -47,7 +47,7 @@ end
 
 def turn(board)
   puts "Please enter 1-9"
-  input = gets
+  input = gets.chomp
   index = input_to_index(input)
   if valid_move?(board, index) == true
     move(board, index, value = current_player(board))
@@ -129,6 +129,7 @@ def winner(board)
 end
 
 def play(board)
+  display_board(board)
   until over?(board) == true
     turn(board)
   end

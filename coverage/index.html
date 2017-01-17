@@ -14,7 +14,7 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-01-17T01:47:55+00:00">2017-01-17T01:47:55+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-01-17T02:36:54+00:00">2017-01-17T02:36:54+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,15 +25,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         50.9
+         51.2
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>1</b> files in total.
-    <b>79</b> relevant lines. 
-    <span class="green"><b>79</b> lines covered</span> and
+    <b>80</b> relevant lines. 
+    <span class="green"><b>80</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -53,11 +53,11 @@
       <tr>
         <td class="strong"><a href="#041c93ef7ea5818b8bcd650c7743b4503c0d903e" class="src_link" title="lib/tic_tac_toe.rb">lib/tic_tac_toe.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>140</td>
-        <td>79</td>
-        <td>79</td>
+        <td>141</td>
+        <td>80</td>
+        <td>80</td>
         <td>0</td>
-        <td>50.9</td>
+        <td>51.2</td>
       </tr>
       
     </tbody>
@@ -81,8 +81,8 @@
     <h3>lib/tic_tac_toe.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>79</b> relevant lines. 
-      <span class="green"><b>79</b> lines covered</span> and
+      <b>80</b> relevant lines. 
+      <span class="green"><b>80</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -162,32 +162,32 @@
           <code class="ruby">def display_board(board)</code>
         </li>
       
-        <li class="covered" data-hits="22" data-linenumber="13">
-          <span class="hits">22</span>
+        <li class="covered" data-hits="34" data-linenumber="13">
+          <span class="hits">34</span>
           
           <code class="ruby">  puts &quot; #{board[0]} | #{board[1]} | #{board[2]} &quot;</code>
         </li>
       
-        <li class="covered" data-hits="22" data-linenumber="14">
-          <span class="hits">22</span>
+        <li class="covered" data-hits="34" data-linenumber="14">
+          <span class="hits">34</span>
           
           <code class="ruby">  puts &quot;-----------&quot;</code>
         </li>
       
-        <li class="covered" data-hits="22" data-linenumber="15">
-          <span class="hits">22</span>
+        <li class="covered" data-hits="34" data-linenumber="15">
+          <span class="hits">34</span>
           
           <code class="ruby">  puts &quot; #{board[3]} | #{board[4]} | #{board[5]} &quot;</code>
         </li>
       
-        <li class="covered" data-hits="22" data-linenumber="16">
-          <span class="hits">22</span>
+        <li class="covered" data-hits="34" data-linenumber="16">
+          <span class="hits">34</span>
           
           <code class="ruby">  puts &quot;-----------&quot;</code>
         </li>
       
-        <li class="covered" data-hits="22" data-linenumber="17">
-          <span class="hits">22</span>
+        <li class="covered" data-hits="34" data-linenumber="17">
+          <span class="hits">34</span>
           
           <code class="ruby">  puts &quot; #{board[6]} | #{board[7]} | #{board[8]} &quot;</code>
         </li>
@@ -387,7 +387,7 @@
         <li class="covered" data-hits="20" data-linenumber="50">
           <span class="hits">20</span>
           
-          <code class="ruby">  input = gets</code>
+          <code class="ruby">  input = gets.chomp</code>
         </li>
       
         <li class="covered" data-hits="20" data-linenumber="51">
@@ -879,52 +879,58 @@
         <li class="covered" data-hits="12" data-linenumber="132">
           <span class="hits">12</span>
           
+          <code class="ruby">  display_board(board)</code>
+        </li>
+      
+        <li class="covered" data-hits="12" data-linenumber="133">
+          <span class="hits">12</span>
+          
           <code class="ruby">  until over?(board) == true</code>
         </li>
       
-        <li class="covered" data-hits="17" data-linenumber="133">
+        <li class="covered" data-hits="17" data-linenumber="134">
           <span class="hits">17</span>
           
           <code class="ruby">    turn(board)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="134">
+        <li class="never" data-hits="" data-linenumber="135">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="covered" data-hits="12" data-linenumber="135">
+        <li class="covered" data-hits="12" data-linenumber="136">
           <span class="hits">12</span>
           
           <code class="ruby">  if won?(board) != false</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="136">
+        <li class="covered" data-hits="5" data-linenumber="137">
           <span class="hits">5</span>
           
           <code class="ruby">    puts &quot;Congratulations #{winner(board)}!&quot;</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="137">
+        <li class="covered" data-hits="7" data-linenumber="138">
           <span class="hits">7</span>
           
           <code class="ruby">  elsif draw?(board) == true</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="138">
+        <li class="covered" data-hits="3" data-linenumber="139">
           <span class="hits">3</span>
           
           <code class="ruby">    puts &quot;Cats Game!&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="139">
+        <li class="never" data-hits="" data-linenumber="140">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="140">
+        <li class="never" data-hits="" data-linenumber="141">
           
           
           <code class="ruby">end</code>
