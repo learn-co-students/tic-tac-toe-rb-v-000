@@ -29,19 +29,22 @@ def move(board, input, value)
 end
 
 def turn(board)
-  puts "Please enter 1-9:"
-  input = gets.strip
+  i = false
+  until i
+    puts "Please enter 1-9:"
+    input = gets.strip
 
-  index = input_to_index(input)
+    index = input_to_index(input)
 
-  player = current_player(board)
+    player = current_player(board)
 
-  if valid_move?(board, index) == true
-    move(board, index, player)
-    display_board(board)
-  else
-    puts "That is not a valid move"
-    turn(board)
+    if valid_move?(board, index) == true
+      move(board, index, player)
+      display_board(board)
+      break
+    else
+      puts "That is not a valid move"
+    end
   end
 end
 
@@ -138,14 +141,14 @@ end
 
 def play(board)
   until over?(board)
-    turn(board)
-
     if won?(board)
       puts "Congratulations #{winner(board)}!"
       break
-    elsif draw?(board)
-      puts "Cats Game!"
+    end
+    turn(board)
+    if draw?(board)
       break
     end
   end
+  puts "Cats Game!"
 end
