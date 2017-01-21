@@ -43,13 +43,11 @@ def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
-  possible_max_num = 9
 
   if (valid_move?(board, index))
     move(board, index, current_player(board))
     display_board(board)
   else
-    puts "Please enter a Valid Number"
     turn(board)
   end
 end
