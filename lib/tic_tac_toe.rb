@@ -17,8 +17,8 @@ def play(board)
   if won?(board)
     puts "Congratulations #{winner(board)}!" # <-- this REALLY hung me up!
   elsif draw?(board)
-    puts "Cats Game!"
-  end
+    puts "Cats Game!" # don't know whatis 'Cats Game!' but added to pass rspec
+  end                 # failures shown in the test env
 end
 
 def display_board(board)
@@ -34,12 +34,14 @@ def valid_move?(board, index)
 end
 
 def won?(board)
-  WIN_COMBINATIONS.detect do |combo|
-    board[combo[0]] == board[combo[1]] &&
-    board[combo[1]] == board[combo[2]] &&
-    position_taken?(board, combo[0])
+  WIN_COMBINATIONS.detect do |row| # row accounts for a winning combination
+    board[row[0]] == board[row[1]] &&
+    board[row[1]] == board[row[2]] &&
+    position_taken?(board, row[0])
   end
 end
+# had to research #detect in rubyDocs/enumerables
+# the '#detect' returns the first item in the list for which the block returns TRUE
 
 def full?(board)
   board.all?{|token| token == "X" || token == "O"}
@@ -83,8 +85,8 @@ def turn_count(board)
   board.count{|token| token == "X" || token == "O"}
 end
 
-def move(board, index, player)
-  board[index] = player
+def move(board, index, player) # copy/paste from ttt-8-turn removed "X" and
+  board[index] = player        # changed current_player to player so x || o
 end
 
 def winner(board)                # coding ''#winner' to output "Congratulations"
