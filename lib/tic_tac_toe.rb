@@ -73,8 +73,8 @@ end
 
 def position_taken?(board, index)
   board[index]== "X" || board[index] == "O"
-  # Creates a stop on RSpec
-  # !(board[location].nil? || board[location] == "")
+  
+
 end
 
 def current_player(board)
