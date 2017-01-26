@@ -57,6 +57,7 @@ def turn(board)
     puts "Please enter 1-9:"
     gets.strip
 end
+end
 
 def turn_count(board)
   counter = 0
@@ -109,9 +110,7 @@ def draw?(board)
 end
 
 def over?(board)
-  if won?(board) == true || draw?(board) == true || full?(board) == true
-    true
-end
+  won?(board) || draw?(board) || full?(board)
 end
 
 def winner(board)
@@ -129,7 +128,6 @@ def play(board)
 elsif draw?(board)
   puts "Cats Game!"
 elsif over?(board)
-end
 end
 end
 
