@@ -87,6 +87,7 @@ def play(board)
   #end
   until over?(board) do
     turn(board)
+    display_board(board)
   end
   #if the game was won
     #congratulate the winner
