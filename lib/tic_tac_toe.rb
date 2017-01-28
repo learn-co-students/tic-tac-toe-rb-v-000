@@ -26,8 +26,7 @@ def move(board, index, token)
 end
 
 def position_taken?(board, position)
-  spot = board[position]
-  spot != " " && spot != "" && spot != nil
+  !(board[position].nil? || board[position] == " ")
 end
 
 def valid_move?(board, position)
