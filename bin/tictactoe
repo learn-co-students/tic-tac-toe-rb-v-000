@@ -1,3 +1,13 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/tic_tac_toe'
+
+puts "Welcome to Tic Tac Toe!"
+
+board = [" "," "," "," "," "," "," "," "," ",]
+display_board(board)
+
+puts "Select a space by entering 1-9, 1 for top left and 9 for bottom right."
+puts "Where would you like to go?"
+
+play(board)
