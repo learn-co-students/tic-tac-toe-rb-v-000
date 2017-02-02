@@ -100,12 +100,12 @@ end
 
 def play(board)
   while !over?(board)
-    print "what do you want"
+    print "where do you want to put it?"
     input = gets
     index = input_to_index(input)
     move(board,index,current_player(board))
+    display_board(board)
   end
-
   if draw?(board)
     puts "Cats Game!"
   else
