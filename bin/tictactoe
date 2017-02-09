@@ -1,3 +1,16 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/tic_tac_toe'
+
+board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+puts "Welcome to Tic Tac Toe!"
+puts "Where would you like to go?"
+ #input = gets.strip
+ #input_to_index(input)
+
+#move(board,0, "X")
+#display_board(board)
+play(board)
+
+#board = ["X", "O", "X", " ", " ", " ", " ", " ", " "]
+#play(board)
