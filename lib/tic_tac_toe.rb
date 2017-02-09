@@ -64,14 +64,6 @@ def turn(board)
         display_board(board)
 		# check to see if someone won
 		# after making a valid move
-    winner = winner(board)
-    if draw?(board)
-      puts "Cats Game!"
-    elsif won?(board)
-      puts "Congratulations #{winner}!"
-		end
-
-
       else
         turn(board)
       end
@@ -143,5 +135,11 @@ end
 def play(board)
   until over?(board)
     turn(board)
+  end
+  winner = winner(board)
+  if draw?(board)
+    puts "Cats Game!"
+  elsif won?(board)
+    puts "Congratulations #{winner}!"
   end
 end
