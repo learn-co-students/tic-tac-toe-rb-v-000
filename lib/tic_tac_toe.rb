@@ -1,6 +1,3 @@
-# Define the variable board below.
-board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-
 # Define your WIN_COMBINATIONS constant
 WIN_COMBINATIONS = [
   [0,1,2], #top row
@@ -53,13 +50,12 @@ def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
-    until valid_move?(board, index) == true
-      puts "Please enter 1-9:"
-      input = gets.strip
-      index = input_to_index(input)
+    if valid_move?(board, index)
+      move(board, index, "#{current_player(board)}")
+      display_board(board)
+    else
+      turn(board)
     end
-  move(board, index, character = "X")
-  display_board(board)
 end
 
 def turn_count(board)
@@ -97,10 +93,12 @@ def won?(board)
   end
 end
 
+# check to see if the board is full
 def full?(board)
   board.none? {|index| index == " "}
 end
 
+# is the game a draw?
 def draw?(board)
   if won?(board) || !full?(board)
     return false
@@ -109,7 +107,7 @@ def draw?(board)
   end
 end
 
-
+# is the game over?
 def over?(board)
   if draw?(board)
     return true
@@ -143,5 +141,12 @@ end
 def play(board)
   until over?(board)
     turn(board)
+  end
+
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cats Game!"
+  else
   end
 end
