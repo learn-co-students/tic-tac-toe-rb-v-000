@@ -114,7 +114,7 @@ end
 
 # main method of TTT
 def play (board)
-    # loop till turn_count
+    # new turn while board is not full and game is not over
     while (!full?(board) && !over?(board))
       turn(board)
     end
