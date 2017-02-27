@@ -37,7 +37,7 @@ def turn(board)
     if !valid_move?(board, index) # when writing a conditional statement, in most cases the eval is implicit.
       turn(board)
     else
-      move(board, index, value)
+      move(board, index, value = current_player(board)) # needed to define value in order for the method to work. set to current player to determine correct character
     end
     display_board(board)
   end
@@ -96,8 +96,8 @@ def won?(board)
   end
 
 def play(board)
+until over?(board)
   turn(board)
-until !over?(board)
 end
 if won?(board)
     puts "Congratulations #{winner(board)}!"
