@@ -1,4 +1,3 @@
-user_input = ""
 def display_board(board)
   puts " #{board [0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
@@ -27,13 +26,28 @@ def move (board,input_to_index,user_token)
   display_board(board)
 end
 
+def position_taken?(board, index)
+  !(board[index].nil? || board[index] == " ")
+end
+
 def valid_move?(board, index)
   index.between?(0,8) && !position_taken?(board, index)
 end
 
-def position_taken?(board, index)
-  !(board[index].nil? || board[index] == " ")
+def turn(board)
+  puts "Please enter a number 1-9"
+  user_input = gets.strip
+  index = input_to_index(user_input)
+    if valid_move?(board,index) == true
+      user_token = current_player(board)
+      move(board,index,user_token)
+    else
+      puts "invalid move"
+      turn(board)
+    end
 end
+  
+    
 
 def won?(board)
   WIN_COMBINATIONS.each do |combo|
@@ -93,30 +107,13 @@ def current_player(board)
   end
 end
 
-#turn and play
-def turn (board,user_input)
-  index = input_to_index(user_input)
-  user_token = current_player(board)
-  if valid_move?(board,index) == false
-    puts "invalid move!"
-    play(board)
-  else
-    move(board,index,user_token)
-    play(board)
-  end
-end
-
 def play(board)
-  user_input = ""
-  if over?(board) == false
-    puts "Please Pick A Number 1-9"
-    user_input = gets
-    turn(board,user_input)
-  elsif won?(board) != false
-    puts"Congratulations #{winner(board)}!"
-      return nil
-  elsif draw?(board) == true
-    puts "CATS GAME!"
-      return nil
+  while !over?(board)
+    turn(board)
+  end
+  if draw?(board) == true
+    puts "Cats Game!"
+  else
+    puts "Congradulations #{winner(board)}!"
   end
 end
