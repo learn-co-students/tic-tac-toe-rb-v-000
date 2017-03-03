@@ -1,8 +1,5 @@
+require_relative '../lib/tic_tac_toe.rb'
 #!/usr/bin/env ruby
 puts "Welcome to Tic Tac Toe!"
-require_relative 'tic-tac-toe.rb'
-
 board = [" "," "," "," "," "," "," "," "," "]
-while over?(board) == false
-    play(board)
-end
+play(board)

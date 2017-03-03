@@ -46,8 +46,6 @@ def turn(board)
       turn(board)
     end
 end
-  
-    
 
 def won?(board)
   WIN_COMBINATIONS.each do |combo|
@@ -70,7 +68,7 @@ end
 def draw?(board)
   if full?(board) == false
     return false
-  elsif won?(board) != false
+  elsif !!won?(board)
     return false
   else
     return true
@@ -78,7 +76,8 @@ def draw?(board)
 end
 
 def over?(board)
-  if won?(board) != false || full?(board) == true
+  # return !!won?(board) || full?(board)
+  if !!won?(board) || full?(board) || draw?(board)
     return true
   else
     return false
@@ -86,7 +85,7 @@ def over?(board)
 end
 
 def winner(board)
-  if won?(board) != false
+  if !!won?(board)
     win_arr = won?(board)
     return board[win_arr[0]]
   end
@@ -108,12 +107,13 @@ def current_player(board)
 end
 
 def play(board)
-  while !over?(board)
+  # while over?(board) == false do
+  until over?(board) == true do
     turn(board)
   end
-  if draw?(board) == true
-    puts "Cats Game!"
-  else
-    puts "Congradulations #{winner(board)}!"
+  if !!won?(board)
+      puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+      puts "Cats Game!"
   end
 end
