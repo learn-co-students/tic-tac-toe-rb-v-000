@@ -46,9 +46,9 @@ def turn(board)
   puts "Please enter 1-9:"
   user_input = gets.strip
   index = input_to_index(user_input)
-  player_token = current_player(board)
+  #player_token = current_player(board)  (don't need to create this local variable just call current_player as argument in move)
   if valid_move?(board,index)
-    move(board,index,player_token) #can make this (board,index,current_player(board)) instead of creating local variable 
+    move(board,index,current_player(board))
     display_board(board)
   else
     turn(board)
@@ -83,7 +83,7 @@ def full?(board)
 end
 
 def draw?(board)
-  if full?(board) && !won?(board)
+  if !won?(board) && full?(board)
     true
   end
 end
@@ -99,4 +99,18 @@ def winner(board)
   else
     nil
   end
+end
+
+def play(board)
+  until over?(board)
+    turn(board)
+    draw?(board)
+  end
+
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cats Game!"
+  end
+
 end
