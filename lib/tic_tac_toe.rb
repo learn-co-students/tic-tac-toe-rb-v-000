@@ -46,8 +46,9 @@ def turn(board)
   puts "Please enter 1-9:"
   user_input = gets.strip
   index = input_to_index(user_input)
+  player_token = current_player(board)
   if valid_move?(board,index)
-    move(board,index,player_token)
+    move(board,index,player_token) #can make this (board,index,current_player(board)) instead of creating local variable 
     display_board(board)
   else
     turn(board)
