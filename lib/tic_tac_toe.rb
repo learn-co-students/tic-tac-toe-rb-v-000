@@ -92,7 +92,7 @@ def full?(board)
 end
 
 def draw?(board)
-  if full?(board) == true && won?(board) == false
+  if !won?(board) && full?(board) == true
     true
   else
     false
@@ -117,17 +117,12 @@ end
 end
 
 def play(board)
-  until over?(board)
-  turn(board)
-    if over?(board)
-      if won?(board)
-        puts "Congratulations #{current_player(board)}!"
+  until over?(board) || won?(board) != false
+    turn(board)
+  end
+      if won?(board) != false
+        puts "Congratulations #{winner(board)}!"
       elsif draw?(board)
         puts "Cats Game!"
       end
-    else
-      current_player(board)
-      turn(board)
-    end
-  end
 end
