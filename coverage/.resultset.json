@@ -2,15 +2,12 @@
   "RSpec": {
     "coverage": {
       "/home/vlaunyc-43349/code/labs/tic-tac-toe-rb-v-000/lib/tic_tac_toe.rb": [
-        null,
-        null,
         1,
         21,
         21,
         21,
         21,
         21,
-        null,
         null,
         null,
         1,
@@ -33,7 +30,7 @@
         null,
         null,
         1,
-        0,
+        152,
         null,
         null,
         1,
@@ -107,10 +104,6 @@
         null,
         null,
         1,
-        152,
-        null,
-        null,
-        1,
         null,
         12,
         17,
@@ -125,6 +118,6 @@
         null
       ]
     },
-    "timestamp": 1489128382
+    "timestamp": 1489207679
   }
 }

@@ -1,5 +1,3 @@
-
-
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
@@ -7,7 +5,6 @@ def display_board(board)
   puts "-----------"
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
-
 
 WIN_COMBINATIONS =[
   [0,1,2],
@@ -29,7 +26,7 @@ def move(board, index, current_player)
 end
 
 def position_taken?(board, index)
-  board[index] != " " && board[index] != ""
+  !(board[index].nil? || board[index] == " ")
 end
 
 def valid_move?(board, index)
@@ -102,12 +99,7 @@ def winner(board)
   end
 end
 
-def position_taken?(board, index)
-  !(board[index].nil? || board[index] == " ")
-end
-
 def play(board)
-#  input = gets
   while !over?(board)
   turn(board)
 end
