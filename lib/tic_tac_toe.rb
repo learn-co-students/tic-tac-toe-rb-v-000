@@ -27,7 +27,7 @@ def move(board,index,player_token)
 end
 
 def position_taken?(board, index)
-  if board[index] == " " || board[index] == "" || board[index] == nil
+  if board[index] == " " || board[index] == "" || board[index] == nil #can do opposite: returning true if either "X" or "O"
     false
   else
     true
@@ -35,11 +35,7 @@ def position_taken?(board, index)
 end
 
 def valid_move?(board,index)
-  if index.between?(0,8) && !position_taken?(board,index)
-    true
-  else
-    false
-  end
+  index.between?(0,8) && !position_taken?(board,index) #don't need if statement here: this will still check if true and return false if not
 end
 
 def turn(board)
@@ -57,8 +53,7 @@ end
 
 def turn_count(board)
   turns = 0
-
-  board.each do |position|
+  board.each do |position|   #can use .count here:  board.count{|token| token == "X" || token == "O"}
     if position == "X" || position == "O"
       turns += 1
     end
@@ -83,7 +78,7 @@ def full?(board)
 end
 
 def draw?(board)
-  if !won?(board) && full?(board)
+  if !won?(board) && full?(board) #don't need if statement here
     true
   end
 end
@@ -95,21 +90,28 @@ end
 def winner(board)
   if won?(board)
     winning_combination = won?(board)
-    return board[winning_combination[0]]
+    return board[winning_combination[0]] #can also use winning_combination.first
   else
     nil
   end
 end
 
+=begin
+#suggested solution
+def winner(board)
+  if winning_combo = won?(board) #seems you can define a variable as part of a condition in Ruby
+    board[winning_combo.first]
+  end
+end
+=end
+
 def play(board)
-  until over?(board)
+  until over?(board) #or while !over(board)
     turn(board)
   end
-
   if won?(board)
     puts "Congratulations #{winner(board)}!"
   elsif draw?(board)
     puts "Cats Game!"
   end
-
 end
