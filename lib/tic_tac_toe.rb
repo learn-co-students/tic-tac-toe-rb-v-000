@@ -8,6 +8,7 @@ WIN_COMBINATIONS = [
   [0,4,8], #Diagonal left-to-right
   [6,4,2]  #Diagonal right-to-left
 ]
+
 def display_board(board)
   print " #{board[0]} | #{board[1]} | #{board[2]} \n"
   print "-----------\n"
@@ -36,33 +37,7 @@ def position_taken?(board, index)
 end
 
 def valid_move?(board, index)
-  if index.between?(0,8) && !position_taken?(board, index)
-    return true
-  else
-    return false
-  end
-end
-
-def turn(board)
-  puts "Please enter 1-9:"
-  input = gets.strip
-  index = input_to_index(input)
-  if valid_move?(board, index)
-    move(board, index, char = "X")
-  else
-    turn(board)
-  end
-  display_board(board)
-end
-
-def turn_count(board)
-  counter = 0
-  board.each do |char|
-    if char == "X" || char == "O"
-      counter += 1
-    end
-  end
-  return counter
+  index.between?(0,8) && !position_taken?(board, index)
 end
 
 def current_player(board)
@@ -73,23 +48,28 @@ def current_player(board)
   end
 end
 
-def won?(board)
-  won = false
-  WIN_COMBINATIONS.each do |combination|
-    win_index_1 = combination[0]
-    win_index_2 = combination[1]
-    win_index_3 = combination[2]
-    position_1 = board[win_index_1]
-    position_2 = board[win_index_2]
-    position_3 = board[win_index_3]
+def turn_count(board)
+  board.count{|token| token == "X" || token == "O"}
+end
 
-    if position_1 == "X" && position_2 == "X" && position_3 == "X"
-      won = combination
-    elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
-      won = combination
-    end
+def turn(board)
+  puts "Please enter 1-9:"
+  user_input = gets.strip
+  position = input_to_index(user_input)
+  if valid_move?(board, position)
+    move(board, position, current_player(board))
+    display_board(board)
+  else
+    turn(board)
   end
-  return won
+end
+
+def won?(board)
+  WIN_COMBINATIONS.detect do |combo|
+    board[combo[0]] == board[combo[1]] &&
+    board[combo[1]] == board[combo[2]] &&
+    position_taken?(board, combo[0])
+  end
 end
 
 def full?(board)
@@ -105,11 +85,7 @@ def draw?(board)
 end
 
 def over?(board)
-  if draw?(board) == true
-    return true
-  elsif won?(board).is_a?(Array) == true
-    return true
-  end
+  won?(board) || draw?(board)
 end
 
 def winner(board)
@@ -120,5 +96,12 @@ def winner(board)
 end
 
 def play(board)
-  turn(board)
+  while !over?(board)
+    turn(board)
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cats Game!"
+  end
 end
