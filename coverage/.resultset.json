@@ -1,0 +1,27 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/home/marceloacarrillo-49104/code/labs/tic-tac-toe-rb-v-000/lib/tic_tac_toe.rb": [
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        null
+      ]
+    },
+    "timestamp": 1489501529
+  }
+}

@@ -16,6 +16,8 @@ describe './lib/tic_tac_toe.rb' do
     end
   end
 
+  
+
   describe '#display_board' do
     it 'prints arbitrary arrangements of the board' do
       board = ["X", "X", "X", "X", "O", "O", "X", "O", "O"]
