@@ -46,9 +46,13 @@ def input_to_index(input)
 end
 
 
-def move(board, index, input_value=current_player(board))
-  board[index]=input_value
+def move(board, index,value =current_player(board))
+
+  index = index.to_i -1
+
+  board[index]= value
 end
+
 
 # code your #valid_move? method here
 def valid_move?(board,index)
@@ -138,13 +142,10 @@ def full?(board)
 end
 
 def draw?(board)
-  if won?(board) == false && full?(board) == true
+  if (!won?(board)) && (full?(board))
     return true
-  elsif won?(board) == false && full?(board) == false
-      return false
-  elsif won?(board) == true
-      return true
   end
+  return false
 end
 
 def over?(board)
