@@ -74,7 +74,7 @@ describe './lib/tic_tac_toe.rb' do
     end
 
     it 'takes three arguments: board, position, and player token' do
-      # board = [" ", " ", " ", " ", " ", " ", " ", " ", " "] Replaced by
+       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
       expect{move(board, 0, "X")}.to_not raise_error
 
     end
