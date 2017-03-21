@@ -30,7 +30,7 @@ describe './lib/tic_tac_toe.rb' do
       allow(self).to receive(:over?).and_return(false, true)
 
       play(board)
-      expect(board).to match_array(["X", " ", " ", " ", " ", " ", " ", " ", " "])
+       expect(board).to match_array(["X", " ", " ", " ", " ", " ", " ", " ", " "])
     end
 
     it 'plays the first few turns of the game' do
