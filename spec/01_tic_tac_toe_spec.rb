@@ -16,7 +16,7 @@ describe './lib/tic_tac_toe.rb' do
     end
   end
 
-  
+
 
   describe '#display_board' do
     it 'prints arbitrary arrangements of the board' do
@@ -74,7 +74,8 @@ describe './lib/tic_tac_toe.rb' do
     end
 
     it 'takes three arguments: board, position, and player token' do
-      board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+      # board = [" ", " ", " ", " ", " ", " ", " ", " ", " "] Replaced by
+      expect{move(board, 0, "X")}.to_not raise_error
 
       expect{move(board, 0, "X")}.to_not raise_error
     end
