@@ -77,7 +77,6 @@ describe './lib/tic_tac_toe.rb' do
       # board = [" ", " ", " ", " ", " ", " ", " ", " ", " "] Replaced by
       expect{move(board, 0, "X")}.to_not raise_error
 
-      expect{move(board, 0, "X")}.to_not raise_error
     end
 
     it 'allows "X" player in the bottom right and "O" in the top left ' do
