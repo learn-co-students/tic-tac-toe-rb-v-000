@@ -5,12 +5,5 @@ require_relative '../lib/tic_tac_toe'
 
 puts board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
-def valid_move?(board, index)
-   if position_taken?(board, index)
-     false
-   elsif index.between?(0, 8)
-    true
-   else
-     nil
-   end
- end
+display_board(board)
+play(board)
