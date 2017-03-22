@@ -67,7 +67,8 @@ describe './lib/tic_tac_toe.rb' do
 
       expect(self).to receive(:draw?).at_least(:twice).and_return(false, false, true)
 
-      play(board)
+  def    play(board)
+    input = gets
     end
 
     it 'stops playing if someone has won' do
