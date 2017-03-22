@@ -124,6 +124,8 @@ end
   if won?(board)
     winner = winner(board)
     puts "Congratulations #{winner}!"
+
+
   else draw?(board)
     puts "Cats Game!"
   end
