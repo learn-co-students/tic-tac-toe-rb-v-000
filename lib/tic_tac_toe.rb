@@ -21,21 +21,25 @@ def input_to_index(user_input)
     user_input.to_i - 1
 end
 
+=begin
 def move(board, index, player)
     board[index] = player
 end
+=end
 
+=begin
 def move (index, current_player = "X")
   board[index] = current_player
 end
+=end
 
 def position_taken?(board,position)
   if board[position] == " "
     false
-    elsif board[position] == ""
-    false
+    #elsif board[position] == ""
+    #false
     elsif  board[position] == nil
-    false
+    #false
     else   board[position] == "X" || "O"
     true
   end
@@ -50,10 +54,11 @@ def valid_move?(board, index)
      nil
    end
 end
-
+=begin
 def move(board, index, value= "X")
    board[index]=value
 end
+=end
 
 def turn (board)
    puts "Please enter 1-9:"
