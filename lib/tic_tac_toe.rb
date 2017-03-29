@@ -199,11 +199,8 @@ end
 #----------------------------------------------------
 def winner (board)
 
-  if won?(board) #this leverages ruby truthiness, where an array returned evaluates to truthy
-  return board[won?(board)[0]]
-  else
-  return nil
-  end
+   #this leverages ruby truthiness, where an array returned evaluates to truthy
+  won?(board) ? (return board[won?(board)[0]]) : (return nil)
 
 end
 
@@ -216,10 +213,7 @@ def play(board)
   #should be functionally identical to while
   (turn(board)) until over?(board)
 
-  if won?(board)
-    puts "Congratulations #{winner(board)}!"
-  elsif draw?(board)
-    puts "Cats Game!"
-  end
+  won?(board) ? (puts "Congratulations #{winner(board)}!") : (puts "Cats Game!")
+
 
 end
