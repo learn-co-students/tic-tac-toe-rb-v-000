@@ -1,10 +1,3 @@
-
-#############################################
-#### WORK IN PROGRESS
-#### Correct errors in turn and play methods
-#############################################
-#############################################
-
 WIN_COMBINATIONS = [[0, 1, 2],[3, 4, 5],[6, 7, 8],[0, 3, 6],[1, 4, 7],[2, 5, 8],[0, 4, 8],[2, 4, 6]]
 
 def display_board(board = " ")
@@ -46,15 +39,17 @@ def turn(board)
   move = " "
   move = gets.strip
   if move.to_i < 1 || move.to_i > 9
-   puts "Please enter an INTEGER FROM 1 TO 9!"
+   puts "Invalid"
    turn(board)
   end
   index = input_to_index(move)
   if valid_move?(board, index)
+    turn_count(board)
     character = current_player(board)
     move(board, index, character)
     display_board(board)
   else
+    puts "Invalid"
     puts "Please enter a valid move by inputting an integer from 1-9\n"
     puts "to indicate your move to an empty board space.\n\n"
     turn(board)
@@ -72,7 +67,7 @@ def turn_count(board)
   return counter
 end
 
-#current_player
+
 def current_player(board)
   counter = 0
   board.each do |value|
@@ -94,8 +89,6 @@ def won?(board)
   WIN_COMBINATIONS.each do |array|
     # create a string of board values for winning combinations
     win_combo = board[array[0]] + board[array[1]] + board[array[2]]
-		# call winner method to determine winner
-		winner(board)
     # compare board string value to winning game values
     if win_combo == "XXX" || win_combo == "OOO"
       # return the win_combination indexes that won
@@ -107,25 +100,25 @@ def won?(board)
 end
 def full?(board)
     board.each do |value|
-    if value == "X" || value == "O"
-      true
-    else
-      return false
+      if value == "X" || value == "O"
+        true
+      else
+        return false
+      end
     end
-  end
 	true
 end
 
 def draw?(board) # tested and working
-   won = won?(board)
-   full = full?(board)
+  won = won?(board)
+  full = full?(board)
    if won == false && full == true
 	    true
 	 end
 end
 
 def over?(board)
-  if won?(board) == true || full?(board) == true
+  if winner(board) == "X" || winner(board) == "O" || full?(board) == true
     return true
   else
     false
@@ -143,20 +136,17 @@ end
 
 def play(board)
   while over?(board) == false
-    turn_count(board)
     turn(board)
-    over?(board)
-  end
-  if won?(board) == true
-    if winner(board) == "X"
-      return "Congratulations X!"
-    elsif winner(board) =="Y"
-      return "Congratulations Y!"
+    winner = winner(board)
+    if winner == "X"
+        puts "Congratulations X!"
+    elsif winner =="O"
+        puts "Congratulations O!"
     else
       false
     end
+     if draw?(board) == true
+      puts "Cat's Game!"
+     end
+   end
   end
-  if draw?(board) == true
-    return "Cat's Game!"
-  end
-end
