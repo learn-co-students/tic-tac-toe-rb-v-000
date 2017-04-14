@@ -7,11 +7,12 @@ def display_board(board)
 end
 
 def turn(board)
+  
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board, index)
-    move(board, index)
+    move(board, index, current_player)
     display_board(board)
   else
     turn(board)
@@ -22,14 +23,13 @@ def input_to_index(user_input)
   user_input.to_i - 1
 end
 
-def move(board, index, current_player = "X")
+def move(board, index, current_player)
   board[index] = current_player
 end
 
 def valid_move?(board, index)
   index.between?(0,8) && !position_taken?(board, index)
 end
-
 
 def position_taken?(board, index)
   !(board[index].nil? || board[index] == " ")
@@ -58,7 +58,7 @@ def won?(board)
   return false
 end
 
-def full?(board)  #I believe the following methods can be collapsed using yield, but I don't think the tests will pass because we must define unique method names for the tests
+def full?(board)
   return board.all?{ |i| i.is_a?(String) && i != " "}
 end
 
@@ -71,9 +71,9 @@ def over?(board)
 end
 
 def winner(board)
-  if won?(board) && board.count{|x| x.upcase == "X"} > board.count{|o| o.upcase == "O"}
+  if board.count{|x| x == "X"} > board.count{|o| o == "O"}
     return "X"
-  elsif won?(board) && board.count{|x| x.upcase == "X"} < board.count{|o| o.upcase == "O"}
+  elsif board.count{|x| x == "X"} < board.count{|o| o == "O"}
     return "O"
   end
   return nil
