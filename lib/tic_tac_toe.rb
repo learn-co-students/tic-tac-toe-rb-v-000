@@ -7,9 +7,6 @@ def display_board(board)
 end
 
 def play(board)
-  while turn_count(board) < 2 #Can't win until at least 3 moves, so don't check yet
-    turn(board)
-  end
   while !over?(board)
     turn(board)
       if won?(board)
@@ -21,13 +18,13 @@ def play(board)
 end
 
 def turn(board)
-
-  player_token = current_player(board)
-  if player_token == nil
-    puts "Please select X or O"
+  if turn_count(board) == 0
+    puts "Player 1, please select X or O"
     player_token = gets.strip.upcase
+  else
+    player_token = current_player(board)
+    puts "we are selecting the player token #{player_token}"
   end
-
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
@@ -38,22 +35,22 @@ def turn(board)
 end
 
 def turn_count(board)
+  puts "looking at board count is #{board.count{|occupied| occupied != " "}}"
   return board.count{|occupied| occupied != " "}
 end
 
 def current_player(board)
-  if turn_count(board) == 0 #Define the first player, X or O by user input
-    board.each do |find_x_or_o|
-      if board[find_x_or_o] != " "
-        first_move = board[find_x_or_o]
-        puts "the first move is #{board[find_x_or_o]}"
-      end
+  if turn_count(board) == 1 #Capture the first move value
+    index = 0
+    until board[index] !=" " #Scan for first occupied space
+        index += 1
     end
-  elsif turn_count(board) % 2 == 0 && first_move == "X"
-    return "X"
-  else
+    first_move = board[index]
+  end
+  if first_move == "X"
     return "O"
   end
+  return "X"
 end
 
 def input_to_index(user_input)
