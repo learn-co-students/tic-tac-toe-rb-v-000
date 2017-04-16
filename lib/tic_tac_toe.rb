@@ -13,7 +13,7 @@ def play(board)
 
   if won?(board)
     puts "Congratulations #{winner(board)}!"
-  elsif draw?(board)
+  else
     puts "Cats Game!"
   end
 
@@ -65,27 +65,15 @@ WIN_COMBINATIONS = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8
 
 def won?(board)
   WIN_COMBINATIONS.each do |combo|
-    wins_x = []
-    wins_o = []
-    combo.each do |check|
-      if board[check]== "X"
-        wins_x << check
-        if wins_x.count == 3
-          return wins_x
-        end
-      elsif board[check] == "O"
-        wins_o << check
-        if wins_o.count == 3
-          return wins_o
-        end
-      end
+    if combo.all? {|id| board[id] == "X"} || combo.all? {|id| board[id] == "O"}
+      return true
     end
   end
-  return false
+  return nil
 end
 
 def full?(board)
-   !board.any?{|i| i == " "} #Any free space?
+   !board.any?{|i| i == " "} 
 end
 
 def draw?(board)
@@ -97,5 +85,10 @@ def over?(board)
 end
 
 def winner(board)
-  current_player(board) == "O" ? "X" : "O" #You can only win on your turn.
+  if board.count{|x| x == "X"} > board.count{|o| o == "O"}
+    return "X"
+  elsif board.count{|x| x == "X"} < board.count{|o| o == "O"}
+    return "O"
+  end
+  return nil
 end
