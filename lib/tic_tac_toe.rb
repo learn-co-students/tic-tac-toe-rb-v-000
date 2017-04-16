@@ -7,6 +7,7 @@ def display_board(board)
 end
 
 def play(board)
+
   while !over?(board)
     turn(board)
   end
@@ -32,7 +33,7 @@ def turn(board)
     move(board, index, player_token)
     display_board(board)
   else
-    puts "That's not a valid move, let's try that again!"
+    puts "#{input} is not a possible, pick another space!"
     turn(board)
   end
 end
@@ -73,7 +74,7 @@ def won?(board)
 end
 
 def full?(board)
-   !board.any?{|i| i == " "} 
+   !board.any?{|i| i == " "}
 end
 
 def draw?(board)
@@ -85,10 +86,12 @@ def over?(board)
 end
 
 def winner(board)
-  if board.count{|x| x == "X"} > board.count{|o| o == "O"}
-    return "X"
-  elsif board.count{|x| x == "X"} < board.count{|o| o == "O"}
-    return "O"
+  WIN_COMBINATIONS.each do |combo|
+    if combo.all? {|id| board[id] == "X"}
+      return "X"
+    elsif combo.all? {|id| board[id] == "O"}
+      return "O"
+    end
   end
   return nil
 end
