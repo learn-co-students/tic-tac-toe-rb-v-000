@@ -3,11 +3,11 @@
     "coverage": {
       "/home/zoebisch-51359/code/labs/tic-tac-toe-rb-v-000/lib/tic_tac_toe.rb": [
         1,
-        25,
-        25,
-        25,
-        25,
-        25,
+        24,
+        24,
+        24,
+        24,
+        24,
         null,
         null,
         1,
@@ -27,13 +27,11 @@
         20,
         20,
         20,
-        20,
-        1,
+        19,
+        19,
+        null,
         1,
         null,
-        null,
-        20,
-        20,
         null,
         null,
         1,
@@ -53,7 +51,7 @@
         null,
         null,
         1,
-        23,
+        22,
         null,
         null,
         1,
@@ -90,6 +88,6 @@
         null
       ]
     },
-    "timestamp": 1492333881
+    "timestamp": 1492373310
   }
 }

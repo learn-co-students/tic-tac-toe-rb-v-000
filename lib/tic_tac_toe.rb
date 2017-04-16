@@ -21,15 +21,13 @@ def turn(board)
   turn_count(board) == 0 ? player_token = "X" : player_token = current_player(board)
   puts "Player #{player_token}, it is your turn."
   puts "Please enter 1-9:"
-  input = gets.strip
-  index = input_to_index(input)
-  if !valid_move?(board, index)
-    puts "#{input} is not a possible, pick another space!"
+  index = input_to_index(gets.strip)
+  if valid_move?(board, index)
+    move(board, index, player_token)
+    display_board(board)
+  else
     turn(board)
-  #else
   end
-  move(board, index, player_token)
-  display_board(board)
 end
 
 def turn_count(board)

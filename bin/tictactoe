@@ -2,7 +2,7 @@
 
 require_relative '../lib/tic_tac_toe'
 board = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
-puts "Welcome to Tic Tac Toe!"
 display_board(board)
 board = [" ", " ", " ", " ", " ", " ", " ", " ", " ",]
+puts "Welcome to Tic Tac Toe!"
 play(board)
