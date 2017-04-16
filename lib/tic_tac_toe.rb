@@ -68,6 +68,17 @@ def won?(board)
   winner(board).is_a?(String) ? true : nil
 end
 
+def winner(board)
+  WIN_COMBINATIONS.each do |combo|
+    if combo.all? {|id| board[id] == "X"} 
+      return "X"
+    elsif combo.all? {|id| board[id] == "O"}
+      return "O"
+    end
+  end
+  return nil
+end
+
 def full?(board)
   !board.any?{|i| i == " "} 
 end
@@ -78,15 +89,4 @@ end
 
 def over?(board)
   draw?(board) || won?(board)
-end
-
-def winner(board)
-  WIN_COMBINATIONS.each do |combo|
-    if combo.all? {|id| board[id] == "X"} 
-      return "X"
-    elsif combo.all? {|id| board[id] == "O"}
-      return "O"
-    end
-  end
-  return nil
 end
