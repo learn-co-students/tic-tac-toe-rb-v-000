@@ -41,11 +41,8 @@ def turn(board)
   if valid_move?(board, position)
     move(board, position, current_player(board))
     display_board(board)
-  elsif position_taken?(board, user_input)
-    puts "That spot has already been taken."
-    turn(board)
   else
-    puts "That isn't a real move, yo."
+    puts "That spot has already been taken."
     turn(board)
   end
 end
