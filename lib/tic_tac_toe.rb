@@ -38,8 +38,8 @@ end
 
 # code your input_to_index and move method here!
 #move passed
-def move(board, position, char = "X" || "O")
-  board[position] = char
+def move(board, position, player_token = "X")
+  board[position] = player_token
 end
 
 #input_to_index passed
@@ -124,14 +124,23 @@ def full?(board)
 end
 
 
-def draw?(board)
-  !won?(board)
-end
+
+ def draw?(board)
+   !won?(board) && full?(board)
+ end
+#original
+ # def draw?(board)
+ #   !won?(board)
+ # end
 
 
 def over?(board)
-  !draw?(board) || won?(board) || full?(board)
+  draw?(board) || won?(board) || full?(board)
 end
+#original
+# def over?(board)
+#   !draw?(board) || won?(board) || full?(board)
+# end
 
 
 def winner(board)
