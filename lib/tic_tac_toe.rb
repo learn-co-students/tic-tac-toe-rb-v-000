@@ -38,7 +38,7 @@ end
 
 # code your input_to_index and move method here!
 #move passed
-def move(board, position, player_token = "X")
+def move(board, position, player_token)
   board[position] = player_token
 end
 
@@ -99,13 +99,23 @@ end
 
 #current player method
 def current_player(board)
-  if turn_count(counter).even?
+  if turn_count(board).even?
     puts "X"
   else
     puts "O"
 
   end
 end
+
+#original
+# def current_player(board)
+#   if turn_count(counter).even?
+#     puts "X"
+#   else
+#     puts "O"
+#
+#   end
+# end
 
 
 def won?(board)
