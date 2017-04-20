@@ -64,9 +64,9 @@ end
 # re-define your #position_taken? method here, so that you can use it in the #valid_move? method above.
 # code your #valid_move? method here
 def valid_move?(board, index)
-  if position_taken?.between?(0,8) == false
+  if index.to_i.between?(0,8) && !position_taken?(board, index.to_i) # for occupied position
     true
-  else
+  else  # for empty position
     false
   end
 end
