@@ -108,6 +108,40 @@ def current_player(board)
 end
 
 
+def won?(board)
+WIN_COMBINATIONS.detect do |win_combination|
+
+board[win_combination[0]] == board[win_combination[1]] && board[win_combination[1]] == board[win_combination[2]] && position_taken?(board, win_combination[0])
+
+  end
+end
+
+
+def full?(board)
+  board.all? do|index|
+    index == "X" || index == "O"
+  end
+end
+
+
+def draw?(board)
+  !won?(board)
+end
+
+
+def over?(board)
+  !draw?(board) || won?(board) || full?(board)
+end
+
+
+def winner(board)
+
+  if won?(board)
+    winning_index_array = won?(board) #=> [0,1,2]
+    board[winning_index_array[0]]
+  end
+end
+
 
 # Define your play method below
 
