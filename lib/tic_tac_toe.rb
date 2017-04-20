@@ -38,7 +38,7 @@ end
 
 # code your input_to_index and move method here!
 #move passed
-def move(board, position, char="X")
+def move(board, position, char = "X" || "O")
   board[position] = char
 end
 
