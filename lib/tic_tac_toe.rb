@@ -112,24 +112,6 @@ def current_player(board)
   end
 end
 
-#original
-# def current_player(board)
-#   if turn_count(counter).even?
-#     puts "X"
-#   else
-#     puts "O"
-#
-#   end
-# end
-# Helper spec
-# describe '#current_player' do
-#   it 'returns the correct player, X, for the third move' do
-#     board = ["O", " ", " ", " ", "X", " ", " ", " ", " "]
-#
-#     expect(current_player(board)).to eq("X")
-#   end
-# end
-
 
 def won?(board)
 WIN_COMBINATIONS.detect do |win_combination|
