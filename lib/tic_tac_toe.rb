@@ -12,17 +12,6 @@ WIN_COMBINATIONS = [
 
 board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
-# Define a method display_board that prints a 3x3 Tic Tac Toe Board
-def display_board
-  puts "   |   |   "
-  puts "-----------"
-  puts "   |   |   "
-  puts "-----------"
-  puts "   |   |   "
-end
-
-
-
 # Define display_board that accepts a board and prints
 # out the current state.
 #board = [" ", " ", " ", " ", "X", " ", " ", " ", " "]
@@ -38,9 +27,13 @@ end
 
 # code your input_to_index and move method here!
 #move passed
-def move(board, position, player_token)
-  board[position] = player_token
+def move(board, index, player_token)
+  board[index] = player_token
 end
+#original
+# def move(board, position, player_token)
+#   board[position] = player_token
+# end
 
 #input_to_index passed
 def input_to_index(user_input = "1" - "9")
@@ -77,14 +70,27 @@ end
 def turn(board)
   puts "Please enter 1-9:"
   index = input_to_index(gets.chomp)
-    puts "#{index}"
   if valid_move?(board, index)
-    move(board, index)
-    puts display_board(board)
+    player_token = current_player(board)
+    move(board, index, player_token)
+    display_board(board)
   else
     turn(board)
   end
 end
+
+#Original
+# def turn(board)
+#   puts "Please enter 1-9:"
+#   index = input_to_index(gets.chomp)
+#     puts "#{index}"
+#   if valid_move?(board, index)
+#     move(board, index)
+#     puts display_board(board)
+#   else
+#     turn(board)
+#   end
+# end
 
 #turn_count method
 def turn_count(board)
@@ -99,9 +105,10 @@ end
 
 #current player method
 def current_player(board)
-  token = "X" || token = "O"
-  if turn_count(board).odd?
-    puts current_player("X")
+  if turn_count(board).even?
+    "X"
+  else
+    "O"
   end
 end
 
@@ -118,7 +125,7 @@ end
 # describe '#current_player' do
 #   it 'returns the correct player, X, for the third move' do
 #     board = ["O", " ", " ", " ", "X", " ", " ", " ", " "]
-# 
+#
 #     expect(current_player(board)).to eq("X")
 #   end
 # end
