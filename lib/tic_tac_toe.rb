@@ -99,11 +99,9 @@ end
 
 #current player method
 def current_player(board)
-  if turn_count(board).even?
-    puts "X"
-  else
-    puts "O"
-
+  token = "X" || token = "O"
+  if turn_count(board).odd?
+    puts current_player("X")
   end
 end
 
@@ -114,6 +112,14 @@ end
 #   else
 #     puts "O"
 #
+#   end
+# end
+# Helper spec
+# describe '#current_player' do
+#   it 'returns the correct player, X, for the third move' do
+#     board = ["O", " ", " ", " ", "X", " ", " ", " ", " "]
+# 
+#     expect(current_player(board)).to eq("X")
 #   end
 # end
 
