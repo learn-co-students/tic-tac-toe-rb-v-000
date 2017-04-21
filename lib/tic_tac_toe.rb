@@ -30,10 +30,7 @@ end
 def move(board, index, player_token)
   board[index] = player_token
 end
-#original
-# def move(board, position, player_token)
-#   board[position] = player_token
-# end
+
 
 #input_to_index passed
 def input_to_index(user_input = "1" - "9")
@@ -79,19 +76,6 @@ def turn(board)
   end
 end
 
-#Original
-# def turn(board)
-#   puts "Please enter 1-9:"
-#   index = input_to_index(gets.chomp)
-#     puts "#{index}"
-#   if valid_move?(board, index)
-#     move(board, index)
-#     puts display_board(board)
-#   else
-#     turn(board)
-#   end
-# end
-
 #turn_count method
 def turn_count(board)
   counter = 0
@@ -133,19 +117,13 @@ end
  def draw?(board)
    !won?(board) && full?(board)
  end
-#original
- # def draw?(board)
- #   !won?(board)
- # end
+
 
 
 def over?(board)
-  draw?(board) || won?(board) || full?(board)
+  draw?(board) || won?(board)
 end
-#original
-# def over?(board)
-#   !draw?(board) || won?(board) || full?(board)
-# end
+
 
 
 def winner(board)
@@ -160,9 +138,14 @@ end
 # Define your play method below
 
 def play(board)
-  turns = 0
-  until turns == 9
+  until over?(board)
     turn(board)
-    turns += 1
   end
+
+    if over?(board) && won?(board)
+      winner(board)
+      puts "Congratulations #{winner(board)}!"
+    elsif draw?(board) && over?(board)
+      puts "Cats Game!"
+    end
 end
