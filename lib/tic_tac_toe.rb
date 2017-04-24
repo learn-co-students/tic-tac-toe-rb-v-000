@@ -43,18 +43,6 @@ def current_player(board)
   end
 end
 
-def turn(board)
-  print "#{current_player(board)}, please enter 1-9: "
-  index = input_to_index(gets.strip)
-  if valid_move?(board, index)
-    move(board, index, current_player(board))
-    puts " "
-    display_board(board)
-  else
-    turn(board)
-  end
-end
-
 def won?(board)
   tokens_x = 9.times.select {|token| board[token] == "X"}
   tokens_o = 9.times.select {|token| board[token] == "O"}
@@ -76,7 +64,7 @@ def draw?(board)
 end
 
 def over?(board)
-  full?(board) || won?(board)
+  won?(board) || draw?(board)
 end
 
 def winner(board)
@@ -92,7 +80,19 @@ def play(board)
   end
   if won?(board)
     puts "Congratulations #{winner(board)}!"
-  elsif draw?(board)
+  else
     puts "Cats Game!"
+  end
+end
+
+def turn(board)
+  print "#{current_player(board)}, please enter 1-9: "
+  index = input_to_index(gets.strip)
+  if valid_move?(board, index)
+    move(board, index, current_player(board))
+    puts " "
+    display_board(board)
+  else
+    turn(board)
   end
 end
