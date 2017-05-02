@@ -29,14 +29,63 @@ def valid_move?(board, index)
   index.between?(0, 8) && !position_taken?(board, index)
 end
 
-def turn
+def turn(board)
   puts "Please enter 1-9:"
-  input == gets.strip
-  input == input_to_index(input)
+  input=gets.strip
+  input=input_to_index(input)
   if valid_move?(board, input)
-    move(board, input, character)
+    move(board, input, "X")
     display_board(board)
   else
-    turn
+    turn(board)
+  end
+end
+
+def turn_count(board)
+  #iterate over the array and determine if there is an "X" OR "O" or != " ".
+  #if space is taken, add to count.
+  board.count do |index|
+    index != " "
+  end
+end
+
+def current_player(board)
+  if turn_count(board).even?
+    return "X"
+  else
+    "O"
+  end
+end
+
+def won?(board)
+  WIN_COMBINATIONS.detect do |combo|
+    board[combo[0]] == board[combo[1]] &&
+    board[combo[2]] == board[combo[0]] &&
+    position_taken?(board, combo[0])
+  end
+end
+
+def full?(board)
+  board.all? {|index| index != " "}
+end
+
+def draw?(board)
+  if !(won?(board)) && full?(board)
+    return true
+  else
+    false
+  end
+end
+
+def over?(board)
+  full?(board) || draw?(board) || won?(board)
+end
+
+def winner(board)
+  my_winning_position = won?(board)
+  if(my_winning_position != nil)
+    board[my_winning_position[0]]
+  else
+    nil
   end
 end
