@@ -45,18 +45,15 @@ end
 def valid_move?(board, index)
  if index.between?(0, 8) && position_taken?(board, index) == false || nil
   return true
- else
-  return false
  end
 end
 
 def turn(board)
   puts "Please enter 1-9:"
   user_input = gets.strip
-  value = "X" || "O"
   index = input_to_index(user_input)
   if valid_move?(board, index)
-    move(board, index, value)
+    move(board, index, current_player(board))
     display_board(board)
   else
     turn(board)
@@ -104,18 +101,16 @@ board.none? do |space|
 end
 
 def draw?(board)
-  if won?(board) == false && full?(board) == true
+  if !(won?(board)) && full?(board)
     return true
-  elsif full?(board) == false
-    return false
   else
-    return false
- end
+    false
+  end
 end
 
 
 def over?(board)
-  if won?(board) == true || draw?(board) == true || full?(board) == true
+  if won?(board) || draw?(board) == true || full?(board) == true
     return true
   end
 end
@@ -143,16 +138,12 @@ end
 
 
 def play(board)
-	until over?(board) == true
-	 turn(board)
+  while !(over?(board))
+    turn(board)
   end
-   if won?(board) == true || draw?(board) == true
-     return false
-   elsif won?(board) == false || draw?(board) == false
-     return true
-   elsif won?(board) == true && draw?(board) == false
-     return false
-   else
-     return false
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cats Game!"
   end
- end
+end
