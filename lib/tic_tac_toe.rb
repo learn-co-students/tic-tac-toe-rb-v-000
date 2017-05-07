@@ -42,7 +42,7 @@ puts "Please enter 1-9:"
 input = gets.strip
 index = input_to_index(input)
 character = current_player(board)
-if !valid_move?(board, index) && !over(board)
+if !valid_move?(board, index) && !over?(board)
   turn(board)
 else
   move(board, index, character)
@@ -89,13 +89,13 @@ def full?(board)
 end
 
 def draw?(board)
-  if !won?(board) == true && !full?(board) == false
+  if won?(board) == false && full?(board) == true
     return true
   end
 end
 
 def over?(board)
-if won?(board) == true || draw?(board) == true || full?(board) == true
+if !won?(board) == false || draw?(board) == true
   return true
 end
 end
