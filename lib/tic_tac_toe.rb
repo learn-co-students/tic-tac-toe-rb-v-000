@@ -47,24 +47,81 @@ end
 
 #turn
 def turn(board)
-  puts "Please enter 1-9:"
-  input = gets.strip
-  index = input_to_index(input)
-  if valid_move?(board, index)
-    move(board, index, char)
-    display_board(board)
-  else
-    turn(board)
-  end
+    puts "Please enter 1-9:"
+    input = gets.strip
+    index = input_to_index(input)
+    char = current_player(board)
+    if valid_move?(board, index)
+      move(board, index, char)
+      display_board(board)
+      over?(board)
+    else
+      turn(board)
+    end
 end
 
 # turn_count
 def turn_count(board)
   number_of_turns = 0
   board.each do |space|
-    number_of_turns = 0
     if space == "X" || space == "O"
       number_of_turns += 1
     end
+  end
+  return number_of_turns
+end
+
+# current_player
+def current_player(board)
+  if turn_count(board) % 2 == 0
+    "X"
+  else
+    "O"
+  end
+end
+
+# won?
+def won?(board)
+  WIN_COMBINATIONS.detect do |win_combo|
+    if (board[win_combo[0]]) == "X" && (board[win_combo[1]]) == "X" && (board[win_combo[2]]) == "X"
+      return win_combo
+    elsif (board[win_combo[0]]) == "O" && (board[win_combo[1]]) == "O" && (board[win_combo[2]]) == "O"
+      return win_combo
+    end
+  end
+end
+
+#full?
+def full?(board)
+  board.all?{|occupied| occupied != " "}
+end
+
+#draw?
+def draw?(board)
+  !(won?(board)) && (full?(board))
+end
+
+#over?
+def over?(board)
+  (won?(board)) || (full?(board)) || (draw?(board))
+end
+
+#winner?
+def winner(board)
+  WIN_COMBINATIONS.detect do |win_combo|
+    if (board[win_combo[0]]) == "X" && (board[win_combo[1]]) == "X" && (board[win_combo[2]]) == "X"
+      return "X"
+    elsif (board[win_combo[0]]) == "O" && (board[win_combo[1]]) == "O" && (board[win_combo[2]]) == "O"
+      return "O"
+    else
+      nil
+    end
+  end
+end
+
+# play
+def play(board)
+  while over?(board) == false
+    turn(board)
   end
 end
