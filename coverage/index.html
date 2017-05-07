@@ -14,7 +14,7 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-05-07T17:07:25+00:00">2017-05-07T17:07:25+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-05-07T17:36:25+00:00">2017-05-07T17:36:25+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -639,7 +639,7 @@
         <li class="covered" data-hits="23" data-linenumber="92">
           <span class="hits">23</span>
           
-          <code class="ruby">  if won?(board) == false &amp;&amp; full?(board) == true</code>
+          <code class="ruby">  if  !won?(board) &amp;&amp; full?(board)</code>
         </li>
       
         <li class="covered" data-hits="6" data-linenumber="93">
@@ -675,7 +675,7 @@
         <li class="covered" data-hits="22" data-linenumber="98">
           <span class="hits">22</span>
           
-          <code class="ruby">if !won?(board) == false || draw?(board) == true</code>
+          <code class="ruby">if won?(board) || draw?(board)</code>
         </li>
       
         <li class="covered" data-hits="10" data-linenumber="99">
@@ -789,7 +789,7 @@
         <li class="covered" data-hits="5" data-linenumber="117">
           <span class="hits">5</span>
           
-          <code class="ruby">    puts &quot;congratulate #{winner(board)}&quot;</code>
+          <code class="ruby">    puts &quot;Congratulations #{winner(board)}!&quot;</code>
         </li>
       
         <li class="covered" data-hits="7" data-linenumber="118">
