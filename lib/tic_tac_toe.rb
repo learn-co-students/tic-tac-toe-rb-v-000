@@ -33,11 +33,7 @@ end
 
 # position_taken
 def position_taken?(board, index_i)
-  if ((board[index_i] == "X") || (board[index_i] == "O"))
-    true
-  else
-    false
-  end
+  ((board[index_i] == "X") || (board[index_i] == "O"))
 end
 
 # valid_move
@@ -50,10 +46,10 @@ def turn(board)
     puts "Please enter 1-9:"
     input = gets.strip
     index = input_to_index(input)
+    char = current_player(board)
     if valid_move?(board, index)
-      move(board, index, current_player(board))
+      move(board, index, char)
       display_board(board)
-      over?(board)
     else
       turn(board)
     end
@@ -87,6 +83,7 @@ def won?(board)
     elsif (board[win_combo[0]]) == "O" && (board[win_combo[1]]) == "O" && (board[win_combo[2]]) == "O"
       return win_combo
     end
+      false
   end
 end
 
@@ -122,5 +119,10 @@ end
 def play(board)
   while over?(board) == false
     turn(board)
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cats Game!"
   end
 end
