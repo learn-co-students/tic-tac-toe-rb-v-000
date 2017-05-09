@@ -49,17 +49,17 @@ end
 #     turn(board)
 #   end
 # end
-def turn(board)
-  puts "Please enter 1-9:"
-  input = gets.strip
-  index = input_to_index(input)
-  if !valid_move?(board, index)
-    turn(board)
-  end
-  move(board, index, current_player(board))
-  display_board(board)
-
-end
+# def turn(board)
+#   puts "Please enter 1-9:"
+#   input = gets.strip
+#   index = input_to_index(input)
+#   if !valid_move?(board, index)
+#     turn(board)
+#   end
+#   move(board, index, current_player(board))
+#   display_board(board)
+#
+# end
 
 # ask for input
 # get input
@@ -123,41 +123,12 @@ def winner(board)
 end
 
 def play(board)
-  puts "Enter X or O, please:"
-  # counter = 0
-  #   if !over?(board)
-  #     while counter < 9
-  #     turn(board)
-  #     counter +=1
-  #     end
-  #   else
-  #     while counter < 9
-  #       winner(board) == "X"
-  #       puts "Congratulations X!"
-  #       counter +=1
-  #
-  #       winner(board) == "O"
-  #       puts "Congratulations O!"
-  #       counter +=1
-  #
-  #     end
-
-  #   turn(board)
-  #   counter +=1
-  # end
-  # while !over?(board)
-  #   turn(board)
-  # end
-counter = 0
-  while counter < 9
-    if winner(board) == "X"
-      "Congratulations X!"
-    elsif winner(board) == "O"
-      "Congratulations O!"
-    else draw?(board)
-      "Cat's Game!"
-    end
+  while over?(board) == false
     turn(board)
-    counter += 1
+  end
+  if won?(board) == true
+    "Congratulations #{winner(board)}!"
+  else draw?(board) == true
+    "Cat's game"
   end
 end
