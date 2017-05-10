@@ -130,24 +130,14 @@ def winner(board)
   end
 end
 
-#Play
-player_1 = "X"
-player_2 = "O"
-def play(board, current_player)
-  if player_turn == player_1
-    puts "Please enter your turn X."
-    input = gets.chomp
-    while !over?(board) && !won?(board)
-      turn
-    end
-  else player_turn == player_2
-    puts "Please enter your turn O."
-    input = gets.chomp
-    while !over?(board) && !won?(board)
-      turn
-    end
+def play(board)
+  while !over?(board) && !won?(board)
+    puts "Please enter your turn."
+    gets.chomp
   end
+turn(board)
   if won?(board)
+    
     "Congratulations! You are the winner #{winner(board)}!"
   else draw?(board)
     "You both win! Not really, it's a cat's game."
