@@ -30,12 +30,12 @@ def input_to_index(user_input)
   index = (user_input).to_i - 1
 end
 
-#Move
+#Move method to put the piece or token in place
 def move(board, index, piece)
   board[index] = piece
 end
 
-#Position Taken?
+#Position Taken? medthod to see if a position had been taken on the board
 def position_taken?(board, index)
   if board[index] == " " || board[index] == "" || board[index] == nil
     false
@@ -44,14 +44,14 @@ def position_taken?(board, index)
   end
 end
 
-#Valid Move?
+#Valid Move? using prior method and making sure the input is between index 0-8
 def valid_move?(board, index)
   if !position_taken?(board, index) && index.between?(0,8)
     true
   end
 end
 
-#Turn
+#Turn method to ask user to input 1-9, receive input, convert input while making sure of valid move.
 def turn(board)
     puts "Please enter 1-9:"
     input = gets.strip
@@ -70,7 +70,7 @@ def turn(board)
   end
 end
 
-#Turn count
+#Turn count method takes in argument of board array and returns the number of turns played.
 def turn_count(board)
   count = 0
   board.each do |index|
@@ -81,7 +81,7 @@ def turn_count(board)
   count
 end
 
-#Current player
+#Current player method to determine which is an X or O
 def current_player(board)
   if turn_count(board) % 2 == 0
     return "X"
@@ -90,7 +90,7 @@ def current_player(board)
   end
 end
 
-#won
+#Won method using WIN_COMBINATIONS method to determine if anyone won or not.
 def won?(board)
   WIN_COMBINATIONS.each do |win_combo|
   if (board[win_combo[0]]) == "X" && (board[win_combo[1]]) == "X" && (board[win_combo[2]]) == "X"
@@ -102,44 +102,43 @@ end
  false
 end
 
-#full
+#Full method determines if the board is full.
 def full?(board)
   board.none? do |i|
     i == " " || i.nil?
   end
 end
 
-#Draw
+#Draw method uses both the 'not' won? method and is the board full? method
 def draw?(board)
   !won?(board) && full?(board)
 end
 
-#Over
+#Over method uses the won? and draw? methods to determine if game is over
 def over?(board)
-  full?(board)
+  won?(board) || draw?(board)
 end
 
-#Winner
+#Winner method determines who the winner is by each index filled in the board
 def winner(board)
-  if draw?(board) || !full?(board) && !won?(board)
-    return nil
-  elsif (board[won?(board)[0]] == "X")
-    return "X"
-  else (board[won?(board)[0]] == "O")
-    return "O"
+  if won?(board)
+    board[won?(board)[0]]
   end
 end
 
+#Play method is a loop that while the game is not over it goes back to the turn method.
 def play(board)
-  while !over?(board) && !won?(board)
-    puts "Please enter your turn."
-    gets.chomp
+  while !over?(board)
+    turn(board)
   end
-turn(board)
-  if won?(board)
-    
-    "Congratulations! You are the winner #{winner(board)}!"
-  else draw?(board)
-    "You both win! Not really, it's a cat's game."
+
+  if winner(board)
+    puts "Congratulations X!"
+  end
+  if winner(board)
+    puts "Congratulations O!"
+  end
+  if draw?(board)
+    puts "Cats Game!"
   end
 end
