@@ -92,7 +92,7 @@ end
 
 def over?(board)
   # the game is over if: draw, full or someone won
-  won?(board) && full?(board) || draw?(board)
+  won?(board) || full?(board) || draw?(board)
 end
 
 # return the winner, X or O
