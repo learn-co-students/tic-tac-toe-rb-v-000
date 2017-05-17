@@ -14,7 +14,7 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-05-17T03:24:20+00:00">2017-05-17T03:24:20+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-05-17T03:53:11+00:00">2017-05-17T03:53:11+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,7 +25,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         28.8
+         28.5
        </span>
     </span> hits/line)
   </h2>
@@ -57,7 +57,7 @@
         <td>52</td>
         <td>52</td>
         <td>0</td>
-        <td>28.8</td>
+        <td>28.5</td>
       </tr>
       
     </tbody>
@@ -480,8 +480,8 @@
           <code class="ruby">def won?(board)</code>
         </li>
       
-        <li class="covered" data-hits="57" data-linenumber="66">
-          <span class="hits">57</span>
+        <li class="covered" data-hits="60" data-linenumber="66">
+          <span class="hits">60</span>
           
           <code class="ruby">  WIN_COMBINATIONS.detect do |combo|</code>
         </li>
@@ -492,8 +492,8 @@
           <code class="ruby">    board[combo[0]] == board[combo[1]] &amp;&amp;</code>
         </li>
       
-        <li class="covered" data-hits="369" data-linenumber="68">
-          <span class="hits">369</span>
+        <li class="covered" data-hits="393" data-linenumber="68">
+          <span class="hits">393</span>
           
           <code class="ruby">    board[combo[1]] == board[combo[2]] &amp;&amp;</code>
         </li>
@@ -528,8 +528,8 @@
           <code class="ruby">def full?(board)</code>
         </li>
       
-        <li class="covered" data-hits="177" data-linenumber="74">
-          <span class="hits">177</span>
+        <li class="covered" data-hits="128" data-linenumber="74">
+          <span class="hits">128</span>
           
           <code class="ruby">  board.all?{ |token| token != &quot; &quot;}</code>
         </li>
@@ -552,8 +552,8 @@
           <code class="ruby">def draw?(board)</code>
         </li>
       
-        <li class="covered" data-hits="24" data-linenumber="78">
-          <span class="hits">24</span>
+        <li class="covered" data-hits="27" data-linenumber="78">
+          <span class="hits">27</span>
           
           <code class="ruby">  !won?(board) &amp;&amp; full?(board)</code>
         </li>
@@ -579,7 +579,7 @@
         <li class="covered" data-hits="21" data-linenumber="82">
           <span class="hits">21</span>
           
-          <code class="ruby">  won?(board) || full?(board) || draw?(board)</code>
+          <code class="ruby">  won?(board) || draw?(board)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="83">
