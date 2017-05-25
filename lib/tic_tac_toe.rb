@@ -106,7 +106,7 @@ def draw?(board)
 end
 
 def over?(board)
-  if won?(board) == true || draw?(board) == true || full?(board) == true
+  if won?(board) || draw?(board) || full?(board)
     return true
   end
 end
@@ -123,7 +123,7 @@ def play(board)
     turn(board)
   end
   if won?(board)
-    puts "Congraulations #{winner(board)}!"
+    puts "Congratulations #{winner(board)}!"
   else
     puts "Cats Game!"
   end
