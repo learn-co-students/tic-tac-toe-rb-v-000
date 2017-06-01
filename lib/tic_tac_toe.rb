@@ -103,7 +103,7 @@ def draw?(board)
 end
 
 def over?(board)
-  if draw?(board) == true || won?(board) == true || full?(board) == true
+  if draw?(board) == true || won?(board) != nil || full?(board) == true
     true
   end
 end
@@ -128,14 +128,13 @@ end
 end
 
 def play(board)
-  puts "Please enter 1-9:"
   while !over?(board)
   turn(board)
 end
-  if over?(board) == true && won?(board) == true && winner(board) == "X"
-    puts "Congratulations, X!"
-  elsif over?(board) == true && won?(board) == true && winner(board) == "O"
-    puts "Congratulations, O!"
+  if over?(board) == true && won?(board) != nil && winner(board) == "X"
+    puts "Congratulations X!"
+  elsif over?(board) == true && won?(board) != nil && winner(board) == "O"
+    puts "Congratulations O!"
   elsif over?(board) == true && draw?(board) == true
     puts "Cats Game!"
   elsif over?(board) == true
