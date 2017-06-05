@@ -88,7 +88,7 @@ def won?(board)
   end
 end
 
-def full?(board) #accept a board and return true if every element in the board contains either an "X" or an "O"
+def full?(board)
   board.all? do |square|
     if square == "X" || square == "O"
       true
