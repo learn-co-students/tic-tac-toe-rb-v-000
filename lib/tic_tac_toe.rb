@@ -31,9 +31,9 @@ WIN_COMBINATIONS = [
 
   def position_taken?(board, index)
     if board[index] == " " || board[index] == "" ||  board[index] == nil
-      return false
+      false
     else board[index] == "X" || board[index] == "O"
-      return true
+      true
     end
   end
 #-----------VALID MOVE----------------------
