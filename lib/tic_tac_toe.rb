@@ -97,10 +97,12 @@ def winner(board)
 end
 
 def play(board)
-  input = gets
-  turn(board)
     while !over?(board)
     turn(board)
     end
-      winner(board)
+    if won?(board)
+    puts "Congratulations " + winner(board) + "!"
+  else
+    puts "Cats Game!"
+    end
 end
