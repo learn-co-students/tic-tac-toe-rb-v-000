@@ -30,7 +30,7 @@ WIN_COMBINATIONS = [
 #-----------POSITION TAKEN----------------------
 
   def position_taken?(board, index)
-    if board[index] == " " || board[index] == "" || board[index] == nil
+    if board[index] == " " || board[index] == "" ||  board[index] == nil
       return false
     else board[index] == "X" || board[index] == "O"
       return true
@@ -136,8 +136,9 @@ def play(board)
   until over?(board)
 	turn(board)
   end
-  draw?(board)
+  if draw?(board)
     puts "Cats Game!"
-  winner(board)
+  else winner(board)
     puts "Congratulations #{winner(board)}!"
+  end
 end
