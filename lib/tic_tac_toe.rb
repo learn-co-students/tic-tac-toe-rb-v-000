@@ -1,3 +1,4 @@
+puts "Welcome to Tic Tac Toe!"
 
 # Define your WIN_COMBINATIONS constant
 
