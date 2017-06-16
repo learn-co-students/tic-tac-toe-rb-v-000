@@ -1,6 +1,7 @@
 require_relative '../lib/tic_tac_toe.rb'
+require 'pry'
 
-describe './lib/tic_tac_toe.rb' do  
+describe './lib/tic_tac_toe.rb' do
   describe '#play' do
     it 'asks for players input on a turn of the game' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
