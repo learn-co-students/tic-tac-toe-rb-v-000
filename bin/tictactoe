@@ -1,3 +1,9 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/tic_tac_toe'
+
+require_relative '../lib/welcome'
+
+board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+
+play(board)
