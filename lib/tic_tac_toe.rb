@@ -1,4 +1,5 @@
 require 'pry'
+
 WIN_COMBINATIONS = [
   [0,1,2],
   [3,4,5],
@@ -34,13 +35,14 @@ def position_taken? (board, index)
      end
    end
 
-def valid_move? (board,index)
+def valid_move?(board,index)
    if index >= 0 && index-1 <= 8 && position_taken?(board,index) == false
      true
    else
     false
    end
 end
+
 
 def turn(board)
   #puts "Please enter 1-9:"
@@ -50,8 +52,8 @@ def turn(board)
     move(board,index,current_player(board))
     puts display_board(board)
   else
-    turn (board)
- end
+    turn(board)
+  end
 end
 
 def turn_count (board)
@@ -74,10 +76,10 @@ end
 
 def won? (board)
   WIN_COMBINATIONS.each do |win_combination|
-   if win_combination.all? {|win_index|board[win_index] == "X"}
-    return win_combination
-  elsif win_combination.all? {|win_index|board[win_index] == "O"}
-   return win_combination
+    if win_combination.all? {|win_index|board[win_index] == "X"}
+      return win_combination
+    elsif win_combination.all? {|win_index|board[win_index] == "O"}
+      return win_combination
     end
   end
   false
@@ -90,12 +92,13 @@ def full? (board)
 end
 
 def draw? (board)
-  if won?(board) == false && full?(board) == true
+  if won?(board)== false && full?(board) == true
     true
   else
     false
   end
 end
+
 
 def over?(board)
   if won?(board) != false || full?(board) == true || draw?(board) == true
@@ -118,6 +121,7 @@ def winner (board)
   nil
 end
 
+
 def play(board)
   while over?(board) == false
     turn(board)
@@ -130,3 +134,17 @@ def play(board)
     puts "Cats Game!"
   end
 end
+
+#def play(board)
+#  until over?(board) == true
+#    if won?(board) == true && winner(board) == "X"
+#      puts "Congratulations X!"
+#    elsif won?(board) == true && winner(board) == "O"
+#      puts "Congratulations O!"
+#    elsif draw?(board) == true
+#      puts "Cats Game!"
+#    else
+#      turn(board)
+#    end
+#  end
+#end

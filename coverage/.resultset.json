@@ -3,6 +3,7 @@
     "coverage": {
       "/home/lenasawyer93-45479/code/labs/tic-tac-toe-rb-v-000/lib/tic_tac_toe.rb": [
         1,
+        null,
         1,
         null,
         null,
@@ -43,6 +44,7 @@
         20,
         null,
         3,
+        null,
         null,
         null,
         null,
@@ -101,6 +103,7 @@
         null,
         null,
         null,
+        null,
         1,
         21,
         10,
@@ -122,6 +125,7 @@
         null,
         null,
         null,
+        null,
         1,
         12,
         17,
@@ -133,9 +137,23 @@
         7,
         3,
         null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
         null
       ]
     },
-    "timestamp": 1498497450
+    "timestamp": 1498499610
   }
 }
