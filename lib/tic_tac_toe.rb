@@ -28,7 +28,7 @@ def move(board, position, player_token)
 end
 
 def position_taken?(board, position)
-   !!/(X|O)/.match(board[position])
+  !!/(X|O)/.match(board[position])
 end
 
 def valid_move?(board, position)
@@ -36,9 +36,45 @@ def valid_move?(board, position)
 end
 
 def turn(board)
-  position = input_to_index(gets.chomp("enter your space"))
-  while !valid_move?(board, position)
-    position = input_to_index(gets.chomp)
+  puts "enter your position"
+  position = input_to_index(gets.chomp)
+  if !valid_move?(board, position)
+    turn(board)
+  else
+    move(board, position, current_player(board))
   end
-  move(board, position, "X")
+end
+
+def turn_count(board)
+  board.select{|position| position != " "}.length
+end
+
+def current_player(board)
+  turn_count(board) % 2 == 0 ? "X" : "O"
+end
+
+def won?(board)
+  WIN_COMBINATIONS.find{ |combo|
+    position_taken?(board, combo[0]) &&
+      board[combo[0]] == board[combo[1]] &&
+      board[combo[0]] == board[combo[2]]
+  }
+end
+
+def full?(board)
+  turn_count(board) >= board.length
+end
+
+def draw?(board)
+  !won?(board) && full?(board)
+end
+
+def over?(board)
+  draw?(board) || won?(board)
+end
+
+def winner(board)
+  if winning_combo = won?(board)
+    board[winning_combo[0]]
+  end
 end
