@@ -12,11 +12,11 @@ WIN_COMBINATIONS = [
 ]
 
 def display_board(board)
-  puts " #{board[0]} | #{board[1]} | #{board[2]} \n
-    -----------\n
-     #{board[3]} | #{board[4]} | #{board[5]} \n
-    -----------\n
-     #{board[6]} | #{board[7]} | #{board[8]} "
+  puts " #{board[0]} | #{board[1]} | #{board[2]} "
+  puts "-----------"
+  puts " #{board[3]} | #{board[4]} | #{board[5]} "
+  puts "-----------"
+  puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
 def input_to_index(user_input)
@@ -25,6 +25,7 @@ end
 
 def move(board, position, player_token)
   board[position] = player_token
+  display_board(board)
 end
 
 def position_taken?(board, position)
@@ -76,5 +77,18 @@ end
 def winner(board)
   if winning_combo = won?(board)
     board[winning_combo[0]]
+  end
+end
+
+def play(board)
+  if over?(board)
+    if !winner(board)
+      puts "Cats Game!"
+    else
+      puts "Congratulations #{winner(board)}!"
+    end
+  else
+    turn(board)
+    play(board)
   end
 end
