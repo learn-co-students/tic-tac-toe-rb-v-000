@@ -53,7 +53,7 @@ def valid_move?(board, index)
   end
   position_taken?(board, index)
 end
-end
+
 
 #MOVE
 #This method should accept a board, an index from the user (which was converted from their raw input with input_to_index), and a token to mark that position with (you can give that argument a default value of 'X'––we're not worrying about whose turn it is yet). The method should set the correct index value of that position within the board equal to the token.
@@ -90,3 +90,27 @@ def turn(board)
 end
 
 # Helper Method
+describe '#turn' do
+  it 'makes valid moves' do
+    board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+
+    allow($stdout).to receive(:puts)
+
+    expect(self).to receive(:gets).and_return("1")
+
+    turn(board)
+
+    expect(board).to match_array(["X", " ", " ", " ", " ", " ", " ", " ", " "])
+  end
+
+  it 'asks for input again after a failed validation' do
+    board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+
+    allow($stdout).to receive(:puts)
+
+    expect(self).to receive(:gets).and_return("invalid")
+    expect(self).to receive(:gets).and_return("1")
+
+    turn(board)
+  end
+end
