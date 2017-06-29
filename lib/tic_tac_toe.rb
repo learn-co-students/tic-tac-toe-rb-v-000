@@ -21,10 +21,54 @@ def display_board(board)
 end
 
 # Helper Method
+def input_to_index(user_input)
+  user_input.to_i - 1
+end
+# Helper Method
+def move(board, index, current_player)
+  board[index] = current_player
+end
 
 # Helper Method
-def turn_count (board)
-	board.count{|token| token == "x" || token == "O"}
+def valid_move?(board, index)
+  index.between?(0, 8) && !position_taken?(board, index)
+end
+
+# Helper Method
+#TURN
+def turn(board)
+
+  # display board
+  display_board(board)
+
+  #ask for input
+  puts "Please enter 1-9:"
+
+  #get input
+  user_input = gets.strip
+
+  #convert input to index
+  index = input_to_index(user_input)
+
+  # check if index is valid
+	if valid_move?(board, index)
+    #make the move for index
+  	move(board, index, value = "X")
+  else
+    #ask for input again until you get a valid input
+    turn(board)
+	end
+	#show the board
+	display_board(board)
+end
+
+# Helper Method
+
+###############################################################
+##### GOOD CODE BELOW
+# Helper Method
+def turn_count(board)
+	board.count{|token| token == "X" || token == "O"}
 end
 
 # Helper Method
@@ -71,9 +115,6 @@ def over?(board)
 end
 
 # Helper Method
-# return X when X won (FAILED - 1)
-# returns O when O won (FAILED - 2)
-# returns nil when no winner (FAILED - 3)
 def winner(board)
 	if over?(board)
 		current_player(board)
