@@ -1,6 +1,7 @@
 require 'pry'
 board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 # Define your WIN_COMBINATIONS constant
+#board = ["X", "O", "X", "O", "X", "X", "O", "O", "X"]
 WIN_COMBINATIONS = [
 						        [0,1,2],
 						        [3,4,5],
@@ -65,13 +66,14 @@ end
 
 # Helper Method
 def play(board)
-	turn(board)
-	if over?(board)
-		winner(board)
-	else
-	turn(board)
-	end
-	binding.pry
+  until over?(board)
+  	turn(board)
+  end
+  if won? (board)
+    puts "Congratulations #{winner(board)}!"
+  else
+    puts "Cats Game!"
+  end
 end
 ###############################################################
 ##### GOOD CODE BELOW
@@ -102,7 +104,7 @@ def is_empty?(board)
 end
 
 # Helper Method
-def won?(board) #board = ["X", " ", " ", " ", "X", " ", " ", " ", "X"]
+def won?(board)
 	WIN_COMBINATIONS.find do |win|
 	 board[win[0]] == board[win[1]] && board[win[0]] == board[win[2]] && board[win[0]] != " "
  end
@@ -110,7 +112,7 @@ end
 
 # Helper Method
 def full?(board)
-	!board.include?( " " || nil )
+ !board.include?(" ") || board.include?("")
 end
 
 # Helper Method
@@ -120,13 +122,13 @@ end
 
 # Helper Method
 def over?(board)
-	draw?(board) || won?(board) || full?(board)
+	draw?(board) || won?(board)
 end
 
 # Helper Method
 def winner(board)
 	if won?(board)
-		winning_combo = won?(board) # [0, 1, 2]
+		winning_combo = won?(board)
 		board[winning_combo[0]]
 	end
 end
