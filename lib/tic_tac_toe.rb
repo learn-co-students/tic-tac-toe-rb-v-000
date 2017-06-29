@@ -1,4 +1,5 @@
 require 'pry'
+board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 # Define your WIN_COMBINATIONS constant
 WIN_COMBINATIONS = [
 						        [0,1,2],
@@ -53,7 +54,7 @@ def turn(board)
   # check if index is valid
 	if valid_move?(board, index)
     #make the move for index
-  	move(board, index, value = "X")
+  	move(board, index, current_player(board))
   else
     #ask for input again until you get a valid input
     turn(board)
@@ -63,7 +64,15 @@ def turn(board)
 end
 
 # Helper Method
-
+def play(board)
+	turn(board)
+	if over?(board)
+		winner(board)
+	else
+	turn(board)
+	end
+	binding.pry
+end
 ###############################################################
 ##### GOOD CODE BELOW
 # Helper Method
@@ -88,7 +97,7 @@ def is_empty?(board)
 		if position_taken?(board, index)
 			 index =+ 1
 		end
-		break
+	return
 	end
 end
 

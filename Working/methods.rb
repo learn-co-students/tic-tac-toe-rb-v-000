@@ -90,6 +90,21 @@ def turn(board)
 end
 
 # Helper Method
+def play(board)
+	# display board
+  display_board(board)
+
+  #ask for input
+  puts "Please enter 1-9:"
+
+  #get input
+  user_input = gets.strip
+
+  #convert input to index
+  index = input_to_index(user_input)
+end
+
+# Helper Method
 describe '#turn' do
   it 'makes valid moves' do
     board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
