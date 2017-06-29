@@ -93,7 +93,7 @@ def is_empty?(board)
 end
 
 # Helper Method
-def won?(board)
+def won?(board) #board = ["X", " ", " ", " ", "X", " ", " ", " ", "X"]
 	WIN_COMBINATIONS.find do |win|
 	 board[win[0]] == board[win[1]] && board[win[0]] == board[win[2]] && board[win[0]] != " "
  end
@@ -116,9 +116,11 @@ end
 
 # Helper Method
 def winner(board)
-	if over?(board)
-		current_player(board)
-	else
-		nil
+	if won?(board)
+		winning_combo = won?(board) # [0, 1, 2]
+		board[winning_combo[0]]
 	end
 end
+
+#if won?(board) we have a winning combination of the winning combination (board indexes, three of em)
+#board[winning_combo[0]] == either "x" or "o"
