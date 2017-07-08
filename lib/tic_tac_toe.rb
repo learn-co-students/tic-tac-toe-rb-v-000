@@ -22,8 +22,8 @@ def input_to_index(user_input)
   user_input.to_i - 1
 end
 
-def move(board, index) # problem is with current_player method, cannot have default value
-  player_token = current_player(board)
+def move(board, index, player_token) # problem is with current_player method, cannot have default value
+  #player_token = current_player(board) #set local variable to return value of current_player method
   board[index] = player_token
 end
 
@@ -43,8 +43,9 @@ def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
+  player_token = current_player(board) #set local variable to return value of current_player method
   if valid_move?(board, index)
-    move(board, index)
+    move(board, index, player_token)
     display_board(board)
   else
     turn(board)
