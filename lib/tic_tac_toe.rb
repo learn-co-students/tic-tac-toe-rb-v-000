@@ -22,8 +22,7 @@ def input_to_index(user_input)
   user_input.to_i - 1
 end
 
-def move(board, index, player_token) # problem is with current_player method, cannot have default value
-  #player_token = current_player(board) #set local variable to return value of current_player method
+def move(board, index, player_token)
   board[index] = player_token
 end
 
@@ -124,13 +123,13 @@ def winner(board)
 end
 
 def play(board)
-  until won?(board)
+  until over?(board)
     turn(board)
   end
   if won?(board)
     win_token = winner(board)
     puts "Congratulations ${win_token}!"
-  elsif draw?(board)
+  elsif draw?(board) == true
     puts "Cats Game!"
   end
 end
