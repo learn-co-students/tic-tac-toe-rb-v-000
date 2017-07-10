@@ -89,7 +89,6 @@ def won?(board)
       position_2 == "O" && position_3 == "O"
       return win_combination
     end
-
   end
     return false
 end
@@ -123,13 +122,13 @@ def winner(board)
 end
 
 def play(board)
-  until over?(board)
+  until over?(board) == true
     turn(board)
   end
-  if won?(board)
-    win_token = winner(board)
-    puts "Congratulations ${win_token}!"
-  elsif draw?(board) == true
-    puts "Cats Game!"
+      if won?(board)
+        win_token =  winner(board)# get return value of #winner method
+        puts "Congratulations #{win_token}!"
+      elsif draw?(board)
+        puts "Cats Game!"
+      end
   end
-end
