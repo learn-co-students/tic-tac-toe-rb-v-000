@@ -31,11 +31,7 @@ def position_taken?(board, location)
 end
 
 def valid_move?(board, index)
-  if index.between?(0,8) == true && position_taken?(board, index) == false
-  return true
-else
-  return false
-    end
+  index.between?(0,8) == true && position_taken?(board, index) == false
 end
 
 def turn(board)
@@ -85,8 +81,7 @@ def won?(board)
 
     if position_1 == "X" && position_2 == "X" && position_3 == "X"
       return win_combination
-    elsif position_1 == "O" &&
-      position_2 == "O" && position_3 == "O"
+    elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
       return win_combination
     end
   end
@@ -106,8 +101,7 @@ def draw?(board)
 end
 
 def over?(board)
-  if won?(board) == true || draw?(board) == true ||
-    full?(board) == true
+  if won?(board) || draw?(board) == true || full?(board) == true
     return true
   end
 end
@@ -122,11 +116,11 @@ def winner(board)
 end
 
 def play(board)
-  until over?(board) == true
+  until over?(board)
     turn(board)
   end
       if won?(board)
-        win_token =  winner(board)# get return value of #winner method
+        win_token = winner(board)# get return value of #winner method
         puts "Congratulations #{win_token}!"
       elsif draw?(board)
         puts "Cats Game!"
