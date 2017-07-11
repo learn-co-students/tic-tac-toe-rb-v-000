@@ -95,13 +95,13 @@ def full?(board)
 end
 
 def draw?(board)
-  if full?(board) == true && won?(board) == false
+  if full?(board) && won?(board) == false
     return true
   end
 end
 
 def over?(board)
-  if won?(board) || draw?(board) == true || full?(board) == true
+  if won?(board) || draw?(board) == true || full?(board)
     return true
   end
 end
