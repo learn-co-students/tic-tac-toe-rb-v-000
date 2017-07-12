@@ -1,4 +1,4 @@
-
+require 'pry'
 WIN_COMBINATIONS = [
   [0,1,2],
   [3,4,5],
@@ -28,12 +28,12 @@ def move(board, index, char)
   board[index] = char
 end
 
-def position_taken?(board,index)
+def position_taken?(board, index)
   !(board[index].nil? || board[index] == " ")
 end
 
-def valid_move?(board,index)
-  index.between?(0,8) && !position_taken?(board,index)
+def valid_move?(board, index)
+  index.between?(0,8) && !position_taken?(board, index)
 end
 
 def turn(board)
@@ -41,7 +41,7 @@ def turn(board)
   user_input = gets.strip
   input = input_to_index(user_input)
     if valid_move?(board,input)
-      move(board, index, char = "X")
+      move(board, input, current_player(board))
       display_board(board)
     else
       turn(board)
@@ -67,10 +67,10 @@ def turn(board)
   end
 
   def won?(board)
-  WIN_COMBINATION.detect do |win_combination|
+  WIN_COMBINATIONS.detect do |win_combination|
     win_index_1 = win_combination[0]
     win_index_2 = win_combination[1]
-    win_index_3 = win_combination[3]
+    win_index_3 = win_combination[2]
     position_1 = board[win_index_1]
     position_2 = board[win_index_2]
     position_3 = board[win_index_3]
@@ -116,8 +116,10 @@ def turn(board)
 
   def winner(board)
     if win_combo = won?(board)
-      board[win_combo[0]]
+      board[win_combo[1]]
     end
   end
 
-                                               
+  def play(board)
+
+  end
