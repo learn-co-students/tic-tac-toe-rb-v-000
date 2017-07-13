@@ -114,7 +114,18 @@ def turn(board)
   end
 
   def winner(board)
-    if win_combo = won?(board)
-      board[win_combo[1]]
+    if win_combination = won?(board)
+      board[win_combination[1]]
     end
   end
+
+def play(board)
+    until over?(board)
+      turn(board)
+    end
+      if won?(board)
+        puts "Congratulations #{winner(board)}!"
+      else
+        puts "Cats Game!"
+    end
+end
