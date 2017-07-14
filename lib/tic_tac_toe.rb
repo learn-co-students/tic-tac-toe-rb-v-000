@@ -129,3 +129,13 @@ def play(board)
         puts "Cats Game!"
     end
 end
+
+# if win_combo = won?(board)
+#   board[win_combo[1]]
+# end
+# end
+#
+# def play(board)
+# 
+# end
+# >>>>>>> 966a78a2e9c05ebbb2713d579d392a3d3aad57af
