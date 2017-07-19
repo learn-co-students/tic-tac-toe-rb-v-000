@@ -16,9 +16,8 @@ def display_board(board)
   row = [" #{board[0]} | #{board[1]} | #{board[2]} ", "-----------", " #{board[3]} | #{board[4]} | #{board[5]} ", "-----------", " #{board[6]} | #{board[7]} | #{board[8]} "]
   puts row
 end
-# display_board(board)
 
-# Define a #INPUT_TO_INDEX method: convert string to integer minus 1 to start index at 1
+# Define a #INPUT_TO_INDEX method: convert string to integer minus 1 (to start index at 1)
 def input_to_index(user_input)
   user_input.to_i - 1
 end
@@ -135,14 +134,15 @@ end
 
 # Define a #PLAY method: creates loop to run turn, checks #over?, checks won?
 def play(board)
-  while over?(board) == false
+  # Run #turn while not #over?
+  while !over?(board)
     turn(board)
   end
-  if won?(board) == false
-    puts "Cats Game!"
-  else
+  # End game if #won?, print message
+  if won?(board)
     puts "Congratulations #{winner(board)}!"
+  # End game if #draw?, print message
+  elsif draw?(board)
+    puts "Cats Game!"
   end
 end
-
-play(board)
