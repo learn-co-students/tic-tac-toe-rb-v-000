@@ -63,8 +63,8 @@ def current_player(board)
   turn_count(board).even? ? "X" : "O"
 end
 
-def won?(board) # board = ["", "", "", "", "" ... "" ]
-    WIN_COMBINATIONS.find do |wins| #first iteration, wins = [0, 1, 2]
+def won?(board) #returns the winning board array index, e.g. [0,1,2] for a top row win.
+    WIN_COMBINATIONS.find do |wins|
       board[wins[0]] == board[wins[1]] && board[wins[0]] == board[wins[2]] && position_taken?(board, wins[0])
   end
 end
@@ -84,7 +84,7 @@ def over?(board)
 end
 
 
-def winner(board)
+def winner(board) #returns "X" or "O"
   if !won?(board)
   else board[won?(board).first]
   end
