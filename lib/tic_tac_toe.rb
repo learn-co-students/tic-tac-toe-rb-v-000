@@ -48,7 +48,7 @@ def turn(board)
   index_number = input_to_index(user_input)
 
   if valid_move?(board, index_number)
-    move(board, index_number, user_character = "X")
+    move(board, index_number, current_player(board))
     display_board(board)
       else turn(board)
   end
@@ -65,10 +65,10 @@ def turn_count(board)
 end
 
 def current_player(board)
-  if turn_count(board) == 15 % 2
-    "O"
-  else turn_count(board) == 4 % 2
+  if turn_count(board) % 2 == 0
     "X"
+  else
+    "O"
   end
 end
 
@@ -106,11 +106,16 @@ def full?(board)
   end
 
   def play(board)
+  turn_count = 0
+  while !over?(board)
     turn(board)
-    over?(board)
-    if won?(board)
-      puts "Congratulations!"
-    elsif draw?(board)
-      puts "Cats game!"
+    turn_count += 1
+  end
+  if won?(board)
+    win = winner(board)
+    puts "Congratulations #{win}!"
+    full?(board)
+  elsif draw?(board)
+    puts "Cats Game!"
   end
 end
