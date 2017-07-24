@@ -35,7 +35,7 @@ WIN_COMBINATIONS = [
   end
 
   def valid_move?(board, index)
-    if position_taken?(board, index) || index > board.length
+    if position_taken?(board, index) || index > board.length || index < 0
       return false
     else
       return true
@@ -49,7 +49,7 @@ WIN_COMBINATIONS = [
     if valid_move?(board, index)
       move(board, index, current_player(board))
       display_board(board)
-    else
+    elsif !valid_move?(board, index)
       turn(board)
     end
   end
@@ -93,11 +93,13 @@ WIN_COMBINATIONS = [
   end
 
   def draw?(board)
-    if !won?(board) && full?(board)
-      return true
-    elsif won?(board)
-      return false
-    elsif !won?(board) && !full?(board)
+    if full?(board)
+      if !won?(board)
+        return true
+      elsif won?(board)
+        return false
+      end
+    else
       return false
     end
   end
