@@ -16,8 +16,9 @@ position = index - 1
 end
 
 def move(board,position,symbol)
-  board[position] = symbol
+board[position] = symbol
 end
+
 
 def position_taken?(board, index)
  if board[index] == " " || board[index] == "" || board[index] == nil
@@ -44,6 +45,7 @@ index = input_to_index(input)
 if valid_move?(board,index)
   move(board,index,symbol="X")
   display_board(board)
+  draw?(board)
 else
   turn(board)
 end
@@ -110,27 +112,14 @@ end
 end
 
 def over?(board)
-  WIN_COMBINATIONS.each do |win_combination|
+if won?(board)
+  return true
+end
+if full?(board)
+  return true
+end
+end
 
-   position_1 = board[win_combination[0]]
-   position_2 = board[win_combination[1]]
-   position_3 = board[win_combination[2]]
-
-   if position_1 == "X" && position_2 == "X" && position_3 == "X" || position_1 == "O" && position_2 == "O" && position_3 == "O"
-    return true
-  end
-end
-board.each do |position|
- if position == "" || position == " "
-  return false
- end
-end
-board.detect do |i|
- if i == "X" || i == "O"
-   return true
- end
-end
-end
 
 def winner(board)
   WIN_COMBINATIONS.each do |win_combination|
@@ -156,10 +145,14 @@ end
   return nil
 end
 
+
 def play(board)
-  counter = 0
-  while counter < 9
-    turn(board)
-    counter += 1
-  end
+  until over?(board)
+turn(board)
+end
+if won?(board)
+  puts "Congratulations #{winner(board)}!"
+else
+    puts "Cats Game!"
+end
 end
