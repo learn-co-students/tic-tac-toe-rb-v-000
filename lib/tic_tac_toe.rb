@@ -16,6 +16,7 @@ position = index - 1
 end
 
 def move(board,position,symbol)
+
 board[position] = symbol
 end
 
@@ -43,9 +44,9 @@ puts "Please enter 1-9:"
 input = gets.strip
 index = input_to_index(input)
 if valid_move?(board,index)
-  move(board,index,symbol="X")
+  symbol=current_player(board)
+  move(board,index,symbol)
   display_board(board)
-  draw?(board)
 else
   turn(board)
 end
@@ -147,7 +148,7 @@ end
 
 
 def play(board)
-  until over?(board)
+  until over?(board)||  draw?(board)
 turn(board)
 end
 if won?(board)
