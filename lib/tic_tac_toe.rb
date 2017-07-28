@@ -21,7 +21,7 @@ def input_to_index(input)
   input.to_i - 1
 end
 
-def move(board, input, value = "X")
+def move(board, input, value)
   board[input] = value
 end
 
@@ -112,7 +112,6 @@ def winner(board)
   end
 
   def play(board)
-    turn(board)
     until over?(board)
       turn(board)
     end
@@ -123,6 +122,5 @@ def winner(board)
   end
     if draw?(board)
     puts "Cats Game!"
+      end
     end
-    play(board)
-  end
