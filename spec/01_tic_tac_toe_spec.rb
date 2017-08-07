@@ -118,48 +118,48 @@ describe './lib/tic_tac_toe.rb' do
       expect(valid_move?(board, position)).to be_falsey
     end
   end
+
+  describe '#turn' do
+    it 'makes valid moves' do
+      board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+
+      allow($stdout).to receive(:puts)
+
+      expect(self).to receive(:gets).and_return("1")
+
+      turn(board)
+
+      expect(board).to match_array(["X", " ", " ", " ", " ", " ", " ", " ", " "])
+    end
+
+    it 'asks for input again after a failed validation' do
+      board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+
+      allow($stdout).to receive(:puts)
+
+      expect(self).to receive(:gets).and_return("invalid")
+      expect(self).to receive(:gets).and_return("1")
+
+      turn(board)
+    end
+  end
+
+  describe '#turn_count' do
+    it 'counts occupied positions' do
+      board = ["O", " ", " ", " ", "X", " ", " ", " ", "X"]
+
+      expect(turn_count(board)).to eq(3)
+    end
+  end
+
+  describe '#current_player' do
+    it 'returns the correct player, X, for the third move' do
+      board = ["O", " ", " ", " ", "X", " ", " ", " ", " "]
+
+      expect(current_player(board)).to eq("X")
+    end
+  end
   
-  # describe '#turn' do
-  #   it 'makes valid moves' do
-  #     board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-  #
-  #     allow($stdout).to receive(:puts)
-  #
-  #     expect(self).to receive(:gets).and_return("1")
-  #
-  #     turn(board)
-  #
-  #     expect(board).to match_array(["X", " ", " ", " ", " ", " ", " ", " ", " "])
-  #   end
-  #
-  #   it 'asks for input again after a failed validation' do
-  #     board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-  #
-  #     allow($stdout).to receive(:puts)
-  #
-  #     expect(self).to receive(:gets).and_return("invalid")
-  #     expect(self).to receive(:gets).and_return("1")
-  #
-  #     turn(board)
-  #   end
-  # end
-  #
-  # describe '#turn_count' do
-  #   it 'counts occupied positions' do
-  #     board = ["O", " ", " ", " ", "X", " ", " ", " ", "X"]
-  #
-  #     expect(turn_count(board)).to eq(3)
-  #   end
-  # end
-  #
-  # describe '#current_player' do
-  #   it 'returns the correct player, X, for the third move' do
-  #     board = ["O", " ", " ", " ", "X", " ", " ", " ", " "]
-  #
-  #     expect(current_player(board)).to eq("X")
-  #   end
-  # end
-  #
   # describe "#won?" do
   #   it 'returns false for a draw' do
   #     board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
