@@ -1,6 +1,6 @@
 require_relative '../lib/tic_tac_toe.rb'
 
-describe './lib/tic_tac_toe.rb' do  
+describe './lib/tic_tac_toe.rb' do
   describe '#play' do
     it 'asks for players input on a turn of the game' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
@@ -12,7 +12,7 @@ describe './lib/tic_tac_toe.rb' do
       play(board)
     end
 
-    it 'checks if the game is over after every turn' do
+    xit 'checks if the game is over after every turn' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
       allow($stdout).to receive(:puts)
       allow(self).to receive(:gets).and_return("1", "2", "3")
@@ -22,7 +22,7 @@ describe './lib/tic_tac_toe.rb' do
       play(board)
     end
 
-    it 'plays the first turn of the game' do
+    xit 'plays the first turn of the game' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
       allow($stdout).to receive(:puts)
       allow(self).to receive(:gets).and_return("1")
@@ -33,7 +33,7 @@ describe './lib/tic_tac_toe.rb' do
       expect(board).to match_array(["X", " ", " ", " ", " ", " ", " ", " ", " "])
     end
 
-    it 'plays the first few turns of the game' do
+    xit 'plays the first few turns of the game' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
       num_of_turns = 0
       allow($stdout).to receive(:puts)
@@ -49,7 +49,7 @@ describe './lib/tic_tac_toe.rb' do
       expect(board).to match_array(["X", "O", "X", " ", " ", " ", " ", " ", " "])
     end
 
-    it 'checks if the game is won after every turn' do
+    xit 'checks if the game is won after every turn' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
       allow($stdout).to receive(:puts)
       allow(self).to receive(:gets).and_return("1", "2", "3")
@@ -60,7 +60,7 @@ describe './lib/tic_tac_toe.rb' do
       play(board)
     end
 
-    it 'checks if the game is draw after every turn' do
+    xit 'checks if the game is draw after every turn' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
       allow($stdout).to receive(:puts)
       allow(self).to receive(:gets).and_return("1", "2", "3")
@@ -70,7 +70,7 @@ describe './lib/tic_tac_toe.rb' do
       play(board)
     end
 
-    it 'stops playing if someone has won' do
+    xit 'stops playing if someone has won' do
       board = ["X", "X", "X", " ", " ", " ", " ", " ", " "]
       allow($stdout).to receive(:puts)
 
@@ -79,7 +79,7 @@ describe './lib/tic_tac_toe.rb' do
       play(board)
     end
 
-    it 'congratulates the winner X' do
+    xit 'congratulates the winner X' do
       board = ["X", "X", "X", " ", " ", " ", " ", " ", " "]
       allow($stdout).to receive(:puts)
 
@@ -88,7 +88,7 @@ describe './lib/tic_tac_toe.rb' do
       play(board)
     end
 
-    it 'congratulates the winner O' do
+    xit 'congratulates the winner O' do
       board = [" ", " ", " ", " ", " ", " ", "O", "O", "O"]
       allow($stdout).to receive(:puts)
 
@@ -97,7 +97,7 @@ describe './lib/tic_tac_toe.rb' do
       play(board)
     end
 
-    it 'stops playing in a draw' do
+    xit 'stops playing in a draw' do
       board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
       allow($stdout).to receive(:puts)
 
@@ -106,7 +106,7 @@ describe './lib/tic_tac_toe.rb' do
       play(board)
     end
 
-    it 'prints "Cats Game!" on a draw' do
+    xit 'prints "Cats Game!" on a draw' do
       board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
       allow($stdout).to receive(:puts)
 
@@ -115,7 +115,7 @@ describe './lib/tic_tac_toe.rb' do
       play(board)
     end
 
-    it 'plays through an entire game' do
+    xit 'plays through an entire game' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
       allow($stdout).to receive(:puts)
 
