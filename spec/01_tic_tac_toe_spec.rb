@@ -71,54 +71,54 @@ describe './lib/tic_tac_toe.rb' do
       expect{move(board, 0)}.to raise_error(ArgumentError)
     end
 
-  #   it 'takes three arguments: board, position, and player token' do
-  #     board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-  #
-  #     expect{move(board, 0, "X")}.to_not raise_error
-  #   end
-  #
-  #   it 'allows "X" player in the bottom right and "O" in the top left ' do
-  #     board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-  #     move(board, 0, "O")
-  #     move(board, 8, "X")
-  #
-  #     expect(board).to eq(["O", " ", " ", " ", " ", " ", " ", " ", "X"])
-  #   end
-  # end
-  #
-  # describe '#position_taken?' do
-  #   it 'returns true/false based on position in board' do
-  #     board = ["X", " ", " ", " ", " ", " ", " ", " ", "O"]
-  #
-  #     position = 0
-  #     expect(position_taken?(board, position)).to be(true)
-  #
-  #     position = 8
-  #     expect(position_taken?(board, position)).to be(true)
-  #
-  #     position = 1
-  #     expect(position_taken?(board, position)).to be(false)
-  #
-  #     position = 7
-  #     expect(position_taken?(board, position)).to be(false)
-  #   end
-  # end
-  #
-  # describe '#valid_move?' do
-  #   it 'returns true/false based on position' do
-  #     board = [" ", " ", " ", " ", "X", " ", " ", " ", " "]
-  #
-  #     position = 0
-  #     expect(valid_move?(board, position)).to be_truthy
-  #
-  #     position = 4
-  #     expect(valid_move?(board, position)).to be_falsey
-  #
-  #     position = -1
-  #     expect(valid_move?(board, position)).to be_falsey
-  #   end
-  # end
-  #
+    it 'takes three arguments: board, position, and player token' do
+      board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+
+      expect{move(board, 0, "X")}.to_not raise_error
+    end
+
+    it 'allows "X" player in the bottom right and "O" in the top left ' do
+      board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+      move(board, 0, "O")
+      move(board, 8, "X")
+
+      expect(board).to eq(["O", " ", " ", " ", " ", " ", " ", " ", "X"])
+    end
+  end
+
+  describe '#position_taken?' do
+    it 'returns true/false based on position in board' do
+      board = ["X", " ", " ", " ", " ", " ", " ", " ", "O"]
+
+      position = 0
+      expect(position_taken?(board, position)).to be(true)
+
+      position = 8
+      expect(position_taken?(board, position)).to be(true)
+
+      position = 1
+      expect(position_taken?(board, position)).to be(false)
+
+      position = 7
+      expect(position_taken?(board, position)).to be(false)
+    end
+  end
+
+  describe '#valid_move?' do
+    it 'returns true/false based on position' do
+      board = [" ", " ", " ", " ", "X", " ", " ", " ", " "]
+
+      position = 0
+      expect(valid_move?(board, position)).to be_truthy
+
+      position = 4
+      expect(valid_move?(board, position)).to be_falsey
+
+      position = -1
+      expect(valid_move?(board, position)).to be_falsey
+    end
+  end
+  
   # describe '#turn' do
   #   it 'makes valid moves' do
   #     board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
@@ -261,5 +261,5 @@ describe './lib/tic_tac_toe.rb' do
   #
   #     expect(winner(board)).to be_nil
   #   end
-  end
+  # end
 end
