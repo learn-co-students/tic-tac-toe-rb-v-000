@@ -60,14 +60,6 @@ def turn(board)
   display_board(board)
 end
 
-def play(board)
-  turn = 0
-  while turn < 9
-    turn(board)
-    turn += 1
-end
-end
-
 def turn_count(board)
   counter = 0
   board.each do |turn|
@@ -134,5 +126,13 @@ def winner(board)
 
   else
     return nil
+end
+end
+
+def play(board)
+board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+if over?(board) == false
+  return false
+else return true
 end
 end
