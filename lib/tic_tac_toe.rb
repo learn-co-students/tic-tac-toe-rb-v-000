@@ -130,9 +130,14 @@ end
 end
 
 def play(board)
-board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-if over?(board) == false
-  return false
-else return true
+ while !over?(board)
+  turn(board)
+  current_player(board)
+  if won?(board)
+    puts "Congragulations #{winner(board)}"
+  else
+     draw?(board)
+  end
 end
+
 end
