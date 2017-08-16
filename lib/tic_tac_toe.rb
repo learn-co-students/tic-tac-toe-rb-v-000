@@ -42,17 +42,19 @@ end
 
 # Define the play method - Make sure the game is not over (ie nobody won and the board isn't full.) Then go to turn
 def play(board)
-  while !over?(board) && !full?(board)
+  # board == ['X','X','X', , , ,,  , ]Remember that the Spec test passes a winning board!
+  until over?(board)
     turn(board)
+  end
 
-if won?(board)
-puts "Congratulations #{winner(board)}!"
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+     puts "Cats Game!"
+  end
 
-elsif draw?(board)
-   puts"Cats Game!"
 end
-end
-end
+
 
 #Ask the user where they want to move, check their input and convert it to an index
 #and check to see if valid. If valid, make the move and display the board. If not,
@@ -101,16 +103,19 @@ def won?(board)
 #If the board has not been won (ie there is NO match with Win_Combinations then return True, False
 # if the board is not won and the board is not full, and fals if the board is won)
 def draw? (board)
-full?(board) && !won?(board)
+   !won?(board) && full?(board)
 end
 
-#Return True if the board has been won, is a draw, or is full
+#Return True if the board has been won, is a draw, or is full. Since a draw implies a full board only test for draw.
+# Note that the Spec Test is specific about first testing for a won board, then draw/full so stack it this way when You
+#code it
 def over? (board)
-won?(board)|| full?(board)
+  won?(board)||draw?(board)
 end
 
 #Returns an X or O to indicate who won the game given a winning board
 def winner (board)
+
 if who_won=won?(board)
   board[who_won.first]
   end
