@@ -95,12 +95,6 @@ def draw?(board)
   full?(board) == true && won?(board) == false ? true : false
 end
 
-def full?(board)
-  if board.include?(" ") == false #returns FALSE if the board is FULL.
-    true
-  end
-end
-
 def over?(board)
   if full?(board) == true || draw?(board) == true || won?(board) != false
     true
