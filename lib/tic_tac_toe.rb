@@ -26,7 +26,6 @@ end
 
 def move(board, index, character)
   board[index] = character
-  display_board(board)
 end
 
 def position_taken?(board, index)

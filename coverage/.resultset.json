@@ -4,11 +4,11 @@
       "/home/alpbourne-117715/code/labs/tic-tac-toe-rb-v-000/lib/tic_tac_toe.rb": [
         1,
         1,
-        46,
-        46,
-        46,
-        46,
-        46,
+        24,
+        24,
+        24,
+        24,
+        24,
         null,
         null,
         1,
@@ -29,7 +29,6 @@
         null,
         null,
         1,
-        22,
         22,
         null,
         null,
@@ -136,6 +135,6 @@
         null
       ]
     },
-    "timestamp": 1503415966
+    "timestamp": 1503416787
   }
 }
