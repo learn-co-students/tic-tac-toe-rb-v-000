@@ -129,3 +129,27 @@ describe '#turn' do
     turn(board)
   end
 end
+
+``` I reordered your code to make it easier to follow.
+So unless you have an input_to_index(input) method defined somewhere else
+in your program your make_index(choice) method will
+fail for any strings and be an invalid array index for any numbers not in the
+range of integers 1...9
+```
+
+
+```
+# Helper Method
+def input_to_index(user_input)
+  user_input.to_i - 1
+end
+# Helper Method
+def move(board, index, current_player)
+  board[index] = current_player
+end
+
+# Helper Method
+def valid_move?(board, index)
+  index.between?(0, 8) && !position_taken?(board, index)
+end
+```
