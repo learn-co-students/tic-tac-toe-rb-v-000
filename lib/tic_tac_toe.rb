@@ -12,8 +12,6 @@ WIN_COMBINATIONS = [
   [2,4,6]
 ]
 
-board = [" "," "," "," "," "," "," "," "," "]
-
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
@@ -27,8 +25,8 @@ def input_to_index(user_input)
   integer - 1
 end
 
-def move(board, index, x_or_o = "X")
-  board[index] = x_or_o
+def move(board, index, token)
+  board[index] = token
 end
 
 def position_taken?(board, index)
@@ -47,16 +45,28 @@ def turn(board)
   puts "Please enter 1-9:"
   user_input = gets.strip
   index = input_to_index(user_input)
-  if valid_move?(board, index) == false
+  if valid_move?(board, index)
+    token = current_player(board)
+    move(board, index, token)
+    display_board(board)
+  else
     turn(board)
   end
-  move(board, index)
-  display_board(board)
 end
 
-#turn count
+def turn_count(board)
+  board.count do |taken|
+    taken == "X" || taken == "O"
+  end
+end
 
-#current_player
+def current_player(board)
+  if turn_count(board) % 2 == 0
+    return "X"
+  else
+    return "O"
+  end
+end
 
 def won?(board)
   WIN_COMBINATIONS.select do |win_combination|
@@ -97,5 +107,22 @@ def winner(board)
     return board[extract_index]
   else
     return nil
+  end
+end
+
+def play(board)
+  if !over?(board)
+    turn(board)
+    play(board)
+  end
+
+  if won?(board)
+    if winner(board)["X"]
+      puts "Congratulations X!"
+    elsif winner(board)["O"]
+      puts "Congratulations O!"
+    end
+  elsif draw?(board)
+    puts "Cats Game!"
   end
 end
