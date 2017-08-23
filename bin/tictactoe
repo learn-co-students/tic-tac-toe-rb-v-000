@@ -1,3 +1,16 @@
 #!/usr/bin/env ruby
-
 require_relative '../lib/tic_tac_toe'
+
+board = [" "," "," "," "," "," "," "," "," "]
+# Code your CLI Here
+
+#############
+# want to print a msg in lib/welcome.rb
+# welcome.rb is
+puts "Welcome to Tic Tac Toe!"
+play(board)
+
+#
+#prints "Welcome to Tic Tac Toe!" (FAILED - 3)
+  #{}`board` is an array with 9 strings with an empty space value, " " (FAILED - 4)
+  #calls #play passing in the board array (FAILED - 5)
