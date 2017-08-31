@@ -25,18 +25,14 @@ end
 def move(board, index, char)
   board[index] = char
   display_board(board)
-  input_to_index(input)
 end
 
-board = [" ", " ", " "]
-def update_array_at_with(array, index, value)
-  array[index] = value
-end
 
 def position_taken?(board, index)
   if board[index] == " " || board[index] == "" || board[index] == nil
     false
-  else board[index] == "X" || board[index] == "O"
+  else
+    true
   end
 end
 
@@ -51,9 +47,9 @@ def turn(board)
    input = gets.strip
     index = input_to_index(input)
   if valid_move?(board, index)
-     move(board, index, char)
+     move(board, index, current_player(board))
       display_board(board)
-    else puts "Invalid Move"
+    else
       turn(board)
   end
 end
@@ -103,29 +99,18 @@ def over?(board)
 end
 
 def winner(board)
-  if combo = won?(board)
-    board[combo[0]]
-  else draw?(board)
-    nil
+  if won?(board)
+    board[won?(board)[0]]
   end
 end
 
-def turn(board)
-  valid_turn = 0
-  until valid_turn == 9
-    turn(board)
-    valid_turn += 1
-  end
-end
-
-board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
 def play(board)
-  until over?
+  until over?(board)
     turn(board)
   end
 if won?(board)
-    puts "Congratulations #{winner(board)}."
+    puts "Congratulations #{winner(board)}!"
   else
     puts "Cat's Game!"
   end
