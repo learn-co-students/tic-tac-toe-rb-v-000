@@ -7,8 +7,6 @@ puts "Welcome to Tic Tac Toe!"
 
 board = [" "," "," "," "," "," "," "," "," "]
 
-print display_board(board)
-
-input = gets
+display_board(board)
 
 play(board)

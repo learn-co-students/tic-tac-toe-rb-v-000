@@ -14,16 +14,16 @@
 
 
 def play(board)
-  # input = gets  THIS IS NOT NEEDED BECAUSE TURN(BOARD) ALREADY GETS INPUT, BOOM!
-  turn(board)
-  until over?(board) == true
-  if won?(board)
-    puts "Congratulations, #{board[win_combination[0]]}!"
-  else
-    puts "Cats Game!"
+  until over?(board) || won?(board)
+    turn(board)
   end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  else
+    puts "Cat's Game!"
 end
 end
+# input = gets  THIS IS NOT NEEDED BECAUSE TURN(BOARD) ALREADY GETS INPUT, BOOM!
 
 
 WIN_COMBINATIONS = [
