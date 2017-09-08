@@ -121,9 +121,12 @@ end
  #draw?
  def draw?(board)
    if full?(board) && !won?(board)
- else
-   return false
- end
+     true
+   else
+     return false
+   end
+end
+
 
  #over?
  def over?(board)
@@ -133,10 +136,9 @@ end
  #winner?
  def winner(board)
    win_combination = won?(board)
- if win_combination
-   board[win_combination[0]]
- else
-   nil
- end
-end
+   if win_combination
+     board[win_combination[0]]
+   else
+     nil
+   end
 end
