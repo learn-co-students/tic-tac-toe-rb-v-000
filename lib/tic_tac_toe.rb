@@ -46,10 +46,11 @@ def turn(board)
   user_input = gets.strip
   index = input_to_index(user_input)
   if valid_move?(board, index)
-    move(board, index, char = "X")
+    move(board, index, current_player(board))
     display_board(board)
   else
     turn(board)
+
   end
 end
 
@@ -64,12 +65,10 @@ def turn_count(board)
 end
 
 def current_player(board)
-  if turn_count(board) == 4 % 2
+  if turn_count(board) % 2 == 0
     "X"
-  elsif turn_count(board) == 15 % 2
-    "O"
   else
-    "X"
+    "O"
   end
 end
 
@@ -102,15 +101,15 @@ else
 end
 
 def draw?(board)
-  if won?(board)
-    false
-  else !full?(board)
+  if !won?(board) && full?(board)
     true
+  else
+    false
   end
 end
 
 def over?(board)
-  if !full?(board)
+  if !full?(board) && !won?(board) && !draw?(board)
     false
   else
     true
@@ -138,13 +137,12 @@ end
 end
 
 def play(board)
-  input = gets
-  until over?(board)
+  while !over?(board)
     turn(board)
 end
-  if draw?(board)
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+else draw?(board)
    puts "Cats Game!"
-else won?(board)
-  puts "Congratulations #{winner(board)}!"
  end
 end
