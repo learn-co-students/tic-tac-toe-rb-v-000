@@ -65,9 +65,7 @@ if valid_move?(board, index) == false
   #use recursion instead
   turn(board) #recursive
 else
-    character = current_player(board)
-  move(board, index, character)
-  #move(board, index, character = "X")
+  move(board, index, character = "X")
   display_board(board)
 end
 end
@@ -130,17 +128,5 @@ end
 ################################
 ### PLAY method ##############
 def play(board)
-#until won?(board)
-until over?(board)
-  turn(board)
 end
-if won?(board)
-    puts "Congratulations #{winner(board)}!"
-  elsif draw?(board)
-    puts "Cat's Game!"
-end
-  #else turn(board)
-    #play(board) #LAST
-end
-
 ##############################
