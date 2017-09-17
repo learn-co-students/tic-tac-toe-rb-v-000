@@ -130,17 +130,18 @@ end
 ################################
 ### PLAY method ##############
 def play(board)
-#until won?(board)
-until over?(board)
-  turn(board)
-end
-if won?(board)
-    puts "Congratulations #{winner(board)}!"
-  elsif draw?(board)
+  #turn(board)
+
+winner = winner(board)
+  if over?(board) && winner(board) == "X"
+    puts "Congratulations X!"
+elsif over?(board) && winner(board) == "O"
+    puts "Congratulations O!"
+  elsif draw?(board) == true
     puts "Cat's Game!"
-end
-  #else turn(board)
-    #play(board) #LAST
+  else turn(board)
+    play(board) #LAST
+  end
 end
 
 ##############################
