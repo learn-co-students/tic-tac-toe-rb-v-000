@@ -96,7 +96,7 @@ def won?(board) #board = ["O", "O", "O", "X", " ", " ", " ", " ", " ", " "]
   end
 
   def over?(board)
-    full?(board) || won?(board)
+    draw?(board) || won?(board)
 
   end
 
@@ -111,9 +111,9 @@ def play(board)
     turn(board)
   end
   if won?(board)
-    puts "Yay!"
+    puts "Congratulations #{winner(board)}!"
   elsif draw?(board)
-    puts "Draw"
+    puts "Cat's Game!"
   end
 # if the game was won
 #   congratulate the winner
