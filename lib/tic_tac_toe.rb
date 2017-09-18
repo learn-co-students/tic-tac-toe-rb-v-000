@@ -45,12 +45,17 @@ def turn(board)
   puts "Please enter 1-9:"
   index = gets.strip
   index = input_to_index(index)
-  if valid_move?(board, index)
-      move(board, index, "X" || "O")
-      display_board(board)
-  else
-    turn(board)
+  until valid_move?(board, index)
+    puts "Please enter 1-9:"
+    index = gets.strip
+    index = input_to_index(index)
   end
+  move(board, index, current_player(board))
+  display_board(board)
+  # if valid_move?(board, index)
+  #     move(board, index, current_player(board))
+  #     display_board(board)
+  # else
 end
 
 def turn_count(board)
@@ -102,12 +107,17 @@ def won?(board) #board = ["O", "O", "O", "X", " ", " ", " ", " ", " ", " "]
 end
 
 def play(board)
-  input = gets
   until over?(board)
+    turn(board)
   end
-  if turn(board)
-    false
-  else
-    true
+  if won?(board)
+    puts "Yay!"
+  elsif draw?(board)
+    puts "Draw"
   end
+# if the game was won
+#   congratulate the winner
+# else if the game was a draw
+#   tell the players it has been a draw
+# end
 end
