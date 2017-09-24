@@ -109,7 +109,7 @@ def draw?(board)
 end
 
 def over?(board)
-  if won?(board) != false
+  if won?(board) != nil
     true
   elsif draw?(board) == true
     true
@@ -117,7 +117,7 @@ def over?(board)
 end
 
 def winner(board)
-  if won?(board) != false
+  if won?(board) != nil
     win = won?(board)
     board[win[0]]
   end
