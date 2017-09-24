@@ -109,7 +109,7 @@ def draw?(board)
 end
 
 def over?(board)
-  if won?(board) != nil
+  if won?(board)
     true
   elsif draw?(board) == true
     true
@@ -117,7 +117,7 @@ def over?(board)
 end
 
 def winner(board)
-  if won?(board) != nil
+  if won?(board)
     win = won?(board)
     board[win[0]]
   end
@@ -126,5 +126,10 @@ end
 def play(board)
   until over?(board)
     turn(board)
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
   end
 end
