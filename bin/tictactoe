@@ -1,3 +1,12 @@
 #!/usr/bin/env ruby
-
+# REQUIRE METHODS FILE
 require_relative '../lib/tic_tac_toe'
+
+# GREET THE PLAYER AND DECLARE AN EMPTY BOAR
+board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+puts "Welcome to Tic Tac Toe!"
+
+# ASK FOR USER INPUT
+display_board(board)
+
+play(board)
