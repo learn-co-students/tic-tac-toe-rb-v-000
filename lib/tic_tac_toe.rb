@@ -76,9 +76,73 @@ end #  if board[top_row_win[0]] == "X" && board[top_row_win[1]] == "X" && board
   index = input.to_i - 1
  end
 
- def move(board, index, token = "X")
+ def move(board, index, token)
    # array is our array of tokens "X", "O", " "
    # we need to update our array at the point of the index to that character(token)
 
    board[index] = token
  end
+
+ def valid_move?(board, index)
+   if index.between?(0,8) && board[index] == " "
+   return true
+
+ end
+ end
+
+ def turn(board)
+  puts "Please enter 1-9:"
+  user_input = gets.strip
+  index = input_to_index(user_input)
+
+ if valid_move?(board, index)
+ move(board, index, token = "X")
+ display_board(board)
+ else
+   user_input = gets.strip
+
+ end
+
+
+ end
+
+ def play(board)
+   turn_count = 0
+ while turn_count < 9
+   turn(board)
+   turn_count += 1
+ end
+   end
+
+   def current_player(board)
+     if turn_count(board) % 2 == 0
+       "X"
+     else
+       "O"
+     end
+   end
+   def position_taken?(board, index)
+     # what defines a position being taken in tic tac toe
+     # a position is taken if a player token is there: "X", "O"
+     # what keeps track of "X"'s and "O"'s
+     # the board array contains our "X" and "O"
+     # the index is our position in the array
+     board[index] == "X" || board[index] == "O"
+   end
+
+   def turn_count(board)
+     index = 0
+     counter = 0
+     while index <= board.length-1
+       if position_taken?(board, index)
+         counter += 1
+       end
+
+       index += 1
+     end
+     counter
+   end
+
+   def over?(board)
+     won?(board) || full?(board)
+   end
