@@ -36,16 +36,16 @@ def position_taken?(board, index)
   end
 end
 
-def move(board, index, current_player = "X")
+def move(board, index, current_player)
   board[index] = current_player
 end
 
 def turn(board)
   puts "Please enter 1-9:"
-    user_input = gets.chomp
+    user_input = gets.strip
     index = input_to_index(user_input)
-      if valid_move?(board, index) == true
-        move(board, index)
+      if valid_move?(board, index)
+        move(board, index, current_player(board))
         display_board(board)
       else
         turn(board)
@@ -110,9 +110,13 @@ end
    end
  end
 
-def play(board)
-  puts "Please input a turn!"
-  until over?(board)
-    turn(board)
-
-end
+ def play(board)
+   while !over?(board)
+     turn(board)
+   end
+   if won?(board)
+     puts "Congratulations #{winner(board)}!"
+   elsif draw?(board)
+     puts "Cats Game!"
+   end
+ end
