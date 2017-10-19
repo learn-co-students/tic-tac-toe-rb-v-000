@@ -108,9 +108,11 @@ end #  if board[top_row_win[0]] == "X" && board[top_row_win[1]] == "X" && board
 
  def play(board)
    turn_count = 0
- while turn_count < 9
+ while over?(board) == false
    turn(board)
+   draw?(board)
    turn_count += 1
+
  end
    end
 
