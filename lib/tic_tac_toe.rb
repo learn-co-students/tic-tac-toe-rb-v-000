@@ -95,26 +95,26 @@ end #  if board[top_row_win[0]] == "X" && board[top_row_win[1]] == "X" && board
   user_input = gets.strip
   index = input_to_index(user_input)
 
- if valid_move?(board, index)
- move(board, index, token = "X")
- display_board(board)
- else
-   user_input = gets.strip
+  if valid_move?(board, index)
+    move(board, index, current_player(board))
+    display_board(board)
+  else
+   turn(board)
 
- end
+  end
 
 
- end
+  end
 
  def play(board)
-   turn_count = 0
- while over?(board) == false
+ while !over?(board)
    turn(board)
-   draw?(board)
-   turn_count += 1
-
  end
-   end
+   puts "Congratulations X!"
+   puts "Congratulations O!"
+   puts "Cat's Game!"
+ end
+
 
    def current_player(board)
      if turn_count(board) % 2 == 0
@@ -146,5 +146,5 @@ end #  if board[top_row_win[0]] == "X" && board[top_row_win[1]] == "X" && board
    end
 
    def over?(board)
-     won?(board) || full?(board)
+     won?(board) || draw?(board)
    end
