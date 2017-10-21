@@ -3,9 +3,6 @@
 require_relative '../lib/tic_tac_toe'
 puts "Welcome to Tic Tac Toe!"
 
-
 board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
-def play(board)
-  play(board)
-end
+play(board)
