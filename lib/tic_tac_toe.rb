@@ -40,6 +40,7 @@ def turn(board)
   token = current_player(board)
   if valid_move?(board, index)
     move(board, index, token)
+    display_board(board)
   else
     turn(board)
   end
@@ -83,6 +84,15 @@ def winner(board)
 end
 
 def play(board)
+  while !over?(board)
+    turn(board)
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
+  end
+=begin
   if over?(board) && !draw?(board)
     puts "Congratulations #{winner(board)}!"
   elsif draw?(board)
@@ -91,4 +101,5 @@ def play(board)
     turn(board)
     play(board)
   end
+=end
 end
