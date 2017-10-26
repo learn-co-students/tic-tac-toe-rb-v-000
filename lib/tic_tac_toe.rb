@@ -82,7 +82,13 @@ def current_player(board)
   "X" : "O"
 end
 
-
+#def won?(board)
+#  WIN_COMBINATIONS.detect do |combo|
+#    board[combo[0]] == board[combo[1]] &&
+#    board[combo[1]] == board[combo[2]] &&
+#    position_taken?(board, combo[0])
+#  end
+#end
 
 def won?(board)
   WIN_COMBINATIONS.each do |win_combination|
@@ -134,6 +140,7 @@ end
 # Define your play method below
 def play(board)
   until over?(board) == true || won?(board) != false
+  #while !over?(board)
     turn(board)
   end
   if winner(board)
