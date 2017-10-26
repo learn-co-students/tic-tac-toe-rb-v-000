@@ -46,9 +46,7 @@ def turn(board)
 end
 
 def turn_count(board)
-  board.count do |e|
-    e === "O" || e === "X"
-  end
+  board.count { |e| e === "O" || e === "X" }
 end
 
 def current_player(board)
