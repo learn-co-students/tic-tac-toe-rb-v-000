@@ -37,9 +37,8 @@ def turn(board)
   puts "Please enter number between 1 and 9"
   number = gets.strip
   index = input_to_index(number)
-  token = current_player(board)
   if valid_move?(board, index)
-    move(board, index, token)
+    move(board, index, current_player(board))
     display_board(board)
   else
     turn(board)
