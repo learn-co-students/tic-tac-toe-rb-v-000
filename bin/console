@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require "pry"
+Pry.start
+require_relative '../lib/tic_tac_toe'
