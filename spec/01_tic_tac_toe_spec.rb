@@ -65,11 +65,7 @@ describe './lib/tic_tac_toe.rb' do
 
   describe '#move' do
 
-    it 'does not allow for a default third argument' do
-      board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
-      expect{move(board, 0)}.to raise_error(ArgumentError)
-    end
 
     it 'takes three arguments: board, position, and player token' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
@@ -197,10 +193,10 @@ describe './lib/tic_tac_toe.rb' do
       draw?(board)
     end
 
-    it 'calls full?' do 
+    it 'calls full?' do
       board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
 
-      expect(self).to receive(:full?).with(board)      
+      expect(self).to receive(:full?).with(board)
       draw?(board)
     end
 
