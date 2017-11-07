@@ -1,4 +1,3 @@
-
 # Define your WIN_COMBINATIONS constant
 WIN_COMBINATIONS = [
   [0, 1, 2],
@@ -58,8 +57,6 @@ def turn(board)
   if valid_move?(board, index)
     move(board, index, current_player(board))
     display_board(board)
-  else
-    turn(board)
   end
 end
 
@@ -109,11 +106,10 @@ end
 
 #PLAY METHOD
 def play(board)
-  loop do turn(board)
-    if display_board(board) == over?(board)
-      true
-    else
-      false
+  loop do
+    turn(board)
+    if over?(board)
+      break
     end
   end
 end
