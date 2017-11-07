@@ -98,7 +98,7 @@ end
 
 #OVER?
 def over?(board)
-  won?(board) || draw?(board) || full?(board)
+  won?(board) || draw?(board)
 end
 
 #WINNER
@@ -108,7 +108,13 @@ end
 
 #PLAY METHOD
 def play(board)
-  until over?(board) do
-    turn(board)
+  turn(board) until over?(board)
+  # Game is over, figure out why.
+  if winner(board) == "X"
+    puts "Congratulations X!"
+  elsif winner(board) == "O"
+    puts "Congratulations O!"
+  else
+    puts "Cat's Game!"
   end
 end
