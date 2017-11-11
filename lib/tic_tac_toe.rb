@@ -45,12 +45,8 @@ def current_player(board)
 end
 
 def won?(board)
-  WIN_COMBINATIONS.detect { |combo| combo.all? { |i| board[i] == board[combo.first] } && position_taken? board[combo.first] }
+  WIN_COMBINATIONS.detect { |combo| combo.all? { |i| board[i] == "X" } || combo.all? { |i| board[i] == "O"} }
 end
-
-# def won?(board)
-#   WIN_COMBINATIONS.detect { |combo| combo.all? { |i| board[i] == "X" } || combo.all? { |i| board[i] == "O"} }
-# end
 
 def full?(board)
   board.all?{|token| token == "X" || token == "O"}
