@@ -1,3 +1,5 @@
+require 'pry'
+
 def display_board(board)
   print " #{board[0]} | #{board[1]} | #{board[2]} \n-----------\n #{board[3]} | #{board[4]} | #{board[5]} \n-----------\n #{board[6]} | #{board[7]} | #{board[8]} \n"
 end
@@ -43,8 +45,12 @@ def current_player(board)
 end
 
 def won?(board)
-  WIN_COMBINATIONS.detect { |combo| combo.all? { |i| board[i] == "X" } || combo.all? { |i| board[i] == "O"} }
+  WIN_COMBINATIONS.detect { |combo| combo.all? { |i| board[i] == board[combo.first] } && position_taken? board[combo.first] }
 end
+
+# def won?(board)
+#   WIN_COMBINATIONS.detect { |combo| combo.all? { |i| board[i] == "X" } || combo.all? { |i| board[i] == "O"} }
+# end
 
 def full?(board)
   board.all?{|token| token == "X" || token == "O"}
