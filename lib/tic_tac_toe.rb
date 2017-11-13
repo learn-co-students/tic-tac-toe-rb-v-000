@@ -10,7 +10,7 @@ WIN_COMBINATIONS = [
   [2,4,6]
 ]
 
-def display_board(board)
+def display_board(board) #prints the current board
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
   puts " #{board[3]} | #{board[4]} | #{board[5]} "
@@ -63,7 +63,7 @@ end
 def turn_count(board)
   counter = 0
   board.each do |turn|
-    if turn == "X" || turn =="O"
+    if turn == "X" || turn == "O"
       counter += 1
     end
   end
@@ -102,13 +102,12 @@ def winner(board)
 end
 
 def play(board)
-  while !over?(board)
-    turn(board)
+  while !over?(board)  #while the game is not over
+    turn(board)    #take a turn
   end
-  if won?(board)
-    puts "Congratulations #{winner(board)}!"
-  elsif draw?(board)
-    puts "Cats Game!"
+  if won?(board)    #if the game is won
+    puts "Congratulations #{winner(board)}!" #congratulate
+  elsif draw?(board)   #if the game is a draw
+    puts "Cats Game!" #declare draw
   end
 end
-
