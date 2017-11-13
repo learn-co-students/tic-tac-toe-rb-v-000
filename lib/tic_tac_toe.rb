@@ -32,7 +32,9 @@ def valid_move?(board, index)
 end
 
 def turn(board)
-  puts "Please enter 1-9:"; valid_move?(board, input = input_to_index(gets.chomp)) ? move(board, input, current_player(board)) : turn(board)
+  display_board(board)
+  puts "Please enter 1-9:"
+  valid_move?(board, input = input_to_index(gets.chomp)) ? move(board, input, current_player(board)) : turn(board)
 end
 
 
@@ -66,5 +68,6 @@ end
 
 
 def play(board)
-  turn(board) until over?(board); puts won?(board) ? "Congratulations #{winner(board)}!" : "Cat's Game!"
+  turn(board) until over?(board)
+  puts won?(board) ? "Congratulations #{winner(board)}!" : "Cat's Game!"
 end
