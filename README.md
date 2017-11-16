@@ -2,13 +2,13 @@
 
 ## Overview
 
-We'll build a two-player CLI version of Tic Tac Toe by defining a set of methods to encapsulate the game logic. 
+We'll build a two-player CLI version of Tic Tac Toe by defining a set of methods to encapsulate the game logic.
 
 ## Objectives
 
 1. Build and use helper methods within the Tic Tac Toe application
 2. Write a method that is responsible for the game loop in Tic Tac Toe
-3. Code the main executable file that will run the game in the CLI 
+3. Code the main executable file that will run the game in the CLI
 
 ## The Final Product
 
@@ -58,7 +58,7 @@ There are three test files that should be completed in order. `01_tic_tac_toe_sp
 
 There are infinite ways to build Tic Tac Toe. We, however, have been building up to a very specific structure with the methods we've been building throughout this course. We'll be using many of those methods here. These methods represent the basic requirements and logic of the game.
 
-Why build and utilize the helper methods we've been constructing?
+Why not build and utilize the helper methods we've been constructing?
 
 Let's take a look at what it would require to print out a board three times, without any helper methods:
 
