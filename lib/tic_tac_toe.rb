@@ -1,11 +1,4 @@
-def position_taken?(board, index)
-  !(board[index].nil? || board[index] == " ")
-end
-
 # Constant, all possible win combos
-
-
-
 
 WIN_COMBINATIONS = [
   [0, 1, 2],
@@ -122,8 +115,12 @@ def winner(board)
 end
 
 def play(board)
-  game_over = over?(board)
-  if !game_over
+  until over?(board)
     turn(board)
+  end
+  if draw?(board)
+    puts "Cat's Game!"
+  else
+    puts "Congratulations #{winner(board)}!"
   end
 end
