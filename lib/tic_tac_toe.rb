@@ -41,7 +41,7 @@ end
 def move(board, index, current_player)
     board[index] = current_player
 end
-#why do i need a 0 in place of the default argument? Is it inherently needed or is it needed for the running of the Flatiron project itself?
+
 def position_taken?(board, index)
   board[index] == "X" || board[index] == "O"
 end
