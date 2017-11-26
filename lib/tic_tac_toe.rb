@@ -34,7 +34,7 @@ def display_board(board)
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
-def input_to_index(input)#Is input a baseword or a hardwired argument/method? #The input is an integer but we needed to show a conversion to integer just because that's how input could be accepted in order to make the needed -1 change to the index?
+def input_to_index(input)
   input.to_i-1
 end
 
