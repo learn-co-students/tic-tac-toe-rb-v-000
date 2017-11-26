@@ -2,14 +2,12 @@ def play(board)
   until over?(board) || won?(board)
     turn(board)
   end
-  if won?(board)
-    puts "Congratulations #{winner(board)}!"
-  else
-    puts "Cat's Game!"
+    if won?(board)
+      puts "Congratulations #{winner(board)}!"
+    else
+      puts "Cat's Game!"
+    end
 end
-end
-# input = gets  THIS IS NOT NEEDED BECAUSE TURN(BOARD) ALREADY GETS INPUT, BOOM!
-
 
 WIN_COMBINATIONS = [
   [0,1,2], # Top row
@@ -47,7 +45,7 @@ def position_taken?(board, index)
 end
 
 def valid_move?(board, index)
-  if position_taken?(board, index) == false && index.between?(0,8)#why do we need validmove in the first place? #why did we have to add thiis between aprt?
+  if position_taken?(board, index) == false && index.between?(0,8)
     true
   end
 end
@@ -58,8 +56,8 @@ def turn(board)
   index = input_to_index(input)
   if valid_move?(board,index)
     player = current_player(board)
-    move(board, index, player)#this is all i need to execute,pass move
-    display_board(board)#this is how you call more than one method for the same if statement $why did i have to involve all of thee helper methods in this if statement
+    move(board, index, player)
+    display_board(board)
   else
     turn(board)
   end
@@ -71,7 +69,7 @@ def turn_count(board)
   if position == "X" || position == "O"
     counter +=1 #counter = counter + 1
   end
-end #end of each
+end 
 counter
 end
 
@@ -85,10 +83,9 @@ end
 
 
 def full?(board)
-  # is to check if there are any empty spaces
   board.all? do |position|
-  position == "X" || position =="O" # Will evaluate to true for 1, true for 3
-end
+  position == "X" || position =="O"
+  end
 end
 
 def draw?(board)
@@ -101,9 +98,7 @@ def over?(board)
 end
 
 def winner(board)
-  if win_combo = won?(board) # win_combo is equal to [0,1,2]
-    # we have the board that gives us our "X" and "O"
-    # won?(board) is the array returned by the method call
+  if win_combo = won?(board)
     return board[win_combo[0]]
   end
 end
