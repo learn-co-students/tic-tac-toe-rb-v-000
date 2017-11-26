@@ -10,7 +10,7 @@ def play(board)
 end
 
 WIN_COMBINATIONS = [
-  [0,1,2], # Top row
+  [0,1,2], 
   [3,4,5],
   [6,7,8],
   [0,3,6],
@@ -64,7 +64,7 @@ def turn(board)
 end
 
 def turn_count(board)
-  counter = 0 #return coutner
+  counter = 0
   board.each do |position|  #board = [" ", "O", "X", " ", " ", etc.. " "]
   if position == "X" || position == "O"
     counter +=1 #counter = counter + 1
