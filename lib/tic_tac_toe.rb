@@ -26,8 +26,8 @@ def input_to_index(input)
   input.to_i - 1 
 end
 
-def move(array, input, char = "X")
-  array[input] = char
+def move(array, input, current_player)
+  array[input] = current_player(board)
 end
 
 def turn(board)
@@ -37,9 +37,17 @@ def turn(board)
   if valid_move?(board, index)
     move(board, index)
     display_board(board)
-  else
+  else 
     turn(board)
   end
+end
+
+def play(board)
+  counter = 0
+  until over?
+    turn(board)
+    counter += 1
+   end 
 end
 
 def turn_count(board)
@@ -57,5 +65,39 @@ def current_player(board)
       return "O"
     elsif turn_count(board).even?
       return "X"
+    end
+end
+
+ def won?(board)
+    WIN_COMBINATIONS.any? do |combo|
+          if board[combo[0]] == "X" && 
+          board[combo[1]] == "X" && 
+          board[combo[2]] == "X" || 
+          board[combo[0]] == "O" && 
+          board[combo[1]] == "O" && 
+          board[combo[2]] == "O"
+          return combo
+          end
+      end
+  end 
+  
+def full?(board)
+  board.none? do |index|
+     index == " "
+  end
+end 
+
+def draw?(board)
+  full?(board) && !won?(board)
+end
+  
+def over?(board)
+  full?(board) || won?(board) || draw?(board) 
+end
+
+def winner(board)
+    if won?(board)
+       winning_line = won?(board)
+       return board[winning_line[0]]
     end
 end
