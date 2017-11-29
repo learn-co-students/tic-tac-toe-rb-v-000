@@ -26,8 +26,8 @@ def input_to_index(input)
   input.to_i - 1 
 end
 
-def move(array, input, current_player)
-  array[input] = current_player(board)
+def move(array, input, char)
+  array[input] = char
 end
 
 def turn(board)
@@ -35,7 +35,7 @@ def turn(board)
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board, index)
-    move(board, index)
+    move(board, index, current_player(board))
     display_board(board)
   else 
     turn(board)
@@ -43,11 +43,16 @@ def turn(board)
 end
 
 def play(board)
-  counter = 0
-  until over?
+  
+  until over?(board)
     turn(board)
-    counter += 1
+    
    end 
+   if draw?(board)
+    puts "Cat's Game!"
+  elsif won?(board)
+    puts "Congratulations #{winner(board)}!"
+end
 end
 
 def turn_count(board)
