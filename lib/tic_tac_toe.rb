@@ -118,15 +118,16 @@ end
 
 
 def play(board)
-while turn_count(board) < 9
-  if over?(board)
-    if draw?(board)
-      puts "Cat's Game!"
-    elsif won?(board)
-      puts "Congratulations #{winner(board)}!"
-    end
-  else
-    turn(board)
- end
+until over?(board)
+  turn(board)
 end
+  if draw?(board)
+      puts "Cat's Game!"
+  elsif won?(board)
+      if winner(board) == "X"
+        puts "Congratulations X!"
+      else
+        puts "Congratulations O!"
+      end
+  end
 end
