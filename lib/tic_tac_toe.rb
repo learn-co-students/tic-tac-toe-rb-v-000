@@ -124,10 +124,7 @@ end
   if draw?(board)
       puts "Cat's Game!"
   elsif won?(board)
-      if winner(board) == "X"
-        puts "Congratulations X!"
-      else
-        puts "Congratulations O!"
+      puts "Congratulations #{winner(board)}!"
       end
   end
 end
