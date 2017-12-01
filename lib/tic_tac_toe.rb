@@ -93,10 +93,8 @@ def winner(board)
 end
 
 def play(board)
-  counter = 0
-  turn(board)
-    until over?(board)
-    counter += 1
+  until over?(board)
+    turn(board)
   end
   if won?(board)
     puts "Congratulations #{winner(board)}!"
