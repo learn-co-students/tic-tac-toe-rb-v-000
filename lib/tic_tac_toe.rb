@@ -1,4 +1,3 @@
-require 'pry'
 
 # Helper Methods / Before Game Start
 def display_board(board)
@@ -88,9 +87,8 @@ end
 
 def winner(board)
   if won?(board).is_a? Array
-    win_combo = won?(board)[0]
-    board[win_combo]
-  else return nil
+    board[won?(board)[0]]
+  else nil
   end
 end
 
