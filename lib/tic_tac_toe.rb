@@ -86,9 +86,8 @@ def over?(board)
 end
 
 def winner(board)
-  if won?(board).is_a? Array
-    board[won?(board)[0]]
-  else nil
+  if win_combo = won?(board)
+    board[win_combo[0]]
   end
 end
 
