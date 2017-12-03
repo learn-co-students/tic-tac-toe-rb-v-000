@@ -97,12 +97,3 @@ def play(board)
     puts "Cat's Game!"
   end
 end
-
-# rspec spec/02_play_spec.rb
-# def play(board)
-#   timesplayed = 0
-#   until timesplayed == 9
-#     turn(board)
-#     timesplayed += 1
-#   end
-# end
