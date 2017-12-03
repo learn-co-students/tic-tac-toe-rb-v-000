@@ -1,5 +1,5 @@
+################### BEFORE GAME START ###################
 
-# Helper Methods / Before Game Start
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
@@ -12,13 +12,14 @@ def input_to_index(user_input)
   user_input.to_i - 1
 end
 
-# Helper Methods / Game Start
+################### GAME START ###################
+
 def move(board, index, current_player)
   board[index] = current_player
 end
 
 def position_taken?(board, location)
-  board[location] != " " && board[location] != ""
+  board[location].strip.size == 1
 end
 
 def valid_move?(board, index)
@@ -27,11 +28,7 @@ end
 
 def turn_count(board)
   count = 0
-  board.each do |pos|
-    if pos != " "
-      count += 1
-    end
-  end
+  board.each { |pos| if pos.strip.size == 1; count += 1; end }
   count
 end
 
@@ -51,7 +48,8 @@ def turn(board)
   end
 end
 
-# Helper Methods / Game End
+################### GAME END ###################
+
 WIN_COMBINATIONS = [
   [0,1,2], #Top_row [0]
   [3,4,5], #Middle_row [1]
@@ -91,7 +89,8 @@ def winner(board)
   end
 end
 
-#Play Game
+################### PLAY GAME! ###################
+
 def play(board)
   while !over?(board)
     turn(board)
