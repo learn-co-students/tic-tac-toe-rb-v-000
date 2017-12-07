@@ -35,13 +35,13 @@ def valid_move?(board, index)
 end
 
 def turn_count(board)
-counter = 0
-board.each do |board_index|
-  if board_index == "X" || board_index == "O"
-    counter += 1
+  counter = 0
+  board.each do |board_index|
+    if board_index == "X" || board_index == "O"
+      counter += 1
+    end
   end
-end
-counter
+  counter
 end
 
 def current_player(board)
@@ -65,61 +65,57 @@ def turn(board)
 end
 
 def won?(board)
-WIN_COMBINATIONS.detect do |win_combination|
+  WIN_COMBINATIONS.detect do |win_combination|
 
-win_index_1 = win_combination[0]
-win_index_2 = win_combination[1]
-win_index_3 = win_combination[2]
+  win_index_1 = win_combination[0]
+  win_index_2 = win_combination[1]
+  win_index_3 = win_combination[2]
 
-position_1 = board[win_index_1]
-position_2 = board[win_index_2]
-position_3 = board[win_index_3]
+  position_1 = board[win_index_1]
+  position_2 = board[win_index_2]
+  position_3 = board[win_index_3]
 
-if position_1 == "X" && position_2 == "X" && position_3 == "X" || position_1 == "O" && position_2 == "O" && position_3 == "O"
-[position_1,position_2,position_3]
-else
-  false
-end
-end
+    if position_1 == "X" && position_2 == "X" && position_3 == "X" || position_1 == "O" && position_2 == "O" && position_3 == "O"
+      [position_1,position_2,position_3]
+    else
+      false
+    end
+  end
 end
 
 def full?(board)
-board.all? do |full_board|
-  full_board == "X" || full_board == "O"
-end
+  board.all? do |full_board|
+    full_board == "X" || full_board == "O"
+  end
 end
 
 def draw?(board)
   if won?(board)
     false
-  else
-    full?(board) == true
+  elsif full?(board) == true
     true
   end
 end
 
 def over?(board)
-  if won?(board) || full?(board)
+  if won?(board) || draw?(board) == true
     true
   end
 end
 
 def winner(board)
-if won?(board)
-  board[won?(board)[0]]
-end
+  if won?(board)
+    board[won?(board)[0]]
+  end
 end
 
 def play(board)
   until over?(board)
     turn(board)
-    turn_count(board)
-
-    if draw?(board) == true
-      print "Cat's Game!"
-    else winner(board)
-      puts "Congratulations"
-    end
   end
-
+    if draw?(board) == true
+      puts "Cat's Game!"
+    else
+      puts "Congratulations #{winner(board)}!"
+    end
 end
