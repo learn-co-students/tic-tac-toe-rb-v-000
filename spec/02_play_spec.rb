@@ -1,6 +1,6 @@
 require_relative '../lib/tic_tac_toe.rb'
 
-describe './lib/tic_tac_toe.rb' do  
+describe './lib/tic_tac_toe.rb' do
   describe '#play' do
     it 'asks for players input on a turn of the game' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
@@ -9,7 +9,7 @@ describe './lib/tic_tac_toe.rb' do
 
       expect(self).to receive(:gets).at_least(:once).and_return("1")
 
-      play(board)
+     play(board)
     end
 
     it 'checks if the game is over after every turn' do
