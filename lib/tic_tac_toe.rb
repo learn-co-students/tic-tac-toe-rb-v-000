@@ -81,7 +81,6 @@ def current_player(board)
   end
 end
 
-
 def full?(board)
   board.all? do |position|
   position == "X" || position =="O"
@@ -91,7 +90,6 @@ end
 def draw?(board)
   !won?(board) && full?(board)
 end
-
 
 def over?(board)
   won?(board) || draw?(board)
