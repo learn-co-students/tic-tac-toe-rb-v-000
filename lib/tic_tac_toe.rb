@@ -28,7 +28,7 @@ def position_taken?(board, index)
 end
 
 def valid_move?(board, index)
-  index.between?(0,8) && !position_taken?(board, index)
+  index.between? 0,8 && !position_taken? board, index 
 end
 
 def turn(board)
@@ -63,7 +63,7 @@ def over?(board)
 end
 
 def winner(board)
-  board[won?(board)[0]] if won?(board)
+  if combo = won?(board) then board[combo.first] end
 end
 
 
