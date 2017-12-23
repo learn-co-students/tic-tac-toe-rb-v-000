@@ -10,7 +10,6 @@ describe './lib/tic_tac_toe.rb' do
       expect(self).to receive(:gets).at_least(:once).and_return("1")
 
       play(board)
-        input = gets
     end
 
     it 'checks if the game is over after every turn' do
@@ -114,7 +113,6 @@ describe './lib/tic_tac_toe.rb' do
       expect($stdout).to receive(:puts).with("Cat's Game!")
 
       play(board)
-        input = gets
     end
 
     it 'plays through an entire game' do
