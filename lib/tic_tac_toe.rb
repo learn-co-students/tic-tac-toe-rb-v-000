@@ -124,9 +124,11 @@ end
 
 
 def play(board)
-  counter = 0
-  until  over?(board)
-  turn(board)
-  counter += 1
-end
+  until over?(board)
+    turn(board)
+  end
+  if won?(board)
+    "Congratulations"
+  else
+    "It's a draw"
 end
