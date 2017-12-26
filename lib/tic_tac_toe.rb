@@ -55,22 +55,21 @@ def turn(board)
       index = input_to_index(input)
     end
   end
-  c_player = current_player(board)
-  move(board, index, c_player)
+  move(board, index, current_player(board))
   display_board(board)
 
 
 end
 
 def play(board)
-  until over?(board) do
+  until over?(board) || draw?(board) do
     turn(board)
   end
   if draw?(board)
-    puts "Cat's game!"
+    puts "Cat's Game!"
   else
     xo = winner(board)
-    puts "Congratulations, #{xo}!"
+    puts "Congratulations #{xo}!"
   end
 end
 
@@ -88,11 +87,10 @@ WIN_COMBINATIONS = [
 def won?(board)
   results = nil
   WIN_COMBINATIONS.each do |winner|
-    test_win = winner
-    if test_win.all?{|tester| board[tester] == "X"}
-      results = test_win
-    elsif test_win.all?{|tester| board[tester] == "O"}
-      results = test_win
+    if winner.all?{|tester| board[tester] == "X"}
+      results = winner
+    elsif winner.all?{|tester| board[tester] == "O"}
+      results = winner
     end
   end
   return results
