@@ -3,7 +3,6 @@ require_relative '../lib/tic_tac_toe'
 require_relative '../lib/welcome'
 
 board = [" "," "," "," "," "," "," "," "," "]
-
-welcome.rb
 #puts "Welcome to Tic Tac Toe!"
+welcome
 play(board)
