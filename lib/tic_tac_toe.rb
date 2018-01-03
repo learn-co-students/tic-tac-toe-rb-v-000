@@ -1,3 +1,4 @@
+require 'pry'
 WIN_COMBINATIONS = [
 						        [0,1,2],
 						        [3,4,5],
@@ -70,13 +71,14 @@ def current_player(board)
 end
 
 def won?(board)
-	WIN_COMBINATIONS.find do |win|
+	WIN_COMBINATIONS.detect do |win|
 	 board[win[0]] == board[win[1]] && board[win[0]] == board[win[2]] && board[win[0]] != " "
  end
 end
 
 def full?(board)
- !board.include?(" ") || board.include?("")
+ #!board.include?(" ") || board.include?("")
+ 	turn_count(board) == 9 ? true : false
 end
 
 def draw?(board)
