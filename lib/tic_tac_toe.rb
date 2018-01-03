@@ -39,7 +39,7 @@ def turn(board)
   display_board(board)
 
   #ask for input
-  puts "Please enter 1-9:"
+  puts "Please enter a number between 1-9:"
 
   #get input
   user_input = gets.strip
@@ -53,6 +53,7 @@ def turn(board)
   	move(board, index, current_player(board))
   else
     #ask for input again until you get a valid input
+		puts "Whoops that is not a valid move!"
     turn(board)
 	end
 	#show the board
