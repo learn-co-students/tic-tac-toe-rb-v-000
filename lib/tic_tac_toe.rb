@@ -45,6 +45,10 @@ def turn(board)
   if valid_move?(board, index)
     move(board, index, current_player(board))
     display_board(board)
+<<<<<<< HEAD
+=======
+    play(board)
+>>>>>>> 4f9da5f7298cbc2197d33b988d23d7b57c43b1a9
   else
     turn(board)
   end
@@ -101,10 +105,16 @@ def winner(board)
 end
 
 def play(board)
+<<<<<<< HEAD
   while !over?(board)
     turn(board)
   end
   if won?(board)
+=======
+  if !over?(board)
+    turn(board)
+  elsif won?(board)
+>>>>>>> 4f9da5f7298cbc2197d33b988d23d7b57c43b1a9
     winner = winner(board)
     puts "Congratulations #{winner}!"
   elsif draw?(board)
