@@ -10,10 +10,8 @@ def input_to_index(user_input)
   user_input.to_i - 1
 end
 
-def move(board, index, current_player = "X" )
-  board[index] != " "
+def move(board, index, current_player )
     board[index] = current_player
-
   end
 
   def position_taken?(board, index)
@@ -33,17 +31,17 @@ def move(board, index, current_player = "X" )
     end
   end
 
-def turn(board)
-  puts "Please enter 1-9:"
-  input = gets.strip
-  index = input_to_index(input)
-  if valid_move?(board, index)
-    move(board, index)
+  def turn(board)
+    puts "Please enter 1-9:"
+      user_input = gets.strip
+      index = input_to_index(user_input)
+      if !valid_move?(board, index)
+        turn(board)
+      else
+        move(board, index, current_player(board))
+      end
     display_board(board)
-  else
-    turn(board)
   end
-end
 
 
 
@@ -58,13 +56,13 @@ def turn_count(board)
     count
  end
 
-def current_player(board)
-  if turn_count(board) % 2 == 0
+ def current_player(board)
+   if turn_count(board) % 2 == 0
      return "X"
-   else
-     return "O"
-   end
+ else
+   return "O"
  end
+end
 
  WIN_COMBINATIONS = [
    [0,1,2],  # Top row
@@ -112,14 +110,19 @@ def winner(board)
   end
 end
 
-def play
-    while !over?
-      turn
-    end
-    if won?
-      puts "Congratulations player #{winner}!"
-    end
-    if draw?
-      puts "Draw!"
-    end
+def play(board)
+  while !over?(board) && !won?(board) && !draw?(board)
+    turn(board)
   end
+
+
+  if won?(board)
+   puts "Congratulations #{winner(board)}!"
+ end
+
+
+ if draw?(board)
+   puts "Cat's Game!"
+ end
+
+end
