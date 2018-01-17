@@ -1,3 +1,8 @@
 #!/usr/bin/env ruby
-
+# main executable file. this is how game is run
 require_relative '../lib/tic_tac_toe'
+
+puts "Welcome to Tic Tac Toe!"
+board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+
+play(board)
