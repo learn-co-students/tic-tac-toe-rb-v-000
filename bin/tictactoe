@@ -7,3 +7,11 @@ puts "Welcome to Tic Tac Toe!"
 display_board(board) 
 puts "Where would you like to go?" 
 play(board)
+if won?(board) != false
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board) == true
+    puts "Cat's Game!"
+  end 
+  until over?(board) == true 
+  turn(board)
+  end
