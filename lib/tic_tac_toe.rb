@@ -21,8 +21,8 @@ def input_to_index(user_input)
   user_input.to_i - 1
 end
 
-def move(board, index, current_player = "X")
-  board[index] = current_player
+def move(board, index)
+  board[index] = current_player(board)
 end
 
 def position_taken?(board, location)
@@ -47,10 +47,13 @@ end
 
 # Define your play method below
 def play(board)
-  turns = 0
-  until turns == 9
+  until over?(board)
     turn(board)
-    turns += 1
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
   end
 end
 
