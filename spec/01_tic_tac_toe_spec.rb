@@ -113,7 +113,7 @@ describe './lib/tic_tac_toe.rb' do
 
       position = 4
       expect(valid_move?(board, position)).to be_falsey
-
+      
       position = -1
       expect(valid_move?(board, position)).to be_falsey
     end
