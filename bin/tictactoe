@@ -4,7 +4,9 @@ require_relative '../lib/tic_tac_toe'
 
 board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
+board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+
 puts "Welcome to Tic Tac Toe!"
 display_board(board)
-puts "Please enter a number 1-9: "
-input=gets.strip
+
+play(board)

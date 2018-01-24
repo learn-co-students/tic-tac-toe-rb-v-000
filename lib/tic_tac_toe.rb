@@ -1,3 +1,15 @@
+
+def play(board)
+  while !over?(board)
+    turn(board)
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
+  end
+end
+
 WIN_COMBINATIONS = [
   [0,1,2],   #top row
   [3,4,5],   #middle row
@@ -127,14 +139,4 @@ def winner(board)
    end
   end
   return nil
-end
-
-def play(board)
-  puts "Please enter a number 1-9: "
-  input=gets.strip
-  turn_number=0
-  until over? == true
-    turn(board)
-    turn_number=turn_number+1
-  end
 end
