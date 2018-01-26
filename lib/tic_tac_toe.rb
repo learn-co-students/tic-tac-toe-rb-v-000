@@ -44,8 +44,10 @@ def turn(board)
   number = gets.strip
   index = input_to_index(number)
 
+
   if valid_move?(board, index)
-    move(board, index, character = "X" || "O")
+    character = current_player(board)
+    move(board, index, character)
     display_board(board)
   else
     turn(board)
@@ -83,22 +85,13 @@ end
 
 def draw?(board)
 
-  if full?(board) && !won?(board)
-    true
-  elsif (!full?(board) && !won?(board)) || won?(board)
-    false
-  #else
-  #  nil
-  end
+   !won?(board) && full?(board)
+
 end
 
 def over?(board)
 
-  if draw?(board) || full?(board) && won?(board) || won?(board) && !full?(board)
-    true
-  else
-    false
-  end
+  draw?(board) || won?(board)
 end
 
 def winner(board)
@@ -109,5 +102,19 @@ def winner(board)
     return "O"
   else
     return nil
+  end
+end
+
+def play(board)
+
+  until over?(board)
+    turn(board)
+  end
+
+  if won?(board)
+    winner = winner(board)
+    puts "Congratulations #{winner}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
   end
 end
