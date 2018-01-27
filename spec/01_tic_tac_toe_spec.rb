@@ -1,6 +1,6 @@
 require_relative '../lib/tic_tac_toe.rb'
 
-describe './lib/tic_tac_toe.rb' do
+puts describe './lib/tic_tac_toe.rb' do
   describe 'WIN_COMBINATIONS' do
     it 'defines a constant WIN_COMBINATIONS with arrays for each win combination' do
       expect(WIN_COMBINATIONS.size).to eq(8)
@@ -16,7 +16,7 @@ describe './lib/tic_tac_toe.rb' do
     end
   end
 
-  describe '#display_board' do
+  puts describe '#display_board' do
     it 'prints arbitrary arrangements of the board' do
       board = ["X", "X", "X", "X", "O", "O", "X", "O", "O"]
 
@@ -41,7 +41,7 @@ describe './lib/tic_tac_toe.rb' do
     end
   end
 
-  describe '#input_to_index' do
+  puts describe '#input_to_index' do
 
     it 'converts user_input to an integer' do
       user_input = "1"
@@ -49,13 +49,13 @@ describe './lib/tic_tac_toe.rb' do
       expect(input_to_index(user_input)).to be_a(Integer)
     end
 
-    it 'subtracts 1 from the user_input' do
+    puts it 'subtracts 1 from the user_input' do
       user_input = "6"
 
       expect(input_to_index(user_input)).to be(5)
     end
 
-    it 'returns -1 for strings without integers' do
+    puts it 'returns -1 for strings without integers' do
       user_input = "invalid"
 
       expect(input_to_index(user_input)).to be(-1)
@@ -63,7 +63,7 @@ describe './lib/tic_tac_toe.rb' do
 
   end
 
-  describe '#move' do
+  puts describe '#move' do
 
     it 'does not allow for a default third argument' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
@@ -71,13 +71,13 @@ describe './lib/tic_tac_toe.rb' do
       expect{move(board, 0)}.to raise_error(ArgumentError)
     end
 
-    it 'takes three arguments: board, position, and player token' do
+    puts it 'takes three arguments: board, position, and player token' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
       expect{move(board, 0, "X")}.to_not raise_error
     end
 
-    it 'allows "X" player in the bottom right and "O" in the top left ' do
+    puts it 'allows "X" player in the bottom right and "O" in the top left ' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
       move(board, 0, "O")
       move(board, 8, "X")
@@ -86,7 +86,7 @@ describe './lib/tic_tac_toe.rb' do
     end
   end
 
-  describe '#position_taken?' do
+  puts describe '#position_taken?' do
     it 'returns true/false based on position in board' do
       board = ["X", " ", " ", " ", " ", " ", " ", " ", "O"]
 
@@ -104,7 +104,7 @@ describe './lib/tic_tac_toe.rb' do
     end
   end
 
-  describe '#valid_move?' do
+  puts describe '#valid_move?' do
     it 'returns true/false based on position' do
       board = [" ", " ", " ", " ", "X", " ", " ", " ", " "]
 
@@ -119,7 +119,7 @@ describe './lib/tic_tac_toe.rb' do
     end
   end
 
-  describe '#turn' do
+  puts describe '#turn' do
     it 'makes valid moves' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
@@ -132,7 +132,7 @@ describe './lib/tic_tac_toe.rb' do
       expect(board).to match_array(["X", " ", " ", " ", " ", " ", " ", " ", " "])
     end
 
-    it 'asks for input again after a failed validation' do
+    puts it 'asks for input again after a failed validation' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
       allow($stdout).to receive(:puts)
@@ -144,7 +144,7 @@ describe './lib/tic_tac_toe.rb' do
     end
   end
 
-  describe '#turn_count' do
+  puts describe '#turn_count' do
     it 'counts occupied positions' do
       board = ["O", " ", " ", " ", "X", " ", " ", " ", "X"]
 
@@ -152,7 +152,7 @@ describe './lib/tic_tac_toe.rb' do
     end
   end
 
-  describe '#current_player' do
+  puts describe '#current_player' do
     it 'returns the correct player, X, for the third move' do
       board = ["O", " ", " ", " ", "X", " ", " ", " ", " "]
 
@@ -160,35 +160,35 @@ describe './lib/tic_tac_toe.rb' do
     end
   end
 
-  describe "#won?" do
+  puts describe "#won?" do
     it 'returns false for a draw' do
       board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
 
       expect(won?(board)).to be_falsey
     end
 
-    it 'returns true for a win' do
+    puts it 'returns true for a win' do
       board = ["X", "O", "X", "O", "X", "X", "O", "O", "X"]
 
       expect(won?(board)).to be_truthy
     end
   end
 
-  describe '#full?' do
+  putsdescribe '#full?' do
     it 'returns true for a draw' do
       board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
 
       expect(full?(board)).to be_truthy
     end
 
-    it 'returns false for an in-progress game' do
+    puts it 'returns false for an in-progress game' do
       board = ["X", " ", "X", " ", "X", " ", "O", "O", " "]
 
       expect(full?(board)).to be_falsey
     end
   end
 
-  describe '#draw?' do
+  puts describe '#draw?' do
 
     it 'calls won?' do
       board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
@@ -197,46 +197,46 @@ describe './lib/tic_tac_toe.rb' do
       draw?(board)
     end
 
-    it 'calls full?' do 
+    puts it 'calls full?' do
       board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
 
-      expect(self).to receive(:full?).with(board)      
+      expect(self).to receive(:full?).with(board)
       draw?(board)
     end
 
-    it 'returns true for a draw' do
+    puts it 'returns true for a draw' do
       board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
 
       expect(draw?(board)).to be_truthy
     end
 
-    it 'returns false for a won game' do
+    puts it 'returns false for a won game' do
       board = ["X", "O", "X", "O", "X", "X", "O", "O", "X"]
 
       expect(draw?(board)).to be_falsey
     end
 
-    it 'returns false for an in-progress game' do
+    puts it 'returns false for an in-progress game' do
       board = ["X", " ", "X", " ", "X", " ", "O", "O", "X"]
 
       expect(draw?(board)).to be_falsey
     end
   end
 
-  describe '#over?' do
+  puts describe '#over?' do
     it 'returns true for a draw' do
       board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
 
       expect(over?(board)).to be_truthy
     end
 
-    it 'returns true for a won game' do
+    puts it 'returns true for a won game' do
       board = ["X", "O", "X", "O", "X", "X", "O", "O", "X"]
 
       expect(over?(board)).to be_truthy
     end
 
-    it 'returns false for an in-progress game' do
+    puts it 'returns false for an in-progress game' do
       board = ["X", " ", "X", " ", "X", " ", "O", "O", " "]
 
       expect(over?(board)).to be_falsey
