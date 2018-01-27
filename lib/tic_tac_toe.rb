@@ -14,8 +14,9 @@ end
 
 def input_to_index(value)
 
-    position = value.to_i
-    position - 1
+    value.to_i - 1
+    #position = value.to_i
+    #position - 1
 
 end
 
@@ -45,10 +46,10 @@ def turn(board)
   index = input_to_index(number)
 
 
+
   if valid_move?(board, index)
     character = current_player(board)
     move(board, index, character)
-    display_board(board)
   else
     turn(board)
   end
@@ -90,7 +91,6 @@ def draw?(board)
 end
 
 def over?(board)
-
   draw?(board) || won?(board)
 end
 
@@ -112,8 +112,7 @@ def play(board)
   end
 
   if won?(board)
-    winner = winner(board)
-    puts "Congratulations #{winner}!"
+        puts "Congratulations #{winner(board)}!"
   elsif draw?(board)
     puts "Cat's Game!"
   end
