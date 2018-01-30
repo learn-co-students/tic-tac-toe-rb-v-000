@@ -4,17 +4,6 @@ require_relative '../lib/tic_tac_toe'
 
 board = Array.new(9, " ")
 
-def input_to_index(input)
-  index = "#{input}".to_i - 1
-  return index
-end
-
-def get_user
-  input = gets.strip
-  index = input_to_index(input)
-end
-
 puts "Welcome to Tic Tac Toe!"
 
-turn(board)
 play(board)

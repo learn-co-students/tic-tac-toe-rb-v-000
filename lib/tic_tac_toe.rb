@@ -50,8 +50,8 @@ def turn(board)
     input = gets.strip
     index = input_to_index(input)
   end
-  puts move(board, index, character)
-  puts display(board)
+  puts move(board, index, current_player(board))
+  puts display_board(board)
 end
 
 def turn_count(board)
@@ -94,6 +94,7 @@ def full?(board)
 end
 
 def draw?(board)
+  puts "Cat's Game!"
   return full?(board) && !won?(board)
 end
 
@@ -116,8 +117,7 @@ def play(board)
   puts draw?(board)
   end
   if won?(board)
-    puts "Congratulations #{won?(board)}!"
-  else
-    puts "Cat's Game!"
+    puts "Congratulations #{winner(board)}!"
+  else draw?(board)
   end
 end
