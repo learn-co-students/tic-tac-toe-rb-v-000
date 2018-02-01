@@ -1,3 +1,10 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/tic_tac_toe'
+
+#----------------03_cli_spec------------------
+board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+
+puts "Welcome to Tic Tac Toe!"
+#display_board(board)
+play(board)
