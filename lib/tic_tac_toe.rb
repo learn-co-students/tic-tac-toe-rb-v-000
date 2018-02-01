@@ -9,7 +9,7 @@ WIN_COMBINATIONS = [
   [6, 4, 2]
   ]
 
-display_board(board)
+def display_board(board)
  puts " #{board[0]} | #{board[1]} | #{board[2]} "
  puts "-----------"
  puts " #{board[3]} | #{board[4]} | #{board[5]}"
@@ -36,9 +36,9 @@ end
 
 def turn(board)
   puts "Please enter 1-9:"
-  user_input = gets
+  user_input = gets.strip
   user_input = input_to_index(user_input)
-  if valid_move?(baord, user_input)
+  if valid_move?(board, user_input)
     character = current_player(board)
     move(board, user_input, character)
     display_board(board)
