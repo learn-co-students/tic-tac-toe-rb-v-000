@@ -21,41 +21,36 @@ def input_to_index(user_input)
   user_input.to_i - 1
 end
 
-def move(board, index, char)
-  board[index] = "#{char}"
+def move(board, index, token)
+  board[index] = "#{token}"
 end
 
 def position_taken?(board, index)
-  if board[index] == " " || board[index] == "" || board[index] == nil
-    false
-  else board[index] == "X" || board[index] == "O"
-    true
-  end
+  board[index] == "X" || board[index] == "O"
 end
 
 def valid_move?(board, index)
-  if index.between?(0, 8) && position_taken?(board, index) == false || nil
-    true
-  end
+  position_taken?(board, index) == false && index.between?(0, 8)
 end
 
 def turn(board)
   puts "Please enter 1-9:"
-  input = gets
+  input = gets.strip
   index = input_to_index(input)
-  char = current_player(board)
-  if valid_move?(board, index)
-    move(board, index, char)
-    display_board(board)
-  else
+  token = current_player(board)
+  if valid_move?(board, index) == false
+    puts "Invalid input"
     turn(board)
+  else
+    move(board, index, token)
   end
+  display_board(board)
 end
 
 def turn_count(board)
   counter = 0
-  board.each do |moves_made|
-    if moves_made != " "
+  board.each do |position|
+    if position == "X" || position == "O"
       counter += 1
     end
   end
@@ -63,54 +58,43 @@ def turn_count(board)
 end
 
 def current_player(board)
-  turn_count(board) % 2 == 0 || turn_count(board) == 0 ? "X" : "O"
+  turn_count(board) % 2 == 0 ? "X" : "O"
 end
 
 def won?(board)
   WIN_COMBINATIONS.each do |win_combination|
-
     win_index_1 = win_combination[0]
     win_index_2 = win_combination[1]
     win_index_3 = win_combination[2]
-
     position_1 = board[win_index_1]
     position_2 = board[win_index_2]
     position_3 = board[win_index_3]
-
-  if position_1 == "X" && position_2 == "X" && position_3 == "X" || position_1 == "O" && position_2 == "O" && position_3 == "O"
-    return win_combination
-  end
+    if position_1 == "X" && position_2 == "X" && position_3 == "X"
+      return win_combination
+    elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
+      return win_combination
+    end
   end
   return false
 end
 
 def full?(board)
-    board.none? do |value|
-    value == " "
-  end
+  board.none? {|position| position == " "}
 end
 
 def draw?(board)
-  x = won?(board)
-  y = full?(board)
-  if x == false && y == true
-    true
-  end
+  !won?(board) && full?(board)
 end
 
 def over?(board)
-  if won?(board) != false || draw?(board) == true || full?(board) == true
-    return true
-  else
-    return false
-  end
+  won?(board) != false || draw?(board) == true ? true : false
 end
 
 def winner(board)
   if won?(board) != false
-    indexes = won?(board)
-    token = indexes[0]
-    return board[token]
+    combo = won?(board)
+    index = combo[0]
+    board[index]
   end
 end
 
