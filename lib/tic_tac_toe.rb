@@ -23,7 +23,7 @@ def input_to_index(input)
   return index
 end
 
-def move(board,index,character ="X")
+def move(board, index, character)
   board[index] = character
   return board
 end
@@ -53,7 +53,7 @@ def turn(board)
     index = input_to_index(input)
     valid_move = valid_move?(board, index)
   end
-  move(board,index)
+  move(board,index, current_player(board))
   display_board(board)
 end
 
@@ -71,7 +71,6 @@ end
 def current_player(board)
   number_of_turns = turn_count(board) % 2
   number_of_turns == 0 ? "X" : "O"
-
 end
 
 
@@ -84,8 +83,9 @@ def won?(board)
 end
 
 def full?(board)
-  board.all? do |move|
-    move != " "
+  board.all? do |currentMove|
+    currentMove != " "
+  end
 end
 
 def draw?(board)
@@ -94,7 +94,7 @@ def draw?(board)
 end
 
 def over?(board)
-  over = (won?(board) || full?(board) || draw?(board))
+  over = (won?(board) || draw?(board))
   over ? true : false
 end
 
@@ -107,13 +107,14 @@ def winner(board)
   end
 end
 
-def play
-  until over?(board)
+
+def play(board)
+  until over?(board) do
     turn(board)
   end
   if won?(board)
-    puts "Congratulations #{winner(board)}, you won!"
+    puts "Congratulations #{winner(board)}!"
   elsif draw?(board)
-    puts "It's a tie!"
+    puts "Cat's Game!"
   end
 end
