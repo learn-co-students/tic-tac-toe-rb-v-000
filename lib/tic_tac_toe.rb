@@ -54,10 +54,10 @@ def turn(board)
   index = input_to_index(input)
   if valid_move?(board,index) == true
     move(board, index, user_marker = 'X')
-    display_board(board)
   else
     turn(board)
   end
+  display_board(board)
 end
 # turn_count
 def turn_count(board)
@@ -119,45 +119,17 @@ def winner(board)
     board[win_combination.first]
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Define your play method below
 def play(board)
-  # Start a loop and call #turn
+# Start a loop and call #turn
   turn_number = 0
   until turn_number == 9
     turn(board)
     turn_number += 1
+  end
+  if won?(board)
+    puts "Congratulations, #{winner(board)}!"
+  else
+    puts "Cats Game!"
   end
 end
