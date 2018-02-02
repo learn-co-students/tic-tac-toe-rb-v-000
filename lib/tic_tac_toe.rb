@@ -1,4 +1,4 @@
-
+require "pry"
 
 WIN_COMBINATIONS = [
   [0, 1, 2],
@@ -70,7 +70,7 @@ def won?(board)
     win_index_1 = win_combination[0]
     win_index_2 = win_combination[1]
     win_index_3 = win_combination[2]
- 
+
     position_1 = board[win_index_1]
     position_2 = board[win_index_2]
     position_3 = board[win_index_3]
@@ -108,7 +108,7 @@ def winner(board)
     win_index_1 = win_combination[0]
     win_index_2 = win_combination[1]
     win_index_3 = win_combination[2]
- 
+
     position_1 = board[win_index_1]
     position_2 = board[win_index_2]
     position_3 = board[win_index_3]
@@ -123,8 +123,9 @@ def winner(board)
 end
 end
 
+
 def play(board)
-  until over?(board) || won?(board)
+  until won?(board) || over?(board)
     turn(board)
   end
   if won?(board) != nil
@@ -135,10 +136,5 @@ def play(board)
     end
   elsif draw?(board) == true
     puts "Cat's Game!"
-  end
-end  
-  
-  
-  
   end
 end
