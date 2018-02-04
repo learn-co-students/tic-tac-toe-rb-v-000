@@ -1,3 +1,12 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/tic_tac_toe'
+puts "Welcome to Tic Tac Toe!"
+#2 Next, establish the starting state of the game, i.e. the empty board.
+#Create a new board by setting a variable board equal to instantiating
+#a new array with 9 elements, each of which is a blank space, " ".
+board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+display_board(board)
+play(board)
+#6 Lastly, display the board by calling the #display_board method,
+#passing in the necessary arguments required to run this method.
