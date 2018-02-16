@@ -9,6 +9,19 @@ WIN_COMBINATIONS = [
   [0,4,8], # Left diagonal
   [2,4,6]  # Right diagonal
 ]
+# Define your play method
+def play(board)
+  # input = gets
+  # Start a loop and call #turn
+  while !over?(board)
+    turn(board)
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
+  end
+end
 # Display board
 board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 def display_board(board)
@@ -23,8 +36,11 @@ def input_to_index(input)
   input.to_i - 1
 end
 # Decide who's move it is, X or O
-def move(board, index, user_marker)
-  board[index.to_i] = user_marker
+# def move(board, index, user_marker)
+#   board[index.to_i] = user_marker
+# end
+def move(board, index, player)
+  board[index] = player
 end
 # Is the position on the board taken?
 def position_taken?(board, index)
@@ -52,8 +68,8 @@ def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
-  if valid_move?(board,index) == true
-    move(board, index, user_marker = 'X')
+  if valid_move?(board, index) == true
+    move(board, index, current_player(board))
     display_board(board)
   else
     turn(board)
@@ -108,30 +124,15 @@ def full?(board)
 end
 # draw?
 def draw?(board)
-  won?(board) == nil && full?(board) == true
+  !won?(board) && full?(board)
 end
 # over?
 def over?(board)
-  draw?(board) == true || won?(board) != nil
+  won?(board) || draw?(board)
 end
 # winner
 def winner(board)
   if win_combination = won?(board)
     board[win_combination.first]
-  end
-end
-# Define your play method below
-def play(board)
-  input = gets
-# Start a loop and call #turn
-  turn_number = 0
-  until turn_number = 9
-    turn(board)
-    turn_number += 1
-  end
-  if won?(board)
-    puts "Congratulations, #{winner(board)}!"
-  else
-    puts "Cats Game!"
   end
 end
