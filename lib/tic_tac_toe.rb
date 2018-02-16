@@ -35,15 +35,12 @@ end
   
 
 def valid_move?(board, index)
-  if (board[index] == ""|| board[index] == " "||
-    board[index] == " " || board[index] == " ")
-    true   
-  elsif
-    true 
-  elsif
-  nil 
-else
-  false
+  if !board[index] == " " || board[index] == " "
+return true 
+    puts "move is valid"
+else 
+return false 
+    puts "move is taken"
+end
 end 
-end 
-  
+   
