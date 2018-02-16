@@ -35,12 +35,89 @@ end
   
 
 def valid_move?(board, index)
-  if !board[index] == " " || board[index] == " "
-return true 
-    puts "move is valid"
-else 
-return false 
-    puts "move is taken"
+  index.between?(0,8) && !position_taken?(board, index)
 end
+
+
+def turn(board)
+    puts "Please enter 1-9:"
+  user_input = gets.chomp 
+  user_input = input_to_index(user_input)
+ if valid_move?(board,index = user_input)
+    move(board, index, token = "X")
+ else 
+    turn(board)
+  end 
+    display_board(board)
+  end 
+  
+  
+    def turn_count(board)
+  counter = 0
+  board.each do |space|
+    if space == "X" || space == "O"
+      counter +=1
+  end
+end
+return counter
+end
+   
+   
+def current_player(board)
+  if turn_count(board)%2 ==0
+    current_player = "X"
+  else 
+    current_player = "O"
+  end 
+  return current_player
 end 
+
+ def won?(board)
+  WIN_COMBINATIONS.each do |win_move|
+  win_index_1 = win_move[0]
+  win_index_2 = win_move[1]
+  win_index_3 = win_move[2]
+ 
+  position_1 = board[win_index_1] 
+  position_2 = board[win_index_2]
+  position_3 = board[win_index_3] 
+ 
+  if position_1 == "X" && position_2 == "X" && position_3 == "X" || position_1 == "O" && position_2 == "O" && position_3 == "O"
+    return win_move
+  end 
+  end
+else 
+  false 
+end 
+
+def full?(board)
+    !board.any? { |x| x == " " }
+  end
+  
+   def draw?(board)
+    if  !won?(board) && full?(board)
+    puts "the game has been won"
+      return true 
+    else 
+      puts "the game has not been won"
+  return false 
+    end 
+  end 
+  
+  def over?(board)
+if  full?(board) || won?(board) || draw?(board)
+  puts "THE GAME IS OVER"
+  return true  
+else 
+  puts "the game is not over" 
+  return false 
+end 
+end 
+
+ def winner(board)
+    if winner = won?(board)
+      board[winner.first]
+    end
+  end
+   
    
