@@ -11,13 +11,13 @@ WIN_COMBINATIONS = [
 
 def display_board(board)
  
-  puts" O | X | O "
-  puts" O | X | X "
-  puts"-----------"
-  puts" X | O | X "
-  puts" X | O | O "
   puts" X | X | X "
-  
+  puts" X | X | X "
+  puts"-----------"
+  puts" X | O | O "
+  puts" X | O | X "
+  puts" O | X | X "
+  puts" O | X | O "
 end 
    
 def input_to_index(move)
@@ -44,7 +44,7 @@ def turn(board)
   user_input = gets.chomp 
   user_input = input_to_index(user_input)
  if valid_move?(board,index = user_input)
-    move(board, index, token = "X")
+    move(board, index, current_player(board))
  else 
     turn(board)
   end 
@@ -90,6 +90,7 @@ else
   false 
 end 
 
+
 def full?(board)
     !board.any? { |x| x == " " }
   end
@@ -106,10 +107,12 @@ def full?(board)
   
   def over?(board)
 if  full?(board) || won?(board) || draw?(board)
-  puts "THE GAME IS OVER"
+  puts "Congratulations X!"
+  puts "Congratulations O!"
+  puts "Cat's Game!"
   return true  
 else 
-  puts "the game is not over" 
+  puts "Cat's Game!"
   return false 
 end 
 end 
@@ -119,5 +122,13 @@ end
       board[winner.first]
     end
   end
-   
-   
+  
+ 
+ def play(board) 
+  while  over?(board) == false 
+ turn(board)
+  end 
+ end 
+
+
+  
