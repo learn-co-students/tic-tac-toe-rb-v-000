@@ -61,7 +61,7 @@ end
 
 def play(board)
 
-  until full?(board) || won?(board) == true
+  until over?(board) || won?(board) == true
     turn(board)
   end
 end
