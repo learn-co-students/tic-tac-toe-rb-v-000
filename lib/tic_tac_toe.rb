@@ -74,7 +74,7 @@ def won?(board)
     if position_1 == "X" && position_2 == "X" && position_3 == "X"
       winner = "X"
       return win_combination
-      elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
+    elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
       winner = "O"
       return win_combination
     end
@@ -89,7 +89,7 @@ def full?(board)
 end
 
 def draw?(board)
-  if (won?(board) == false || nil) && full?(board) == true
+  if (won?(board) == false || nil) && full?(board)
     # full?(board) && !won?(board)
     true
   end
