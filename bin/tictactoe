@@ -1,3 +1,14 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/tic_tac_toe'
+
+puts "Welcome to Tic Tac Toe!"
+board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+display_board(board)
+play(board)
+
+# WARNING: You're overriding a previous stub implementation of `turn`.
+# Called from /home/314159265359/tic-tac-toe-rb-v-000/spec/02_play_spec.rb:45:in
+# `block (3 levels
+# # ) in <top (required)>'.. Called from /home/314159265359/tic-tac-toe-rb-v-000/spec/02_play_spec.rb:45:in
+# `block (3 levels) in <top (required)>'.
