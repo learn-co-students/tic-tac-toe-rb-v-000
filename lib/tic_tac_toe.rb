@@ -146,7 +146,6 @@ end
 
 
 def play(board)
-  counter = 0
   until over?(board)
     turn(board)
   end
