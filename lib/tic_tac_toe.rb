@@ -24,8 +24,8 @@ def input_to_index(input)
 end
 
 
-def move(board,position,char)
-  board[position] = char
+def move(board,position,character)
+  board[position] = character
 end
 
 
@@ -50,11 +50,12 @@ def turn(board)
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board,index)
-    char = current_player(board)
-    move(board,index,char)
+    character = current_player(board)
+    move(board,index,character)
   else
     turn(board)
   end
+  display_board(board)
 end
 
 
@@ -86,18 +87,18 @@ def won?(board)
   position_2 = board[win_index_2]
   position_3 = board[win_index_3]
 
-  if position_1 == "X" && position_2 == "X" && position_3 == "X"
-    return win_combination
-  elsif
-    position_1 == "O" && position_2 == "O" && position_3 == "O"
-    return win_combination
-  else
+    if position_1 == "X" && position_2 == "X" && position_3 == "X"
+      return win_combination
+    elsif
+      position_1 == "O" && position_2 == "O" && position_3 == "O"
+      return win_combination
+    else
+      false
+    end
+  end
+    if board == [" ", " ", " ", " ", " ", " ", " ", " ", " "]
     false
-  end
-  end
-  if board == [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-  false
-  end
+    end
 end
 
 
