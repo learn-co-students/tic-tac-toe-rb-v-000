@@ -26,6 +26,7 @@ end
 
 def move(board,position,character)
   board[position] = character
+  display_board(board)
 end
 
 
@@ -55,7 +56,6 @@ def turn(board)
   else
     turn(board)
   end
-  display_board(board)
 end
 
 
@@ -146,6 +146,7 @@ end
 
 
 def play(board)
+  counter = 0
   until over?(board)
     turn(board)
   end
@@ -153,5 +154,7 @@ def play(board)
     puts "Congratulations #{winner(board)}!"
   elsif draw?(board)
     puts "Cat's Game!"
+  else
+    return nil
   end
 end
