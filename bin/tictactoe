@@ -1,3 +1,15 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/tic_tac_toe'
+
+# greets players
+
+puts "Welcome to Tic Tac Toe!"
+
+# initiates the board variable
+
+board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+
+# plays the game
+
+play(board)
