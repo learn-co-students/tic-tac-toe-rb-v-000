@@ -2,7 +2,6 @@ WIN_COMBINATIONS = [
   [0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[2,4,6],[0,4,8]
   ]
 def display_board(board)
-  board = []
   puts" #{board[0]} | #{board[1]} | #{board[2]} "
   puts"-----------"
   puts" #{board[3]} | #{board[4]} | #{board[5]} "
@@ -10,10 +9,10 @@ def display_board(board)
   puts" #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
-def input_to_index(input)
-  input.to_i -1 
+def input_to_index(user_input)
+  user_input.to_i - 1 
 end
-def move(board, index, current_player = "X")
+def move(board, index, current_player)
   board[index] = current_player
 end
 def position_taken?(board, location)
@@ -23,8 +22,20 @@ def valid_move?(board, index)
   index.between?(0,8) && !position_taken?(board, index)
 end
 
+def turn
+    display_board
+    puts "Please enter 1-9:"
+    input = gets.strip
+    if !valid_move?(input)
+      turn
+    end
+    move(input, current_player)
+    display_board
+  end
+
+
 def turn(board)
-  puts "Please enter 1-9:"
+  puts"Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board, index)
@@ -33,16 +44,6 @@ def turn(board)
   else
     turn(board)
   end
-end
-
-def turn_count(board)
-  move_count = []
-  board.each do |boards|
-  if boards == "X" || boards == "O"
-      move_count.push(1)
-    end
-  end
-  move_count.length.to_i
 end
 
 def current_player(board)
@@ -86,12 +87,13 @@ def winner(board)
     return nil
   end
 end
-def play(board)
-  input = gets
-    plays = 0
-  until plays == 9 do
+def play
+  while over? == false
     turn(board)
-    plays += 1
-    puts"
+  end
+  if won?
+    puts "Congratulations #{winner}!"
+  elsif draw?
+    puts "Cat's Game!"
   end
 end
