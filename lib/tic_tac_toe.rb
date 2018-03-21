@@ -83,10 +83,6 @@ def turn(board)
   else
     turn(board)
   end
-  if !over?(board)
-    turn(board)
-  end
-
 end
 
 
@@ -110,10 +106,10 @@ def current_player(board)
 end
 
 def play(board)
-  while over?(board) != true
+  while !over?(board)
     turn(board)
   end
-  if won?(board) != false
+  if won?(board)
     puts "Congratulations #{winner(board)}!"
   else
     puts "Cat's Game!"
