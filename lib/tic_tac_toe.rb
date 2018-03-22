@@ -59,10 +59,7 @@ def draw?(board)
 end
 
 def over?(board)
-  if won?(board) != false || full?(board) != false || draw?(board) == true
-    return true
-  end
-  false
+  won?(board) || draw?(board)
 end
 
 def winner(board)
@@ -86,6 +83,7 @@ def turn(board)
 end
 
 
+
 def turn_count(board)
   counter = 0
   board.each do|item|
@@ -105,13 +103,14 @@ def current_player(board)
   end
 end
 
+
 def play(board)
   while !over?(board)
     turn(board)
   end
   if won?(board)
     puts "Congratulations #{winner(board)}!"
-  else
+  elsif draw?(board)
     puts "Cat's Game!"
   end
 end
