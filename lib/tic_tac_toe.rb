@@ -117,13 +117,13 @@ end
 
 #play
 def play(board)
-  #while over?(board) == false
-  until over?(board) || won?(board)
+  while over?(board) == false
+  #until over?(board) || won?(board)
   turn(board)
   end
-  if won?(board) == true
+  if won?(board)
       puts "Congratulations #{winner(board)}!"
-  elsif draw?(board) == true
+  else draw?(board)
       puts "Cat's Game!"
     end
 end
