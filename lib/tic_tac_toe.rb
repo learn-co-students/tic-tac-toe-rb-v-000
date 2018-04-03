@@ -36,20 +36,12 @@ end
 
 #are there no more moves?
 def draw?(board)
-  if  full?(board) == true && won?(board)==nil
-  true
-  else
-  false
-  end
+  full?(board) && won?(board)==nil
 end
 
 #has the game been won? or is it a draw?
 def over?(board)
-  if won?(board) != nil || draw?(board)==true || full?(board) == true
-  true
-  else
-  false
-  end
+   won?(board) != nil || draw?(board)
 end
 
 #who won the game?
@@ -82,7 +74,7 @@ def turn(board)
 puts "Please enter 1-9:"
 index_1 = gets.strip
 index_2 =input_to_index(index_1)
-  if valid_move?(board,index_2)==true
+  if valid_move?(board,index_2)
   move(board,index_2,current_player(board))
   display_board(board)
   else
