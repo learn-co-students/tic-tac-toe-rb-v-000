@@ -26,7 +26,7 @@ def won?(board)
        return wc_oa
      end
   end
-  return nil
+  return false
 end
 
 #are all the slots full?
@@ -36,17 +36,17 @@ end
 
 #are there no more moves?
 def draw?(board)
-  full?(board) && won?(board)==nil
+  full?(board) && !won?(board)
 end
 
 #has the game been won? or is it a draw?
 def over?(board)
-   won?(board) != nil || draw?(board)
+   won?(board) || draw?(board)
 end
 
 #who won the game?
 def winner(board)
-  if won?(board) != nil
+  if won?(board)
     arr_1 = won?(board)
     x = arr_1[0]
     return board[x]
