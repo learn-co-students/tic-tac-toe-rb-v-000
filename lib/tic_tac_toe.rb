@@ -1,3 +1,4 @@
+require 'pry'
 WIN_COMBINATIONS = [
   [0,1,2],
   [3,4,5],
@@ -26,7 +27,7 @@ def move(board, index, current_player)
 end
 
 def position_taken?(board, index)
-  !(board[index].nil? || board[index] == " ")
+  (board[index] == "X" || board[index] == "O") 
 end
 
 def valid_move?(board, index)
@@ -37,28 +38,17 @@ def turn(board)
  puts "Please enter 1-9:"
  user_input = gets.strip
  index = input_to_index(user_input)
-  if valid_move?(board, index)
+ if valid_move?(board, index)
     move(board, index, current_player(board))
     display_board(board)
-  else
-    puts "Invalid move. Please enter 1-9:"
-   # turn(board)
-  end
-  display_board(board)
-end
-
-#def play(board)
- # input = 0
-  #while input < 9 
-   #turn(board)
-   #input += 1
-   #display_board(board)
-  #end
-#end
+ else   
+    turn(board)
+ end
+end   
 
 def turn_count(board)
   board.count do |input| 
-   input == "X" || input == "O"
+  input == "X" || input == "O"
   end
 end
 
@@ -78,33 +68,33 @@ def won?(board)
 end
 
 def full?(board)
-  board.none? do |full_array|
-    full_array == " " || full_array == nil
-  end
+  board.all? do |full_array|
+  full_array == "X" || full_array == "O"
+ end
 end
 
 def draw?(board)
-  full?(board) && !won?(board)  || !won?(board)
+  full?(board) && !won?(board) 
 end
 
 def over?(board)
- full?(board) && !won?(board) || won?(board)
+  draw?(board) || won?(board)
 end
 
 def winner(board)
-   if won?(board) != nil
-     winner = board[won?(board)[0]]
-   end
+  if won?(board) 
+  winner = board[won?(board)[0]]
+  end
 end
 
 def play(board)
- until over?(board) == true
-  turn(board)
- end
-  if draw?(board) == true
-    puts "Cat's Game!"
-  else won?(board)
-  puts "Congratulations!! You have won the game!"
+ until over?(board) 
+ turn(board)
+end
+ if draw?(board) 
+   puts "Cat's Game!"
+ else won?(board)
+   puts "Congratulations #{winner(board)}!"
  end
 end
 
