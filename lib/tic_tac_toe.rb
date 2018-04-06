@@ -10,6 +10,7 @@ def display_board(board)
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
+# The functions below interacts with our user validates our user input==========
 # This function converts our user input number into an index
 def input_to_index(input)
   input.to_i - 1
@@ -35,7 +36,7 @@ end
 # This function is invoked each time our user/s make a turn
 def turn(board)
   puts "Please enter a valid move from 1-9:"
-  input = gets.chomp
+  input = gets.strip
   ind_move = input_to_index(input)
 
   if ind_move.between?(0,8)
@@ -58,6 +59,7 @@ def current_player(board)
   turn_count(board) % 2 == 0 ? "X" : "O"
 end
 
+# The functions below verify if the game has won or not=========================
 # This function verifies if the game has been won or not
 def won?(board)
   WIN_COMBINATIONS.any? do |combo|
@@ -82,7 +84,7 @@ end
 # This function verifies if the game is a draw
 def draw?(board)
   if full?(board) && !won?(board)
-    true
+    puts "Cat's Game!"
   elsif won?(board)
     false
   end
@@ -90,7 +92,7 @@ end
 
 # This function verifies if the game is over
 def over?(board)
-   if draw?(board) && full?(board)
+   if draw?(board) || full?(board)
      true
    elsif won?(board)
      true
@@ -101,22 +103,21 @@ end
 
 # This function declares our game winner
 def winner(board)
+
   if won?(board)
-    current_player(board) == "X" ? "O" : "X"
+    puts board.count{|move| move == "X"} > board.count{|move| move == "O"} ?
+    "Congratulations X!" : "Congratulations O!"
   else
     nil
   end
-
-  # WIN_COMBINATIONS.any? do |combo|
-  #   if combo.all? { |idx| board[idx] == "X" }
-  #     return 'X'
-  #   end
-  #   if combo.all? { |idx| board[idx] == "O" }
-  #     return 'O'
-  #   end
-  # end
-  # nil
 end
 
 
 # This function iterates inside of our main bin file
+def play(board)
+  until over?(board)
+    turn(board)
+    display_board(board)
+  end
+  winner(board)
+end
