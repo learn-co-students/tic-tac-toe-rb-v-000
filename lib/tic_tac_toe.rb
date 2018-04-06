@@ -85,6 +85,7 @@ end
 def draw?(board)
   if full?(board) && !won?(board)
     puts "Cat's Game!"
+    return true
   elsif won?(board)
     false
   end
@@ -103,13 +104,21 @@ end
 
 # This function declares our game winner
 def winner(board)
-
-  if won?(board)
-    puts board.count{|move| move == "X"} > board.count{|move| move == "O"} ?
-    "Congratulations X!" : "Congratulations O!"
-  else
-    nil
+  # if won?(board)
+  #   puts board.count{|move| move == "X"} > board.count{|move| move == "O"} ?
+  #   "Congratulations X!" : "Congratulations O!"
+  # else
+  WIN_COMBINATIONS.each do |combo|
+    if combo.all?{|j| board[j] == "X"}
+        puts "Congratulations X!"
+        return "X"
+    end
+    if combo.all?{|j| board[j] == "O"}
+        puts "Congratulations O!"
+        return "O"
+    end
   end
+    nil
 end
 
 
