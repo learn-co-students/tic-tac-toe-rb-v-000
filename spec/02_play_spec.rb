@@ -43,7 +43,7 @@ describe './lib/tic_tac_toe.rb' do
         num_of_turns += 1
         Process.exit!(true) if num_of_turns > 10
       end.and_call_original
-
+   #binding.pry
       play(board)
 
       expect(board).to match_array(["X", "O", "X", " ", " ", " ", " ", " ", " "])
