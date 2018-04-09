@@ -93,7 +93,7 @@ WIN_COMBINATIONS = [
   end
   
   def over?(board)
-    !!won?(board) || !!full?(board)
+    !!won?(board) || !!draw?(board)
   end
 
 def winner(board)
@@ -108,13 +108,13 @@ def winner(board)
 end
 
 def play(board)
-  turn(board)
-  if won?(board) == true 
+  until over?(board)
+    turn(board)
+  end
+  if won?(board)
     winner = winner(board)
-    puts "Congratulations ${winner}!"
-  elsif over?(board)
+    puts "Congratulations #{winner}!"
+  else draw?(board)
     puts "Cat's Game!"
-  else
-    play(board)
   end
 end
