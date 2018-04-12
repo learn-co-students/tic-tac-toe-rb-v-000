@@ -45,10 +45,7 @@ def position_taken?(board, index)
     false
      elsif board[index] == "X" || board[index] == "O"
     true
-     elsif board[index] == "X" || "O"
-    true
   else
-    false
   end
 end
 
@@ -64,7 +61,7 @@ def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
-  value = "X" || "O"
+  value = current_player(board)
   if valid_move?(board, index)
    move(board, index, value)
     display_board(board)
@@ -172,7 +169,7 @@ end
 def play(board)
   until over?(board)
   turn(board)
- end
+  end
  
  if won?(board)
    puts "Congratulations #{winner(board)}!"
