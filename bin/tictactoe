@@ -1,3 +1,13 @@
 #!/usr/bin/env ruby
-
 require_relative '../lib/tic_tac_toe'
+
+
+board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+puts "Welcome to Tic Tac Toe!"
+puts "Please enter 1-9:"
+input = gets.strip
+
+index = input_to_index(input)
+
+turn(board)
+play(board)
