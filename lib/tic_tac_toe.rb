@@ -27,27 +27,6 @@ def input_to_index(user_input)
   user_input.to_i - 1
 end
 
-def turn(board)
-puts "Please enter 1-9:"
-input = gets.chomp.to_i
-index = input_to_index(input)
-
- if valid_move?(board, index)==true
-    move(board, index, current_player = "X")
-    display_board(board)
-  else puts "Please select a different move"
-    turn(board)
-  end
-end
-
-
-def play(board)
-  turn_count = 0
-  while turn_count < 9
-    turn(board)
-    turn_count+=1
-  end
-end
 
 def move(board, index, current_player)
   board[index] = current_player
@@ -111,3 +90,28 @@ def winner(board)
      end
   end
 end
+
+def turn(board)
+  puts "Please enter 1-9:"
+  input = gets.strip
+  index = input_to_index(input)
+  if valid_move?(board, index)
+    move(board, index, current_player(board))
+    display_board(board)
+  else
+    turn(board)
+  end
+end
+
+def play(board)
+  until over?(board)
+  turn(board)
+  end
+
+
+end
+#if (over? && draw?)
+#  puts "Cat's Game!"
+#else (over? && !draw?)
+#  puts "Congratulations!" + winner(board)
+#end
