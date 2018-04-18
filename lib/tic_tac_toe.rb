@@ -69,13 +69,6 @@ def turn(board)
   end
 end
 
-#PLAY--------------------------------------#
-def play(board)
- for i in 1..9 do
-    turn(board)
-  end
-end
-
 #TURN_COUNT---------------------------------#
 # counts occupied positions
 #Will tell us, (return),how many turns have been played.
@@ -137,4 +130,11 @@ end
 # return X when X won, returns O when O won, returns nil when no winner
 def winner(board)
   won?(board) && board[won?(board)[0]]
+end
+
+#PLAY--------------------------------------#
+def play(board)
+  until over?(board)
+    turn(board)
+  end
 end
