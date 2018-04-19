@@ -1,4 +1,6 @@
 
+require 'pry'
+
 WIN_COMBINATIONS = [
   [0,1,2],
   [3,4,5],
@@ -22,8 +24,8 @@ def input_to_index(user_input)
   user_input.to_i - 1
 end
 
-def move(board, index, current_player = "X")
-  board[index] = current_player
+def move(board, index, player)
+  board[index] = player
 end
 
 def position_taken?(board, index)
@@ -41,7 +43,7 @@ def turn(board)
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board, index)
-    move(board, index)
+    move(board, index, current_player(board))
     display_board(board)
   else
     turn(board)
@@ -73,7 +75,7 @@ def draw?(board)
 end
 
 def over?(board)
-  won?(board) || full?(board)
+  won?(board) || draw?(board)
 end
 
 def winner(board)
@@ -83,8 +85,7 @@ def winner(board)
 end
 
 def play(board)
-  until over?(board) || draw?(board)
-    current_player(board)
+  while !over?(board)
     turn(board)
   end
   if won?(board)
