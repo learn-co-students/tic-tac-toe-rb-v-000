@@ -28,11 +28,11 @@ def move(board, index, value)
 end
 
 def position_taken?(board, location)
-  board[location] != " " && board[location] != ""
+  board[location] == "X" || board[location] == "O"
 end
 
 def valid_move?(board, position)
-  position.between?(0,8) && !position_taken?(board, position)
+  position.between?(0, 8) && !position_taken?(board, position)
 end
 
 def turn(board)
@@ -67,14 +67,15 @@ def current_player(board)
 end
 
 def won?(board)
-  WIN_COMBINATIONS.detect do |combo|
+  x  = false
+  WIN_COMBINATIONS.each do |combo|
     #combo = [0, 1, 2] board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
     #combo = [2, 4, 6]
     if (board[combo[0]] == "X" && board[combo[1]] == "X" && board[combo[2]] == "X") || (board[combo[0]] == "O" && board[combo[1]] == "O" && board[combo[2]] == "O")
-      return combo
+      x = true
     end
   end
-  return false
+  x
 end
 
 def full?(board)
@@ -84,41 +85,62 @@ def full?(board)
 end
 
 def draw?(board)
-  if !!won?(board) == false && full?(board) == true
-      true
-  elsif won?(board) == nil && !full?(board) == true
-    false
-  elsif won?(board) == true
-    false
-  end
+  !won?(board) && full?(board)
+  #   true
+  #elsif won?(board) == nil && !full?(board) == true
+  #  false
+  #elsif won?(board) == true
+  #  false
+  #end
 end
 
 def over?(board)
   # binding.pry
-  if won?(board).class == Array
-    return true
-  elsif draw?(board) == true
-    return true
+  if won?(board) || draw?(board)
+    true
   else
     false
   end
 end
 
 def winner(board)
+  x = nil
+  WIN_COMBINATIONS.each do |combo|
+    if (board[combo[0]] == "X" && board[combo[1]] == "X" && board[combo[2]] == "X") || (board[combo[0]] == "O" && board[combo[1]] == "O" && board[combo[2]] == "O")
+      x = board[combo[0]]
+      break
+    end
+  end
+  x
+end
+
+#def winner(board)
   # binding.pry
-  if won?(board).class == Array
-    return board[won?(board)[0]]
+#  if won?(board)
+#    return board[won?(board)[0]]
+#  end
+#end
+
+def play(board)
+  until (over?(board) == true)
+
+    turn(board)
+  end
+  #binding.pry
+  if won?(board)
+    #puts board.inspect
+    #puts won?(board).inspect
+    #puts won?(board)[0].inspect
+
+    #puts "yay you won"
+    #puts "Congratulations #{board[won?(board)[0]]}!"
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board) == true
+    puts "Cat's Game!"
   end
 end
 
-def play(board)
-  # binding.pry
-  until (over?(board) == true)
-    turn(board)
-  end
-  if won?(board) == true
-  puts "Congratulations #{winner(board)}!"
-  elsif draw?(board) == true
-  puts "Cat's Game!"
-  end
-end
+
+
+#board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+#puts play(board)
