@@ -67,16 +67,6 @@ def turn_count(board)
   return turn
 end
 
-def current_player(board)
-  if turn_count(board) == 0
-    return "X"
-  elsif turn_count(board) % 2 == 0
-    return "X"
-  elsif turn_count(board) % 3 == 0
-    return "O"
-  end
-end
-
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
@@ -89,12 +79,22 @@ def input_to_index(user_input)
   index = user_input.to_i - 1
 end
 
+def valid_move?(board, index)
+  index.between?(0,8) && !position_taken?(board, index)
+end
+
 def move(board, index, current_player)
   board[index] = current_player
 end
 
-def valid_move?(board, index)
-  index.between?(0,8) && !position_taken?(board, index)
+def current_player(board)
+  if turn_count(board) == 0
+    return "X"
+  elsif turn_count(board) % 2 == 0
+    return "X"
+  elsif turn_count(board) % 3 == 0
+    return "O"
+  end
 end
 
 def turn(board)
@@ -103,9 +103,14 @@ def turn(board)
   input_to_index(user_input)
   index = user_input.to_i - 1
   if valid_move?(board, index)
-    move(board, index, current_player)
+    move(board, index, current_player(board))
   else
-  turn(board)
+    puts "Please enter 1-9:"
+    user_input = gets.strip
+    input_to_index(user_input)
+    index = user_input.to_i - 1
+    if valid_move?(board, index)
+      move(board, index, current_player(board))
   end
 display_board(board)
 end
