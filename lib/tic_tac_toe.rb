@@ -60,7 +60,7 @@ end
 def turn_count(board)
   turn = 0
   board.each do |space|
-  if "#{space}" == "X" || "#{space}" == "O"
+  if space == "X" || space == "O"
     turn += 1
   end
   end
@@ -72,7 +72,7 @@ def current_player(board)
     return "X"
   elsif turn_count(board) % 2 == 0
     return "X"
-  else
+  elsif turn_count(board) % 3 == 0
     return "O"
   end
 end
@@ -89,7 +89,7 @@ def input_to_index(user_input)
   index = user_input.to_i - 1
 end
 
-def move(board, index, current_player = "X")
+def move(board, index, current_player)
   board[index] = current_player
 end
 
@@ -103,7 +103,7 @@ def turn(board)
   input_to_index(user_input)
   index = user_input.to_i - 1
   if valid_move?(board, index)
-    move(board, index, char = "X")
+    move(board, index, current_player)
   else
   turn(board)
   end
