@@ -1,4 +1,4 @@
-require "pry"
+
 # Helper Method
 def position_taken?(board, index)
   !(board[index].nil? || board[index] == " ")
@@ -107,13 +107,17 @@ def turn(board)
   else
     turn(board)
   end
-display_board(board)
 end
 
 def play(board)
-  turn_number = 0
-  until over?(board)
-    turn(board)
-    turn_number += 1
+  turn(board)
+  if over?(board)
+    if won?(board)
+      puts "Congratulations #{winner(board)}!"
+    elsif draw?(board)
+      puts "Cat's Game!"
+    end
+  else
+    play(board)
   end
 end
