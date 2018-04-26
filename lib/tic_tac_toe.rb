@@ -111,13 +111,12 @@ def turn(board)
 end
 
 def play(board)
-  turn(board)
   if over?(board)
     if won?(board)
       puts "Congratulations #{winner(board)}!"
     elsif draw?(board)
       puts "Cat's Game!"
     end
-  else play(board)
+  else turn(board)
   end
 end
