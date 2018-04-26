@@ -104,14 +104,15 @@ def turn(board)
   index = user_input.to_i - 1
   if valid_move?(board, index)
     move(board, index, current_player(board))
+    display_board(board)
   else
     turn(board)
   end
 end
 
 def play(board)
-  until over?(board)
-  turn(board)
+  while !over?(board)
+    turn(board)
   end
   if over?(board)
     if won?(board)
