@@ -1,4 +1,4 @@
-
+require 'pry'
 # Helper Method
 def position_taken?(board, index)
   !(board[index].nil? || board[index] == " ")
@@ -8,7 +8,7 @@ end
 WIN_COMBINATIONS = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
 
 def won?(board)
-  WIN_COMBINATIONS.any? do |win_combination|
+  WIN_COMBINATIONS.each do |win_combination|
     win_index_1 = win_combination[0]
     win_index_2 = win_combination[1]
     win_index_3 = win_combination[2]
@@ -25,7 +25,9 @@ def won?(board)
       false
     end
   end
+  false
 end
+
 
 def full?(board)
   board.all? do |space|
@@ -88,11 +90,9 @@ def move(board, index, current_player)
 end
 
 def current_player(board)
-  if turn_count(board) == 0
+  if turn_count(board) % 2 == 0
     return "X"
-  elsif turn_count(board) % 2 == 0
-    return "X"
-  elsif turn_count(board) % 3 == 0
+  else
     return "O"
   end
 end
@@ -100,8 +100,7 @@ end
 def turn(board)
   puts "Please enter 1-9:"
   user_input = gets.strip
-  input_to_index(user_input)
-  index = user_input.to_i - 1
+  index = input_to_index(user_input)
   if valid_move?(board, index)
     move(board, index, current_player(board))
     display_board(board)
@@ -117,6 +116,8 @@ def play(board)
     elsif draw?(board)
       puts "Cat's Game!"
     end
-  else turn(board)
+  else
+    turn(board)
+    play(board)
   end
 end
