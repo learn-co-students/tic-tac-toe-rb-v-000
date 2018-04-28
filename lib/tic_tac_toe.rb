@@ -89,12 +89,32 @@ end
 end
 
 def play(board)
-  count = 0
-  until count == 9
+  # input = gets
+  until over?(board) == true
    turn(board)
-   count += 1
- end
- end
+  if won?(board) == true
+    "Congratulations, Player!"
+  elsif draw?(board) == true
+    "Cat's Game!"
+  
+    
+#   count = 0
+#   until count == 9
+#   turn(board)
+#   count += 1
+   break
+end
+end
+end
+# until the game is over
+#   take turns
+# end
+
+# if the game was won
+#   congratulate the winner
+# else if the game was a draw
+#   tell the players it has been a draw
+# end
 
  WIN_COMBINATIONS = [
   [0,1,2], # Top row
