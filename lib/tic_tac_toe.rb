@@ -11,6 +11,9 @@ WIN_COMBINATIONS = [
   [2,4,6]
 ]
 
+
+
+
 def display_board(board)
    puts " #{board[0]} | #{board[1]} | #{board[2]} "
    puts "-----------"
@@ -96,6 +99,19 @@ def over?(board)
    !!won?(board) == true || draw?(board) == true
 end
 
+
+
+def current_player(board)
+  turn_count(board) % 2 == 0 ? "X" : "O"
+end
+
+def turn_count(board)
+  board.count{|token| token == "X" || token == "O"}
+end
+
+def move(board, location, player = "X")
+  board[location.to_i-1] = player
+end
 
 def winner(board)
   WIN_COMBINATIONS.each do |win_combination|
