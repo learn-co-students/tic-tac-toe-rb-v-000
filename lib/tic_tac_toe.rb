@@ -1,12 +1,5 @@
 ################################################
-###### WORK IN PROGRESS 
-###### failing tests
-###### #play checks if the game is won after every turn
-###### #play congratulates the winner X
-###### #play congratulates the winner O
-###### #play prints "Cats Game!" on a draw
-###### functional during execution but not tests
-###### Harleigh Abel April 6, 2017
+###### Harleigh Abel corrected May 1, 2018
 ###############################################
 
 WIN_COMBINATIONS = [[0, 1, 2],[3, 4, 5],[6, 7, 8],[0, 3, 6],[1, 4, 7],[2, 5, 8],[0, 4, 8],[2, 4, 6]]
@@ -30,36 +23,29 @@ def move(board, position, character)
 end
 
 def position_taken?(board, index)
-if board[index] == " " ||board[index] == "" || board[index] == nil
-  return false
-else
-  true
-end
+  if board[index] == " " ||board[index] == "" || board[index] == nil
+    return false
+  else
+    true
+  end
 end
 
 def valid_move? (board, index)
- if index.between?(0, 8) && !(position_taken?(board, index))
-   return true
- else
-   return false
- end
-end
+  index.between?(0, 8) && !(position_taken?(board, index)) ? true : false
+end  
 
 def turn(board)
- move = " "
- index = -1
- character = current_player(board)
- valid_move?(board, index)
- until valid_move?(board, index) == true
-   puts "Please enter an integer from 1-9: "
-   move = gets.strip
-   index = input_to_index(move)
-   "invalid"
- end
-   move(board, index, character)
-   display_board(board)
+    puts "Please enter 1-9: "
+    user_input = gets.strip
+    index = input_to_index(user_input)
+    
+    if !valid_move?(board, index)
+        turn(board)
+    end    
+    character = current_player(board)
+    move(board, index, character)
+    display_board(board)
 end
-
 
 def turn_count(board)
  counter = 0
@@ -122,40 +108,26 @@ def draw?(board) # tested and working
 end
 
 def over?(board)
- if winner(board) == "X" || winner(board) == "O" || full?(board) == true
-   return true
- else
-   false
- end
+  won?(board) || draw?(board) || full?(board) ? true : false
 end
 
 def winner(board)
- WIN_COMBINATIONS.each do |array|
-   win_combo = board[array[0]] + board[array[1]] + board[array[2]]
-   return "X" if win_combo == "XXX"
-   return "O" if win_combo == "OOO"
- end
- nil
-end
+  WIN_COMBINATIONS.each do |array|
+    win_combo = board[array[0]] + board[array[1]] + board[array[2]]
+    return "X" if win_combo == "XXX"
+    return "O" if win_combo == "OOO"
+  end
+  nil
+end  
 
 def play(board)
- while over?(board) == false
-   turn(board)
-   array = won?(board)
-   puts array
-   if winner(board) == "X"
-       puts "Congratulations X!"
-
-     elsif winner(board) =="O"
-       puts "Congratulations O!"
-       return array
-     else
-       false
-     end
-
-    if draw?(board) == true
-     puts "Cat's Game!"
-     return
-    end
+  until over?(board)
+    turn(board)
   end
-end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cats Game!"
+  end
+end  
+  
