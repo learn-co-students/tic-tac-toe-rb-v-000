@@ -13,7 +13,7 @@ describe "./bin/tictactoe" do
     allow(self).to receive(:play)
 
     board = get_variable_from_file("./bin/tictactoe", "board")
-
+    
     expect(board).to match_array([" "," "," "," "," "," "," "," "," "])
   end
 
