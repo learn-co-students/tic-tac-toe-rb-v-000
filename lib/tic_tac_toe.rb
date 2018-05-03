@@ -86,7 +86,7 @@ end
 
 def draw?(board) #checks if a draw
   if !won?(board) && full?(board)
-    puts "Cat's game!"
+    puts "Cat's Game!"
     return true
   end
 end
