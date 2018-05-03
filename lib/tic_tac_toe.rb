@@ -23,7 +23,7 @@ WIN_COMBINATIONS = [
 
 def input_to_index(input) #allows user to input
   move = input.to_i - 1 #gets user input, less one (1) to refer to array index
- end
+end
 
 def move(board, index, token) #establishes the location and "X" or "O" of the move
   board[index] = token
@@ -46,6 +46,7 @@ def turn(board) #runs the cycle of each player turn
     else
       turn(board)
     end
+end
 
 def turn_count(board)
   turn_count = 0
@@ -79,8 +80,8 @@ end
 
 def draw?(board) #checks if a draw
   if !won?(board) && full?(board)
-    return true
     puts "Cat's game!"
+    return true
   end
 end
 
