@@ -79,7 +79,7 @@ def full?(board) #checks if board full
   if !board.include?("") || !board.include?(" ") && !won?(board)
     return true
   end
-  if board.include?("") || board.include?(" ")
+  if board.include?("") || board.include?(" ") #NEED TO RETURN FALSE FOR IN-PROGRESS GAME
     return false
   end
 end
@@ -94,6 +94,8 @@ end
 def over?(board) #checks if game is over
   if won?(board) || full?(board) || draw?(board)
     return true
+  else
+    return false #NEED TO RETURN FALSE FOR IN-PROGRESS GAME
   end
 end
 
@@ -123,7 +125,7 @@ def play(board)
   if position_taken?(board, index)
     turn(board)
   end
-  # if? winner(board)
+  winner(board)
   over?(board)
   won?(board)
 end
