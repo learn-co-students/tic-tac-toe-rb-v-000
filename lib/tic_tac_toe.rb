@@ -79,7 +79,7 @@ def full?(board) #checks if board full
   if !board.include?("") || !board.include?(" ") && !won?(board)
     return true
   end
-  if board.include?("") || !board.include?(" ")
+  if board.include?("") || board.include?(" ")
     return false
   end
 end
