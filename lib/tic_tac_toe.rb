@@ -42,10 +42,10 @@ def turn(board) #runs the cycle of each player turn
     user_input = gets.strip
     index = input_to_index(user_input)
     if valid_move?(board, index) == true
-      move(board, index, value = "X")
-    else
+      move(board, index, current_player(board))
       turn(board)
     end
+    display_board(board)
 end
 
 def turn_count(board)
@@ -62,7 +62,7 @@ def current_player(board) #determines if current player is "X" or "O"
   if turn_count(board).even?
     return "X"
   else
-    return "0"
+    return "O"
   end
 end
 
@@ -75,18 +75,16 @@ end
 def full?(board) #checks if board full
   if !board.include?("") || !board.include?(" ")
     return true
-  end
-  if !board.include?("") || !board.include?(" ") && !won?(board)
+  elsif !board.include?("") || !board.include?(" ") && !won?(board)
     return true
-  end
-  if board.include?("") || board.include?(" ") #NEED TO RETURN FALSE FOR IN-PROGRESS GAME
-    return false
+ #  elsif board.include?("") || board.include?(" ") #NEED TO RETURN FALSE FOR IN-PROGRESS GAME
+  else false
   end
 end
 
 def draw?(board) #checks if a draw
   if !won?(board) && full?(board)
-    puts "Cat's Game!"
+    print "Cat's Game!"
     return true
   end
 end
