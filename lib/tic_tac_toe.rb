@@ -81,6 +81,7 @@ def full?(board) #checks if board full
   end
   if board.include?("") || !board.include?(" ")
     return false
+  end
 end
 
 def draw?(board) #checks if a draw
