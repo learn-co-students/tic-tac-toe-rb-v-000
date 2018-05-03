@@ -71,6 +71,9 @@ end
 def full?(board) #checks if board full
   if board.include?("") || board.include?(" ")
     return false
+    elsif draw?(board)
+      return true
+    end
  end
 end
 
