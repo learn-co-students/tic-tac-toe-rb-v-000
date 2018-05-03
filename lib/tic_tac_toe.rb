@@ -70,20 +70,20 @@ end
 
 def full?(board) #checks if board full
   if board.include?("") || board.include?(" ")
-    false
+    return false
  end
 end
 
 def draw?(board) #checks if a draw
   if !won?(board) && full?(board)
-    true
+    return true
     puts "Cat's game!"
   end
 end
 
 def over?(board) #checks if game is over
   if won?(board) || full?(board) || draw?(board)
-    true
+    return true
   end
 end
 
@@ -94,6 +94,7 @@ def winner(board) #checks if a winner or not
       puts "Congratulations X!"
     else
       puts "Congratulations O!"
+    end
   else
     nil
   end
