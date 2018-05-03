@@ -73,13 +73,14 @@ def won?(board) #checks for winning combination
 end
 
 def full?(board) #checks if board full
-  if !board.include?("") || !board.include?(" ")
-    return true
-  elsif !board.include?("") || !board.include?(" ") && !won?(board)
-    return true
+  board.all? {|cell| cell == "X" || cell == "O"}
+  #if !board.include?("") || !board.include?(" ")
+#    return true
+#  elsif !board.include?("") || !board.include?(" ") && !won?(board)
+#    return true
  #  elsif board.include?("") || board.include?(" ") #NEED TO RETURN FALSE FOR IN-PROGRESS GAME
-  else false
-  end
+#  else false
+#  end
 end
 
 def draw?(board) #checks if a draw
