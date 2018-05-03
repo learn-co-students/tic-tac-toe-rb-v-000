@@ -20,23 +20,23 @@ WIN_COMBINATIONS = [
   [6, 4, 2]  #LL to UR diagonal
   ]
   
-def input_to_index(input)
+def input_to_index(input) #allows user to input
   move = input.to_i - 1 #gets user input, less one (1) to refer to array index
  end 
 
-def move(board, index, current_player = "X")
-  board[index] = current_player
+def move(board, index, token) #establishes the location and "X" or "O" of the move
+  board[index] = token
 end
 
-def position_taken?(board, index)
+def position_taken?(board, index) #checks to see if position is taken
   board[index] != "" && board[index] != " "
 end
 
-def valid_move?(board, index)
+def valid_move?(board, index) #checks if a valid move
   index.between?(0,8) && !position_taken?(board, index)
 end
 
-def turn(board)
+def turn(board) #runs the cycle of each player turn
   puts "Please enter 1-9:"
     user_input = gets.strip
     index = input_to_index(user_input)
@@ -49,7 +49,7 @@ def turn(board)
 def turn_count(board)
 end
 
-def current_player(board)
+def current_player(board) #determines if current player is "X" or "O"
   if turn_count(board).even
     return "X"
   else
@@ -57,31 +57,32 @@ def current_player(board)
   end
 end
 
-def won?(board)
+def won?(board) #checks for winning combination
   WIN_COMBINATIONS.detect do | win_combination |
     board[win_combination[0]] == board[win_combination[1]] && board[win_combination[0]] == board[win_combination[2]] && position_taken?(board, win_combination[0]) # checks if is "X" or "O" that occupies [0], which tells you implicitly which player occupies rest of WIN_COMBINATION that wins
   end
 end
 
-def full?(board)
+def full?(board) #checks if board full
   if board.include?("") || board.include?(" ")
     false
  end
 end
 
-def draw?(board)
+def draw?(board) #checks if a draw
   if !won?(board) && full?(board)
     true
+    puts "Cat's game!"
   end
 end
 
-def over?(board)
+def over?(board) #checks if game is over
   if won?(board) || full?(board) || draw?(board)
     true
   end
 end
 
-def winner(board)
+def winner(board) #checks if a winner or not
   if won?(board)
     return board[won?(board)[0]] #returns the first instance of the winning player "X" or "O"
   else
@@ -96,4 +97,8 @@ def play(board)
     turn(board)
     turn += 1
   end
+end
+
+def play(board)
+  
 end
