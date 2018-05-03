@@ -47,11 +47,12 @@ def turn(board) #runs the cycle of each player turn
     end
 
 def turn_count(board)
-  occupied = 0
-    board.each do | taken |
-      turn(board)
-      occupied +=1
-    end
+  board.each do | cell |
+    occupied = 0
+      if cell !="" || cell != " "
+        occupied +=1
+      end
+  end
 end
 
 def current_player(board) #determines if current player is "X" or "O"
@@ -102,7 +103,6 @@ def winner(board) #checks if a winner or not
     nil
   end
 end
-end
 
 def play(board)
   turn = 0
@@ -115,5 +115,7 @@ end
 def play(board)
   over?(board)
   turn(board)
+  winner(board)
   over?(board)
+  won?(board)
 end
