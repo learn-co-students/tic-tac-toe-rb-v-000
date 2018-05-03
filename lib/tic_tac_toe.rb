@@ -47,10 +47,14 @@ def turn(board) #runs the cycle of each player turn
     end
 
 def turn_count(board)
-  occupied = 0
-  board(index[]).each do
-  if position_taken?(board, index)
-    occupied +=1
+  X = 0
+  O = 0
+  board(index).each do | count |
+    if position_taken?(board, index) == "X"
+      X += 1
+      elsif position_taken?(board, index) == "O"
+        O += 1
+    end
   end
 end
 
