@@ -47,6 +47,11 @@ def turn(board) #runs the cycle of each player turn
     end
 
 def turn_count(board)
+  occupied = 0
+    board.each do | taken |
+      turn(board)
+      occupied +=1
+    end
 end
 
 def current_player(board) #determines if current player is "X" or "O"
@@ -85,6 +90,10 @@ end
 def winner(board) #checks if a winner or not
   if won?(board)
     return board[won?(board)[0]] #returns the first instance of the winning player "X" or "O"
+    if board[won?(board)[0]] == "X"
+      puts "Congratulations X!"
+    else
+      puts "Congratulations O!"
   else
     nil
   end
@@ -102,4 +111,5 @@ end
 def play(board)
   over?(board)
   turn(board)
+  over?(board)
 end
