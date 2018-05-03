@@ -1,3 +1,4 @@
+require "pry"
 #board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
 def display_board(board)
@@ -47,19 +48,17 @@ def turn(board) #runs the cycle of each player turn
     end
 
 def turn_count(board)
-  X = 0
-  O = 0
-  board(index).each do | count |
-    if position_taken?(board, index) == "X"
-      X += 1
-      elsif position_taken?(board, index) == "O"
-        O += 1
+  turn_count = 0
+  board.each do | cell |
+    if cell == "X" || cell == "O"
+      turn_count += 1
     end
   end
+  return turn_count
 end
 
 def current_player(board) #determines if current player is "X" or "O"
-  if turn_count(board).even
+  if turn_count(board).even?
     return "X"
   else
     return "0"
@@ -75,9 +74,10 @@ end
 def full?(board) #checks if board full
   if board.include?("") || board.include?(" ")
     return false
-    elsif draw?(board)
-      return true
-    end
+  end
+  if draw?(board)
+    return true
+  end
  end
 end
 
