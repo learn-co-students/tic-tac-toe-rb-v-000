@@ -47,9 +47,9 @@ def turn(board) #runs the cycle of each player turn
     end
 
 def turn_count(board)
-  board.each do | cell |
+  position_taken?(board, index).each do | check_cell |
     occupied = 0
-      if cell !="" || cell != " "
+      if check_cell !="" || check_cell != " "
         occupied +=1
       end
   end
@@ -115,7 +115,10 @@ end
 def play(board)
   over?(board)
   turn(board)
-  winner(board)
+  if position_taken?(board, index)
+    turn(board)
+  end
+  # if? winner(board)
   over?(board)
   won?(board)
 end
