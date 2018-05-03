@@ -43,9 +43,9 @@ def turn(board) #runs the cycle of each player turn
     index = input_to_index(user_input)
     if valid_move?(board, index) == true
       move(board, index, current_player(board))
+    else
       turn(board)
     end
-    display_board(board)
 end
 
 def turn_count(board)
@@ -122,6 +122,7 @@ def play(board)
   turn(board)
   if position_taken?(board, index)
     turn(board)
+    over?(board)
   end
   winner(board)
   over?(board)
