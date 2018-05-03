@@ -73,9 +73,11 @@ def won?(board) #checks for winning combination
 end
 
 def full?(board) #checks if board full
-  if board.include?("") || board.include?(" ")
-    return false
+  if !board.include?("") || !board.include?(" ")
+    return true
   end
+  if !board.include?("") || !board.include?(" ") && !won?(board)
+    return true
 end
 
 def draw?(board) #checks if a draw
