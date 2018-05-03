@@ -20,10 +20,10 @@ WIN_COMBINATIONS = [
   [0, 4, 8], #UL to LR diagonal
   [6, 4, 2]  #LL to UR diagonal
   ]
-  
+
 def input_to_index(input) #allows user to input
   move = input.to_i - 1 #gets user input, less one (1) to refer to array index
- end 
+ end
 
 def move(board, index, token) #establishes the location and "X" or "O" of the move
   board[index] = token
@@ -75,10 +75,6 @@ def full?(board) #checks if board full
   if board.include?("") || board.include?(" ")
     return false
   end
-  if draw?(board)
-    return true
-  end
- end
 end
 
 def draw?(board) #checks if a draw
