@@ -93,12 +93,11 @@ end
 
 def draw?(board) #checks if a draw
   if !won?(board) && full?(board)
-#    print "Cat's Game!"
     return true
-  elsif !won?(board) && !full?(board)
-    return false
-  else won?(board)
-    return false
+#  elsif !won?(board) && !full?(board)
+#    return false
+#  else won?(board)
+#    return false
   end
 end
 
