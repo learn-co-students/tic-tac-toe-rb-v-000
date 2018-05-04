@@ -123,26 +123,23 @@ def winner(board) #checks if a winner or not
   end
 end
 
-#def play(board)
-#  turn = 0
-#  while turn < 9
-#    turn(board)
-#    turn += 1
-#  end
-#end
 def play(board)
-#  over?(board)
-  turn(board)
-  input_to_index(user_input)
-  if position_taken?(board, index) == true
+  turn = 0
+  while turn < 9
     turn(board)
-    over?(board)
+    turn += 1
   end
+end
 
-  if draw?(board) == true
-    print "Cat's Game!"
+def play(board)
+#  input = gets
+  until over?(board)
+    turn(board)
   end
-  winner(board)
-  over?(board)
-  won?(board)
+  if won?(board)
+    winner?(board) == "X" || winner?(board) == "O"
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
+  end
 end
