@@ -21,8 +21,8 @@ WIN_COMBINATIONS = [
   [6, 4, 2]  #LL to UR diagonal
   ]
 
-def input_to_index(input) #allows user to input
-  move = input.to_i - 1 #gets user input, less one (1) to refer to array index
+def input_to_index(user_input) #allows user to input
+  user_input.to_i - 1 #gets user input, less one (1) to refer to array index
 end
 
 def move(board, index, token) #establishes the location and "X" or "O" of the move
@@ -30,11 +30,19 @@ def move(board, index, token) #establishes the location and "X" or "O" of the mo
 end
 
 def position_taken?(board, index) #checks to see if position is taken
-  board[index] != "" && board[index] != " "
+  if board[index] == "" || board[index] == " "
+  return false
+  else
+  return true
+  end
 end
 
 def valid_move?(board, index) #checks if a valid move
-  index.between?(0,8) && !position_taken?(board, index)
+  if index.between?(0,8) && !position_taken?(board, index)
+  return true
+  else
+  return false
+  end
 end
 
 def turn(board) #runs the cycle of each player turn
