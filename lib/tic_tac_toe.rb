@@ -48,6 +48,7 @@ end
 def turn(board) #runs the cycle of each player turn
   puts "Please enter 1-9:"
     user_input = gets.strip
+    input_to_index(user_input) #delete this if doesn't fix
     index = input_to_index(user_input)
     if valid_move?(board, index) == true
       move(board, index, current_player(board))
@@ -112,13 +113,13 @@ end
 def winner(board) #checks if a winner or not
   if won?(board)
     return board[won?(board)[0]] #returns the first instance of the winning player "X" or "O"
-    if board[won?(board)[0]] == "X"
-      puts "Congratulations X!"
-    else
-      puts "Congratulations O!"
-    end
-  else
-    nil
+#    if board[won?(board)[0]] == "X"
+#      puts "Congratulations X!"
+#    else
+#      puts "Congratulations O!"
+#    end
+#  else
+#    nil
   end
 end
 
@@ -130,11 +131,16 @@ end
 #  end
 #end
 def play(board)
-  over?(board)
+#  over?(board)
   turn(board)
-  if position_taken?(board, index)
+  input_to_index(user_input)
+  if position_taken?(board, index) == true
     turn(board)
     over?(board)
+  end
+
+  if draw?(board) == true
+    print "Cat's Game!"
   end
   winner(board)
   over?(board)
