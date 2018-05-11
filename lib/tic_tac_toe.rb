@@ -41,8 +41,10 @@ def turn(board)
   input = gets.strip
   index = input_to_index(input)
   if !valid_move?(board, index)
+    puts "Whoops! That's not a valid move!"
     turn(board)
   end
+  token = current_player(board)
   move(board, index, token)
   display_board(board)
 end
@@ -87,13 +89,16 @@ def over?(board)
 end
 
 def winner(board)
-  if won?(board)
-      board[won?(board)[0]]
-  end
+  won?(board) && board[won?(board)[0]]
 end
 
 def play(board)
   until over?(board)
     turn(board)
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  else
+    puts "Cat's Game!"
   end
 end
