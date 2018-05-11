@@ -9,6 +9,8 @@ WIN_COMBINATIONS = [
   [2,4,6]
 ]
 
+
+
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
@@ -61,6 +63,7 @@ def play(board)
   until over?(board)
     turn(board)
   end
+  message(board)
 end
 
 def won?(board)
@@ -87,7 +90,7 @@ def winner(board)
   end
 end
 
-def message
+def message(board)
   if won?(board)
     puts "Congratulations #{winner(board)}!"
   elsif draw?(board)
