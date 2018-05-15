@@ -47,9 +47,9 @@ end
 def turn(board) #runs the cycle of each player turn
   puts "Please enter 1-9:"
     user_input = gets.strip
-    input_to_index(user_input) #delete this if doesn't fix
+    #input_to_index(user_input) #delete this if doesn't fix
     index = input_to_index(user_input)
-    if valid_move?(board, index) == true
+    if valid_move?(board, index) 
       move(board, index, current_player(board))
     else
       turn(board)
