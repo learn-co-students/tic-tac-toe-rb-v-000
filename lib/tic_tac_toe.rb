@@ -12,10 +12,18 @@ board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
 # Define your play method below
 def play(board)
-  total_turns = 0
-  until total_turns == 9
+
+  while !over?(board)
     turn(board)
-    total_turns += 1
+  end
+
+  if won?(board)
+    wplayer = winner(board)
+    puts "Congratulations #{wplayer}!"
+  elsif draw?(board)
+    puts "Cat\'s Game!"
+  else
+    puts "Keep on playing!"
   end
 end
 
@@ -24,7 +32,7 @@ def turn_count(board)
 end
 
 def current_player(board)
-  turn_count(board)%2 == 0? return "X" : return "O"
+  turn_count(board)%2 == 0? "X" : "O"
 end
 
 def turn(board)
@@ -32,17 +40,14 @@ def turn(board)
   puts "Please enter 1-9:"
   input = gets.chomp
   index = input_to_index(input)
+  player = current_player(board)
 
   if valid_move?(board, index)
-    move(board, index, token = "X")
+    move(board, index, player)
     display_board(board)
   else
-    while valid_move?(board, index) == false
-      puts "That is not a valid move!"
-      puts "Please enter 1-9:"
-      input = gets.chomp
-      index = input_to_index(input)
-    end
+    puts "That is not a valid move!"
+    turn(board)
   end
 end
 
@@ -72,8 +77,8 @@ def position_taken?(board, index)
   end
 end
 
-def move(board, index, token)
-  board[index] = token
+def move(board, index, player)
+  board[index] = player
 end
 
 def display_board(board)
@@ -85,31 +90,39 @@ def display_board(board)
 end
 
 def won?(board)
-  w = WIN_COMBINATIONS.detect {|combo| combo[0] == combo[1] && combo[1] == combo[2] && position_taken?(board, combo[0])}
-  if w != nil
+  win_line = WIN_COMBINATIONS.detect {|line| board[line[0]] == board[line[1]] && board[line[1]] == board[line[2]] && position_taken?(board, line[0])}
+  if win_line != nil
+    return win_line
+  else
+      return false
+  end
+end
+
+def winner(board)
+  win_line = WIN_COMBINATIONS.detect {|line| board[line[0]] == board[line[1]] && board[line[1]] == board[line[2]] && position_taken?(board, line[0])}
+  if win_line != nil
+    return board[win_line[0]]
+  else
+      return nil
+  end
+end
+
+def full?(board)
+  board.all? {|item| item == "X" || item == "O"}
+end
+
+def draw?(board)
+  if !won?(board) && full?(board)
     return true
   else
     return false
   end
 end
 
-def winner(board)
-  unless won?(board)
-    return nil
-  else
-    winning_combo = WIN_COMBINATIONS.detect {|combo| combo[0] == combo[1] && combo[1] == combo[2] && position_taken?(board, combo[0])}
-    return winning_combo[0]
-  end
-end
-
-def full?(board)
-  board.all? {|index| position_taken?(board, index)}
-end
-
-def draw?(board)
-  (won?(board) == false) && (full?(board) == true)
-end
-
 def over?(board)
-  won?(board) || draw?(board)
+  if won?(board) || draw?(board)
+    return true
+  else
+    return false
+  end
 end
