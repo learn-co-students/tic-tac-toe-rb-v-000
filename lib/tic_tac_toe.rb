@@ -102,7 +102,7 @@ def draw?(board) #checks if a draw
 end
 
 def over?(board) #checks if game is over
-  if won?(board) || full?(board) || draw?(board)
+  if won?(board) || draw?(board)
     return true
   else
     return false #NEED TO RETURN FALSE FOR IN-PROGRESS GAME
@@ -122,13 +122,13 @@ def winner(board) #checks if a winner or not
   end
 end
 
-def play(board)
-  turn = 0
-  while turn < 9
-    turn(board)
-    turn += 1
-  end
-end
+#def play(board)
+#  turn = 0
+#  while turn < 9
+#    turn(board)
+#    turn += 1
+#  end
+#end
 
 def play(board)
 #  input = gets
