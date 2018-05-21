@@ -26,6 +26,18 @@ WIN_COMBINATIONS = [
   [2,4,6],
 ]
 
+# play method
+def play(board)
+  while !over?(board) && !draw?(board)
+    turn(board)
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
+  end
+end
+
 # display_board
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
@@ -34,6 +46,7 @@ def display_board(board)
   puts "-----------"
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
+
 
 #sample user_input to use until the CLI is built
 user_input = "6"
@@ -75,8 +88,9 @@ def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
+  value = current_player(board)
   if valid_move?(board, index)
-    move(board, index, user_marker)
+    move(board, index, value)
     display_board(board)
 else
     turn(board)
@@ -141,7 +155,6 @@ def winner(board)
     return nil
   end
 end
-# move method using array, index & X or O 
-def move(board, converted_input, user_marker = "X")
-  board[converted_input] = user_marker
-end
+
+
+
