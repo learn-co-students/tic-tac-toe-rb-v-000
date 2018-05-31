@@ -1,4 +1,3 @@
-# Define your WIN_COMBINATIONS constant
 WIN_COMBINATIONS = [
   [0,1,2],
   [3,4,5],
@@ -35,7 +34,7 @@ def turn(board)
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board, index)
-    move(board, index)
+    move(board, index, current_player(board))
     display_board(board)
   else
     turn(board)
@@ -60,8 +59,8 @@ def current_player(board)
   end
 end
 
-def move(board, index, current_player = "O")
-  board[index] = current_player(board)
+def move(board, index, current_player)
+  board[index] = current_player
 end
 
 def won?(board)
