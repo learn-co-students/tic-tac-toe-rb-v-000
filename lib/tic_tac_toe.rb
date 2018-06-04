@@ -21,7 +21,7 @@ def input_to_index(number)
  number.to_i - 1
 end
 
-def move(board,index,value = "X")
+def move(board,index,value)
   board[index] = value
 end
 
@@ -38,7 +38,7 @@ def turn(board)
   number = gets.strip
   index = input_to_index(number)
   if valid_move?(board,index)
-     move(board, index, value)
+     move(board, index, value = "X")
     else turn(board)
     end
   display_board(board)
