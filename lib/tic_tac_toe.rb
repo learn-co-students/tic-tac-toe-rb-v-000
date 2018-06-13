@@ -32,9 +32,14 @@ def move (array, index, player)
 array[index]=player
 end
 
+def position_taken?(board, index)
 
+  !(board[index].nil? || board[index] == " ")
+
+end
 
 def valid_move?(board, index)
+  binding.pry
  if position_taken?(board, index)==false
    return false
  elsif position_taken?(board, index)==nil
