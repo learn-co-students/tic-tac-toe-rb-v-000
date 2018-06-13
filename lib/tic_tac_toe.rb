@@ -9,6 +9,16 @@ WIN_COMBINATIONS = [
   [6, 4, 2]
 ]
 
+def play(board)
+  until over?(board) == true
+    turn(board)
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
+  end
+end
+
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
@@ -86,9 +96,4 @@ def winner(board)
   if win_move = won?(board)
     board[win_move[0]]
   end
-end
-
-def play(board)
-  until over?(board) == true || won?(board) != false
-    turn(board)
 end
