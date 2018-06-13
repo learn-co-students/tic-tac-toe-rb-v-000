@@ -33,22 +33,27 @@ array[index]=player
 end
 
 def position_taken?(board, index)
-
+#binding.pry
+#index=input_to_index(index)
   !(board[index].nil? || board[index] == " ")
 
 end
 
 def valid_move?(board, index)
-  binding.pry
- if position_taken?(board, index)==false
+  #  binding.pry
+  check=index
+  board.any do |check|
+    board[check] == " "
+  end
+
+    end
+=begin if position_taken?(board, index) == true
    return false
- elsif position_taken?(board, index)==nil
-   return false
-elsif position_taken?(board, index)=="X"||board[index]=="O"
+# elsif position_taken?(board, position)==nil
+#   return true
+elsif position_taken?(board, index) == false
   return true
-
- else return true
  end
-
-
+binding.pry
+=end
 end
