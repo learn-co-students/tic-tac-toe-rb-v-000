@@ -27,6 +27,7 @@ def turn_count(board)
     if index == "X" || index == "O"
       turn_counter += 1
     end
+  end
   turn_counter
 end
 
@@ -36,7 +37,6 @@ end
 
 def move(board, index, player)
   board[index] = player
-  board
 end
 
 def position_taken?(board, index)
@@ -56,5 +56,30 @@ def turn(board)
     else
       turn(board)
     end
+end
+
+def won?(board)
+  WIN_COMBINATIONS.detect do |win_index|
+    if board[win_index[0]] == "X" && board[win_index[1]] == "X" && board[win_index[2]] == "X"
+      return WIN_COMBINATIONS
+    end
+  end
+end
+
+def full?(board)
+  board.all?{|index| index == "X" || index == "O"}
+end
+
+def draw?(board)
+  !won?(board) && full?(board)
+end
+
+def over?(board)
+  won?(board) || draw?(board) || full?(board)
+end
+
+def winner(board)
+  if winning_move = won?(board)
+    board[winning_move[0]]
   end
 end
