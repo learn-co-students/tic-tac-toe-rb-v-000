@@ -9,6 +9,17 @@ WIN_COMBINATIONS = [
   [6, 4, 2]
 ]
 
+def play(board)
+  until over?(board)
+    turn(board)
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
+  end
+end
+
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
@@ -60,9 +71,7 @@ end
 
 def won?(board)
   WIN_COMBINATIONS.detect do |win_index|
-    if board[win_index[0]] == "X" && board[win_index[1]] == "X" && board[win_index[2]] == "X"
-      return WIN_COMBINATIONS
-    end
+    board[win_index[0]] == board[win_index[1]] && board[win_index[1]] == board[win_index[2]] && position_taken?(board, win_index[0])
   end
 end
 
