@@ -40,13 +40,38 @@ def position_taken?(board, index)
 end
 
 def valid_move?(board, index)
-  #  binding.pry
-  check=index
-  board.any do |check|
-    board[check] == " "
-  end
+binding.pry
+if board[index] == " "
+board[index].include?(" ")
+elsif board[index] == "X"
+board[index].include?("X")
+return false
+elsif board[index] == "O"
+board[index].include?("O")
+return false
+elsif board[index] == nil
+board[index].include? (nil)
+return false
+end
 
-    end
+
+=begin  return true
+  elsif board[index].any?{|i| i=="X"} ==true
+    return false
+  elsif board[index].any?{|i| i=="O"} ==true
+    return false
+  elsif board[index].any?{|i| i==nil} ==true
+    return false
+=end
+end
+
+
+
+
+
+
+
+
 =begin if position_taken?(board, index) == true
    return false
 # elsif position_taken?(board, position)==nil
@@ -56,4 +81,3 @@ elsif position_taken?(board, index) == false
  end
 binding.pry
 =end
-end
