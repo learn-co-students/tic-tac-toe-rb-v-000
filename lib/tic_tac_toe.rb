@@ -8,7 +8,7 @@ WIN_COMBINATIONS = [
   [0,4,8],
   [2,4,6]
   ]
-  
+
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
@@ -46,23 +46,19 @@ def turn(board)
 end
 
 def turn_count(board)
-  counter = 0 
+  counter = 0
     board.each do |player|
       if player == "X" || player == "O"
-        counter += 1 
+        counter += 1
       end
     end
     counter
-  end 
-  
-def current_player(board)
-    if turn_count(board) .even?
-      "X"
-    else turn_count(board) .odd? 
-      "O"
-    end
   end
-  
+
+def current_player(board)
+    turn_count(board).even? ? "X" : "O"
+end
+
   def won?(board)
 
   WIN_COMBINATIONS.detect do |win_combination|
@@ -88,7 +84,7 @@ def full?(board)
   if board.detect {|element| element == " "}
       false
     else
-      true 
+      true
   end
 end
 
@@ -96,15 +92,15 @@ def draw?(board)
   if !won?(board) && full?(board)
     true
   else
-    false 
-  end   
+    false
+  end
 end
 
 def over?(board)
  if won?(board) || draw?(board) || full?(board)
-   true 
+   true
   else
-  false 
+  false
   end
 end
 
