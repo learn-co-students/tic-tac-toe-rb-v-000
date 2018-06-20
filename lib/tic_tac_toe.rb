@@ -49,11 +49,30 @@ def turn(board)
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board, index)
-    move(board, index, board[index])
+    move(board, index)
     display_board(board)
   else
-    puts turn(board)
+    turn(board)
 end
 end
 
+def turn_count(board)
+  counter = 0
+  board.each do |token|
+    if token == "X" || token == "O"
+      counter += 1
+    end
+  end
+  return counter
+end
+  
+def current_player(board)
+  if turn_count(board).even?
+    return "X"
+  else 
+   return "O"
+  end
+end
 
+
+  
