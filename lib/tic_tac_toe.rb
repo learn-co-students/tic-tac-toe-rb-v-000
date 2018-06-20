@@ -123,3 +123,16 @@ def winner(board)
     board[won?(board)[0]]
   end
 end
+
+def play(board)
+  over?(board)
+    if won?(board)
+      winning_token = winner(board)
+      puts "Congratulations #{winning_token}!"
+    elsif draw?(board)
+      puts "Cat's Game!"
+  elsif !over?(board)
+        turn(board)
+        play(board)
+  end
+end
