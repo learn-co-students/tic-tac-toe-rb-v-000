@@ -113,10 +113,11 @@ def draw?(board)
 end
 
 def over?(board)
-  won?(board) || draw?(board) || full?(board)
+  if won?(board) || draw?(board) || full?(board)
+    return true
+  else 
+    return false
   end
-else 
-  return false
 end
 
 def winner(board)
