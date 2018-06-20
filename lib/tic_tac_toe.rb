@@ -125,7 +125,7 @@ def winner(board)
 end
 
 def play(board)
-  over?(board)
+  if over?(board)
     if won?(board)
       winning_token = winner(board)
       puts "Congratulations #{winning_token}!"
@@ -134,5 +134,8 @@ def play(board)
   elsif !over?(board)
         turn(board)
         play(board)
+      end
   end
 end
+
+
