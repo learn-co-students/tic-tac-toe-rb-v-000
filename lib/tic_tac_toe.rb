@@ -125,17 +125,17 @@ def winner(board)
 end
 
 def play(board)
-  if over?(board)
-    if won?(board)
-      winning_token = winner(board)
-      puts "Congratulations #{winning_token}!"
-    elsif draw?(board)
-      puts "Cat's Game!"
-  elsif !over?(board)
-        turn(board)
-        play(board)
-      end
+  until over?(board)
+    turn(board)
+    play(board)
   end
+  if won?(board)
+    winning_token = winner(board)
+    puts "Congratulations #{winning_token}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
+    end
 end
+
 
 
