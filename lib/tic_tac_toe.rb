@@ -59,12 +59,11 @@ def turn(board)
   puts "Your move is to space #{user_input}."
 
   position = input_to_index(user_input)
-  token = "X" || "O"
 
   if valid_move?(board, position)
-    move(board, position, token)
+    move(board, position, current_player(board))
     display_board(board)
-    puts 'Great move!  Now sit tight while "O" makes their move.'
+    puts 'Great move!  Now sit tight while the other player makes their move.'
 
   else
     turn(board)
@@ -112,41 +111,18 @@ end
 
 
 def play(board)
-  until over?(board) == true do
+  until over?(board)
     turn(board)
   end
 
-  # if won?(board) != false
-  #   puts "Congratulations #{winner}!"
-  # elsif draw?(board) != false
-  #   puts "It's a cats game."
-  # else 
-  #   puts "Game over."
-  # end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+   puts "Cat's Game!"
+  else 
+   puts "Game over."
+  end
 end
-
-
-# pass board to every method
-# user input position = board
-# keep track of which player's turn it is 
-# after every turn check to see if there's a winner
-# if there is a winner, congratulate them
-# if it's a tie, let both players know
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
