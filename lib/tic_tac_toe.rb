@@ -20,12 +20,6 @@ def display_board(board)
 end
 
 
-board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-
-
-display_board(board)
-
-
 def input_to_index(user_input)
   user_input = user_input.to_i
   user_input + -1
@@ -43,8 +37,8 @@ def current_player(board)
 end
 
 
-def move(board, index, current_player)
-  board[index] = current_player
+def move(board, index, token)
+  board[index] = token
 end
 
 
@@ -122,13 +116,13 @@ def play(board)
     turn(board)
   end
 
-  if won?(board) != false
-    puts "Congratulations #{winner(board)}!"
-  elsif draw?(board) != false
-    puts "It's a cats game."
-  else 
-    puts "Game over."
-  end
+  # if won?(board) != false
+  #   puts "Congratulations #{winner}!"
+  # elsif draw?(board) != false
+  #   puts "It's a cats game."
+  # else 
+  #   puts "Game over."
+  # end
 end
 
 
