@@ -32,9 +32,19 @@ def input_to_index(user_input)
 end
 
 
-def move(board, index, token)
-  board[index] = token
-  token = "X" || "O"
+def turn_count(board)
+  turn_count = 9 - board.count(" ")
+end
+
+
+def current_player(board)
+  turn_count = 9 - board.count(" ")
+     turn_count.even? == true ? current_player = "X" : current_player = "O"
+end
+
+
+def move(board, index, current_player)
+  board[index] = current_player
 end
 
 
@@ -65,17 +75,6 @@ def turn(board)
   else
     turn(board)
   end
-end
-
-
-def turn_count(board)
-  turn_count = 9 - board.count(" ")
-end
-
-
-def current_player(board)
-  turn_count = 9 - board.count(" ")
-     turn_count.even? == true ? current_player = "X" : current_player = "O"
 end
 
 
@@ -119,19 +118,17 @@ end
 
 
 def play(board)
-  current_player(board)
-  turn(board) until won?(board) || draw?(board) || over?(board)
-    if board[won?(board)[0]] = "X"
-      puts "Congratulations X!"
-    elsif board[won?(board)[0]] = "O"
-      puts "Congratulations O!"
-    
-    elsif draw?(board)
-      puts "It's a cats game."
-    
-    else over?(board)
-    
-    end
+  until over?(board) == true do
+    turn(board)
+  end
+
+  if won?(board) != false
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board) != false
+    puts "It's a cats game."
+  else 
+    puts "Game over."
+  end
 end
 
 
@@ -141,6 +138,21 @@ end
 # after every turn check to see if there's a winner
 # if there is a winner, congratulate them
 # if it's a tie, let both players know
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -173,6 +185,7 @@ end
 # def valid_move?(board, index)
 #   index.between?(0,8) && !position_taken?(board, index)
 # end
+
 
 # def turn(board)
 #   puts "Please enter 1-9:"
