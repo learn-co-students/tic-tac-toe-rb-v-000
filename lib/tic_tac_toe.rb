@@ -56,14 +56,13 @@ def turn(board)
   puts "Please enter 1-9:"
 
   user_input = gets.chomp
-  puts "Your move is to space #{user_input}."
 
   position = input_to_index(user_input)
 
   if valid_move?(board, position)
     move(board, position, current_player(board))
     display_board(board)
-    puts 'Great move!  Now sit tight while the other player makes their move.'
+    puts 'Great move!'
 
   else
     turn(board)
