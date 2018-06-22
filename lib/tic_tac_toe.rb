@@ -46,7 +46,7 @@ def turn(board)
 
   if valid_move?(board, index)
     # TODO put current player here
-    move(board, index, "X")
+    move(board, index, current_player(board))
     display_board(board)
   else
     turn(board)
@@ -110,6 +110,14 @@ def winner(board)
   end
 end
 
+def congratulate(winner)
+  puts "Congratulations #{winner}!"
+end
+
+def draw_message
+  puts "Cat's Game!"
+end
+
 # currently on the play loop
 def play(board)
   until over?(board)
@@ -117,10 +125,9 @@ def play(board)
   end
 
   if won?(board)
-
+    congratulate(winner(board))
   elsif draw?(board)
-
-  else
+    draw_message
   end
 
 end
