@@ -17,3 +17,99 @@ WIN_COMBINATIONS = [
   puts "-----------"
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
+
+def input_to_index(input)
+  index=input.to_i 
+  index - 1
+end
+
+def move(board, index, char)
+  board[index]=char
+end
+
+def position_taken?(board, index)
+  !(board[index].nil? || board[index] == " ")
+end
+
+def valid_move?(board, index) 
+  if (index.between?(0,8) && !position_taken?(board, index))
+    true
+  else 
+    false
+  end
+end
+
+def turn(board)
+  puts "Please enter 1-9:"
+  input=gets
+  index=input_to_index(input)
+ if !valid_move?(board, index) 
+  turn(board)
+    else
+   move(board, index, char='X')
+   display_board(board)
+  end
+end
+
+def turn_count(board)
+move = []
+
+board.each do  |index|
+  if index == "X" || index == "O"
+    move.push(1)
+  end
+end 
+move.length
+end
+
+def current_player(board)
+  turn_count(board)
+  if turn_count(board).even?
+    return "X"
+  elsif turn_count(board).odd?
+  return "O"
+  end
+end
+
+def won?(board)
+  WIN_COMBINATIONS.detect do |array|
+      (board[array[0]] == "X"  && board[array[1]] == "X" && board[array[2]] == "X")  || ( board[array[0]] == "O"  && board[array[1]] == "O" && board[array[2]] == "O")
+  end
+end
+
+def full?(board)
+  WIN_COMBINATIONS.detect do |array|
+     (board[array[0]] == "X"  && board[array[1]] == "O" && board[array[2]] == "X")  
+    end
+end 
+
+def draw?(board)
+   if full?(board) && over?(board) && !won?(board)
+     true
+    end
+end
+
+def over?(board)
+  WIN_COMBINATIONS.any? do |array|
+    (board[array[0]] == "X"  && board[array[1]] == "O" && board[array[2]] == "X") 
+  end
+end
+
+def winner(board)
+   WIN_COMBINATIONS.detect do |array|
+  if board[array[0]] == "X"  && board[array[1]] == "X" && board[array[2]] == "X"
+       return "X" 
+    elsif board[array[0]] == "O"  && board[array[1]] == "O" && board[array[2]] == "O"
+       return "O" 
+     end
+  end
+end
+
+def play(board)
+ until over?(board)
+ turn(board)
+ 
+end
+ end
+ 
+  
