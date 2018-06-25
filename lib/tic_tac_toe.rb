@@ -43,11 +43,11 @@ def turn(board)
   puts "Please enter 1-9:"
   input=gets
   index=input_to_index(input)
- if !valid_move?(board, index) 
-  turn(board)
-    else
-   move(board, index, char='X')
+ if valid_move?(board, index) 
+  move(board, index, char='X')
    display_board(board)
+    else
+   turn(board)
   end
 end
 
@@ -78,15 +78,11 @@ def won?(board)
 end
 
 def full?(board)
-  WIN_COMBINATIONS.detect do |array|
-     (board[array[0]] == "X"  && board[array[1]] == "O" && board[array[2]] == "X")  
-    end
-end 
+  board.all? {|space| space =="X" || space == "O" }
+end
 
 def draw?(board)
-   if full?(board) && over?(board) && !won?(board)
-     true
-    end
+   full?(board) && over?(board) && !won?(board)
 end
 
 def over?(board)
@@ -98,7 +94,7 @@ end
 def winner(board)
    WIN_COMBINATIONS.detect do |array|
   if board[array[0]] == "X"  && board[array[1]] == "X" && board[array[2]] == "X"
-       return "X" 
+       return "Congratulate winner X!" 
     elsif board[array[0]] == "O"  && board[array[1]] == "O" && board[array[2]] == "O"
        return "O" 
      end
@@ -108,8 +104,11 @@ end
 def play(board)
  until over?(board)
  turn(board)
- 
-end
+ if winner(board)
+   elsif draw?(board)
+   puts "Cat's Game!"
+  end
  end
+end
  
   
