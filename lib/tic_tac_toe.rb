@@ -51,6 +51,7 @@ def turn(board)
     move(board, index, token)
   else
     until valid_move?(board,index)
+      puts "Enter a valid position(1-9): "
       input = gets.strip
       index = input_to_index(input)
     end
