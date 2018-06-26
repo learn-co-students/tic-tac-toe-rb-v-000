@@ -42,7 +42,6 @@ def valid_move?(board,position)
 end
 
 def turn(board)
-  
   puts "Enter a valid position(1-9): "
   input = gets.strip
   index = input_to_index(input)
@@ -57,6 +56,7 @@ def turn(board)
     end
     move(board, index, token)
   end 
+  display_board(board)
 end
 
 def turn_count(board)
@@ -133,6 +133,7 @@ def winner(board)
 end
 
 def play(board)
+  display_board(board)
   until over?(board)
     turn(board)
   end
