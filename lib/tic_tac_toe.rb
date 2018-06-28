@@ -24,7 +24,7 @@ def input_to_index(user_input)
   
 end
 
-def move(board, index, player="X")
+def move(board, index, player)
   board[index]=player
 end
 
@@ -41,24 +41,7 @@ def valid_move?(board, index)
    end
  end
  
- def turn(board)
-  puts "Please enter 1-9:"
-  input = gets.strip
-  
-  
-  index = input_to_index(input)
-  if valid_move?(board, index)
-    move(board, index)
-    display_board(board)
-    
-    
-  else
-    turn(board)
-    
-  end
-end
-
-def turn_count(board)
+ def turn_count(board)
   count = 0
   board.each do |token|
     if token == "X" || token =="O"
@@ -67,14 +50,28 @@ def turn_count(board)
    end 
     return count
  end
-
-def current_player(board)
+ 
+ def current_player(board)
   count = turn_count(board)
   if count % 2 ==0 
     return "X"
   else return "O"
-end
+  end
 end 
+ 
+ def turn(board)
+  puts "Please enter 1-9:"
+  input = gets.strip
+ 
+  index = input_to_index(input)
+  if valid_move?(board, index)
+    player_token = current_player(board)
+    move(board, index, player_token)
+    display_board(board)
+  else
+    turn(board)
+  end
+end
 
 def won?(board)
     WIN_COMBINATIONS.each do |win_combination| 
@@ -135,18 +132,13 @@ end
 end 
 
 def play(board)
-  input = gets
-end
-
-def play(board)
-  if over?(board)
-    return true 
-  else turn(board)
+  until over?(board) == true
+    turn(board)
   end
-end
 
  if won?(board)
     puts "Congratulations #{winner(board)}!"
   elsif draw?(board)
-    puts "Cats Game!"
+    puts "Cat's Game!"
   end
+end 
