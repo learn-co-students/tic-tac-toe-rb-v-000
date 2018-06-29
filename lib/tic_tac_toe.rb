@@ -2,11 +2,11 @@ WIN_COMBINATIONS = [
   [0,1,2],
   [3,4,5],
   [6,7,8],
+  [0,4,8],
+  [2,4,6],
   [0,3,6],
   [1,4,7],
-  [2,5,8],
-  [0,4,8],
-  [2,4,6]
+  [2,5,8]
 ]
 
 def display_board(board)
@@ -46,7 +46,7 @@ def turn(board)
     input = gets.strip
     index = input_to_index(input)
   if valid_move?(board, index)
-    move(board, index, value = "X" || "O")
+    move(board, index, current_player(board))
     display_board(board)
   else turn(board)
    end
@@ -72,25 +72,26 @@ end
 
 def won?(board)
   WIN_COMBINATIONS.detect do |numbers|
-    board[numbers[0]] == board[numbers[1]] && board[numbers[2]] == board[numbers[3]] && position_taken(board,numbers[0])
+    board[numbers[0]] == board[numbers[1]] && board[numbers[1]] == board[numbers[2]] && position_taken?(board, numbers[0])
   end
 end
 
 def full?(board)
-  board.all {|index| index == "X" || index == "O"}
+  board.all? {|index| index == "X" || index == "O"}
 end
 
 def draw?(board)
-  if !won(board) && full(board)
+  if !won?(board) && full?(board)
     true
-  else false
+  else
+    false
   end
 end
 
 def over?(board)
   if won?(board) || full?(board) || draw?(board)
-    true
-  end
+   true
+ end
 end
 
 def winner(board)
@@ -102,14 +103,14 @@ def winner(board)
 end
 
 def play(board)
-  input = gets
   until over?(board)
     turn(board)
+    won?(board)
     if won?(board)
-       winner(board)
-       puts "Congrats #{winner(board)}!"
+       winner = winner(board)
+       prints "Congrats #{winner}"
     elsif draw?(board)
-    puts "Draw"
+    prints "Cat's Game!"
     end
   end
 end
