@@ -1,6 +1,6 @@
 require_relative '../lib/tic_tac_toe'
 
-prints "Welcome to Tic Tac Toe!"
+puts "Welcome to Tic Tac Toe!"
 
 board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 

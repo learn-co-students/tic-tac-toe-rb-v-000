@@ -103,14 +103,13 @@ def winner(board)
 end
 
 def play(board)
-  until over?(board)
+  until over?(board) do
     turn(board)
-    won?(board)
-    if won?(board)
-       winner = winner(board)
-       prints "Congrats #{winner}"
-    elsif draw?(board)
-    prints "Cat's Game!"
-    end
+  end
+  if won?(board)
+    winner = winner(board)
+    puts "Congratulations #{winner}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
   end
 end
