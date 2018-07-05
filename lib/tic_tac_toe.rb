@@ -50,6 +50,11 @@ def position_taken?(board, index)
  end
 end
 
+# move 
+def move(board, index, current_player = "X")
+  board[index] = current_player
+end
+
 # turn 
 def turn(board)
   puts "Please enter 1-9:"
