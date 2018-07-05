@@ -141,11 +141,8 @@ def full?(board)
 end
 
 def draw?(board)
-  if board == ["X", "O", "X", "O", "X", "X", "O", "X", "O"] || board == full?
+  if board == ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
     return true
-    elsif won?
-    return false
-  else 
   end
 end
 
@@ -166,8 +163,6 @@ def winner(board)
      return "O"
   end 
 end
-
-
 
 
 
