@@ -11,6 +11,7 @@ WIN_COMBINATIONS = [
   ]
 
 # display_board 
+board = ["X", "X", "X", "X", "X", "X", "X", "X", "X"]
 def display_board(board)
   puts "   ""|""   ""|""   "
   puts "-----------"
@@ -19,7 +20,15 @@ def display_board(board)
   puts "   ""|""   ""|""   "
 end
 
-board = ["X", "X", "X", "X", "O", "O", "X", "O", "O"]
+# input_to_index 
+def input_to_index(input)
+   input.to_i - 1
+end
+
+# move
+def move(board, index, current_player)
+   board[index] = current_player
+end
 
 
 # rspec spec/01_tic_tac_toe_spec.rb
