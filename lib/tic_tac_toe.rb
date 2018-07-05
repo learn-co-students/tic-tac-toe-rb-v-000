@@ -111,7 +111,7 @@ end
 # end
 
 def won?(board)
-    if board == [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+    if board == ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
       return false
     elsif  WIN_COMBINATIONS[0]
       return true
