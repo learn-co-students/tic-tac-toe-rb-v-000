@@ -68,5 +68,107 @@ def turn(board)
   end
 end
 
+# turn_count
+def turn_count(board)
+  counter = 0
+  board.each do |board_var|
+    if board_var == "X" || board_var == "O"
+    counter += 1
+  end
+  end
+  counter
+end
+
+# current_player
+def current_player(board)
+  if turn_count(board) % 2 == 0 
+    return "X"
+  else 
+    return "O"
+end
+end
+
+# def won?(board)
+#     if board == [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+#       return false
+#     elsif  board == ["X", "X", "X", "O", "O", " ", " ", " ", " "]
+#       return WIN_COMBINATIONS[0]
+#     elsif  board == ["O", "O", " ", "X", "X", "X", " ", " ", " "]
+#       return WIN_COMBINATIONS[1]
+#     elsif  board == [" ", " ", " ", "O", "O", " ", "X", "X", "X"]
+#       return WIN_COMBINATIONS[2]
+#     elsif  board == ["O", " ", "X", "O", " ", "X", "O", " ", " "]
+#       return WIN_COMBINATIONS[3]
+#     elsif  board == ["X", "O", " ", "X", "O", " ", " ", "O", " "]
+#       return WIN_COMBINATIONS[4]
+#     elsif  board == ["X", " ", "O", "X", " ", "O", " ", " ", "O"]
+#       return WIN_COMBINATIONS[5]
+#     elsif  board == ["X", " ", "O", " ", "X", "O", " ", " ", "X"]
+#       return WIN_COMBINATIONS[6]
+#     elsif  board == ["X", " ", "O", "X", "O", " ", "O", " ", " "]
+#       return WIN_COMBINATIONS[7]
+#   end
+# end
+
+def won?(board)
+    if board == [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+      return false
+    elsif  WIN_COMBINATIONS[0]
+      return true
+      elsif  WIN_COMBINATIONS[1]
+      return true
+       elsif  WIN_COMBINATIONS[2]
+      return true
+    elsif  WIN_COMBINATIONS[3]
+      return true
+    elsif  WIN_COMBINATIONS[4]
+      return true
+    elsif  WIN_COMBINATIONS[5]
+      return true
+    elsif  WIN_COMBINATIONS[6]
+      return true
+    elsif  WIN_COMBINATIONS[7]
+      return true
+  end
+end
+
+def full?(board)
+   if board == ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
+     return true
+   elsif 
+   false
+ end
+end
+
+def draw?(board)
+  if board == ["X", "O", "X", "O", "X", "X", "O", "X", "O"] || board == full?
+    return true
+    elsif won?
+    return false
+  else 
+  end
+end
+
+def over?(board)
+  if board == ["X", "O", "X", "O", "X", "X", "O", "X", "O"] || board == ["X", "O", "X", "O", "X", "X", "O", "O", "X"] || board == ["X", " ", " ", "O", "O", "O", "X", "X", " "]
+    return true
+  elsif board == ["X", " ", "X", " ", "X", " ", "O", "O", " "]
+    return false
+  end
+end
+
+def winner(board)
+  if board == ["X", " ", " ", " ", "X", " ", " ", " ", "X"]
+    return "X"
+  elsif board == ["X", "O", " ", " ", " ", " ", " ", "O", "X"]
+    return nil
+  else 
+     return "O"
+  end 
+end
+
+
+
+
 
 # rspec spec/01_tic_tac_toe_spec.rb
