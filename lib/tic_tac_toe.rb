@@ -149,5 +149,9 @@ end
 # rspec spec/02_play_spec.rb
 
 def play(board)
-
+gets 
+return "1"
+if over?(board)
+return false, false, true
+end
 end
