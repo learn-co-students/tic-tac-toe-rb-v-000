@@ -97,12 +97,20 @@ end
 end
 
 def full?(board)
-   if board == ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
-     return true
-   elsif 
-   false
+   if board == " "
+     return false
+    elsif board == draw?(board)
+    return false
  end
 end
+
+# def full?(board)
+#   if board == ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
+#     return true
+#   elsif 
+#   false
+# end
+# end
 
 def draw?(board)
   if won?(board)
