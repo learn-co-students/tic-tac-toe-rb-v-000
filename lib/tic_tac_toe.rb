@@ -51,7 +51,7 @@ def position_taken?(board, index)
 end
 
 # move 
-def move(board, index, current_player = "X")
+def move(board, index, current_player)
   board[index] = current_player
 end
 
@@ -61,7 +61,7 @@ def turn(board)
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board,index)
-  move(board, index)
+  move(board, index, current_player(board))
   display_board(board)
   else 
     turn(board)  
@@ -88,36 +88,14 @@ def current_player(board)
 end
 end
 
-# def won?(board)
-#     if board == [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-#       return false
-#     elsif  board == ["X", "X", "X", "O", "O", " ", " ", " ", " "]
-#       return WIN_COMBINATIONS[0]
-#     elsif  board == ["O", "O", " ", "X", "X", "X", " ", " ", " "]
-#       return WIN_COMBINATIONS[1]
-#     elsif  board == [" ", " ", " ", "O", "O", " ", "X", "X", "X"]
-#       return WIN_COMBINATIONS[2]
-#     elsif  board == ["O", " ", "X", "O", " ", "X", "O", " ", " "]
-#       return WIN_COMBINATIONS[3]
-#     elsif  board == ["X", "O", " ", "X", "O", " ", " ", "O", " "]
-#       return WIN_COMBINATIONS[4]
-#     elsif  board == ["X", " ", "O", "X", " ", "O", " ", " ", "O"]
-#       return WIN_COMBINATIONS[5]
-#     elsif  board == ["X", " ", "O", " ", "X", "O", " ", " ", "X"]
-#       return WIN_COMBINATIONS[6]
-#     elsif  board == ["X", " ", "O", "X", "O", " ", "O", " ", " "]
-#       return WIN_COMBINATIONS[7]
-#   end
-# end
-
 def won?(board)
     if board == ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
       return false
     elsif  WIN_COMBINATIONS[0]
       return true
-      elsif  WIN_COMBINATIONS[1]
+    elsif  WIN_COMBINATIONS[1]
       return true
-       elsif  WIN_COMBINATIONS[2]
+    elsif  WIN_COMBINATIONS[2]
       return true
     elsif  WIN_COMBINATIONS[3]
       return true
@@ -141,8 +119,10 @@ def full?(board)
 end
 
 def draw?(board)
-  if board == ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
-    return true
+  if won?(board)
+    return false
+    elsif full?(board)  
+      return true
   end
 end
 
