@@ -155,3 +155,6 @@ if over?(board)
 return false, false, true
 end
 end
+
+
+
