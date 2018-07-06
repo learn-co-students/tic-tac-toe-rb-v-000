@@ -116,14 +116,20 @@ def over?(board)
 end
 
 def winner(board)
-  if board == ["X", " ", " ", " ", "X", " ", " ", " ", "X"]
-    return "X"
-  elsif board == ["X", "O", " ", " ", " ", " ", " ", "O", "X"]
-    return nil
-  else 
-     return "O"
+  if won?(board) 
+    return "X" 
   end 
 end
+
+# def winner(board)
+#   if board == ["X", " ", " ", " ", "X", " ", " ", " ", "X"]
+#     return "X"
+#   elsif board == ["X", "O", " ", " ", " ", " ", " ", "O", "X"]
+#     return nil
+#   else 
+#     return "O"
+#   end 
+# end
 
 
 # rspec spec/01_tic_tac_toe_spec.rb
