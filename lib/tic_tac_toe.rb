@@ -16,8 +16,6 @@ end
 def move(board, index, player)
   player = current_player(board)
   board[index] = player
-  puts index
-  puts player
 end
 
 #game_status
@@ -49,13 +47,7 @@ end
 
 
 def turn_count(board)
-  counter = 0
-  board.each do |item|
-    if item.downcase == "x" || item.downcase == "o"
-      counter = counter + 1
-    end
-  end
-  counter
+  board.count{|item| item == "X" || item == "O"}
 end
 
 def current_player(board)
