@@ -10,12 +10,14 @@ def display_board(board)
 end
 
 def input_to_index(user_input)
-  user_input.to_i - 1
+  user_input.to_i-1
 end
 
 def move(board, index, player)
   player = current_player(board)
   board[index] = player
+  puts index
+  puts player
 end
 
 #game_status
@@ -57,11 +59,7 @@ def turn_count(board)
 end
 
 def current_player(board)
-  if turn_count(board) % 2 == 0
-    "X"
-  else
-    "O"
-  end
+ turn_count(board) % 2 == 0 ? "X" : "O"
 end
 
 
