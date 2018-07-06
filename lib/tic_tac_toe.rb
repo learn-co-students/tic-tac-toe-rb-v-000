@@ -93,7 +93,7 @@ end
 def won?(board)
   WIN_COMBINATIONS.detect do |winner|
   board[winner[0]] == board[winner[1]] && board[winner[2]] == board[winner[0]] && position_taken?(board,winner[0])
-end
+  end
 end
 
 def full?(board)
@@ -116,22 +116,20 @@ def over?(board)
 end
 
 def winner(board)
-  if won?(board) 
-    return "X" || "O"
-    elsif
+  index_array = won?(board)
+  if index_array == nil 
     return nil
+  end
+  
+  position = index_array[0]
+    if board[position] == "X"
+      return "X"
+    elsif board[position] == "O"
+      return "O"
   end 
 end
 
-# def winner(board)
-#   if board == ["X", " ", " ", " ", "X", " ", " ", " ", "X"]
-#     return "X"
-#   elsif board == ["X", "O", " ", " ", " ", " ", " ", "O", "X"]
-#     return nil
-#   else 
-#     return "O"
-#   end 
-# end
+
 
 
 # rspec spec/01_tic_tac_toe_spec.rb
