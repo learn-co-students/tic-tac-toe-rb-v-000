@@ -1,7 +1,8 @@
+require 'pry'
 # WIN_COMBINATIONS constant
 WIN_COMBINATIONS = [
   [0,1,2],
-  [3,4,5,],
+  [3,4,5],
   [6,7,8],
   [0,3,6],
   [1,4,7],
@@ -11,7 +12,7 @@ WIN_COMBINATIONS = [
   ]
 
 # display_board 
-board = ["X", "X", "X", "X", "X", "X", "X", "X", "X"]
+
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
@@ -60,11 +61,12 @@ def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
+  
   if valid_move?(board,index)
   move(board, index, current_player(board))
   display_board(board)
   else 
-    turn(board)  
+    turn(board)
   end
 end
 
@@ -89,25 +91,9 @@ end
 end
 
 def won?(board)
-    if board == ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
-      return false
-    elsif  WIN_COMBINATIONS[0]
-      return true
-    elsif  WIN_COMBINATIONS[1]
-      return true
-    elsif  WIN_COMBINATIONS[2]
-      return true
-    elsif  WIN_COMBINATIONS[3]
-      return true
-    elsif  WIN_COMBINATIONS[4]
-      return true
-    elsif  WIN_COMBINATIONS[5]
-      return true
-    elsif  WIN_COMBINATIONS[6]
-      return true
-    elsif  WIN_COMBINATIONS[7]
-      return true
-  end
+  WIN_COMBINATIONS.detect do |winner|
+  board[winner[0]] == board[winner[1]] && board[winner[2]] == board[winner[0]] && position_taken?(board,winner[0])
+end
 end
 
 def full?(board)
@@ -127,11 +113,7 @@ def draw?(board)
 end
 
 def over?(board)
-  if board == ["X", "O", "X", "O", "X", "X", "O", "X", "O"] || board == ["X", "O", "X", "O", "X", "X", "O", "O", "X"] || board == ["X", " ", " ", "O", "O", "O", "X", "X", " "]
-    return true
-  elsif board == ["X", " ", "X", " ", "X", " ", "O", "O", " "]
-    return false
-  end
+    won?(board) || draw?(board)
 end
 
 def winner(board)
@@ -149,12 +131,21 @@ end
 # rspec spec/02_play_spec.rb
 
 def play(board)
-gets 
-return "1"
-if over?(board)
-return false, false, true
+  gets
+  return "1"
+while !over?(board) 
+  turn(board)
+  end
+if draw?(board)
+  puts "Cat's Game!"
+  elsif won?(board)
+  puts "Congratulations #{winner?(board)}!"
+  end
 end
-end
+
+
+
+
 
 
 
