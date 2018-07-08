@@ -1,4 +1,4 @@
-#!/usrruby/bin/env 
+#!/usr/local/rvm/rubies/ruby-2.3.1/bin/ruby
 
 require_relative '../lib/tic_tac_toe'
 
