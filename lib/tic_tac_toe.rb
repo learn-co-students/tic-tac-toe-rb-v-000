@@ -76,13 +76,15 @@ end
       move(board, index, character)
    end
    end
+ end
 display_board(board)
 
 
 def turn_count(board)
-  board.each {|value|}
+  board.each do {|value|}
   if value == "X" || value == "O"
     returns the number of turns played
+  end
   end
 end
 
