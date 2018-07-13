@@ -61,10 +61,12 @@ def turn(board)
   puts "Please enter 1-9:"
   index = gets.to_s
   index = input_to_index(index)
+
   player = current_player(board)
 
   if valid_move?(board,index)
     move(board,index,player)
+
     display_board(board)
   else
     turn(board)
@@ -141,7 +143,7 @@ def winner(board)
 end
 
 def play(board)
-  until over?(board) do
+  until over?(board)
     turn(board)
   end
 
