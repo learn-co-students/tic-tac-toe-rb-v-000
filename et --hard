@@ -1,0 +1,35 @@
+[33m7bcae89[m This is my old code [31m(Shakeria Smith, 2 minutes ago)[m
+[33ma33ad02[m Add back simplecov gem [31m(Gabe Jackson, 10 months ago)[m
+[33me888e87[m Standardize punctuation of Cat's Game [31m(Gabe Jackson, 11 months ago)[m
+[33m515ea41[m Remove extra word [31m(Gabe Jackson, 11 months ago)[m
+[33mbd8bcb7[m Remove simplecov gem [31m(Gabe Jackson, 11 months ago)[m
+[33m79d1dd3[m Merge pull request #57 from kwebster2/master [31m(Avidor Turkewitz, 1 year ago)[m
+[33m23ecc78[m update cli_spec error message [31m(kwebster2, 1 year ago)[m
+[33m68a396b[m Merge pull request #56 from DakotaLMartinez/master [31m(Avidor Turkewitz, 1 year, 2 months ago)[m
+[33mb4b6c7e[m Allow draw tests to handle different orders of won? and full? [31m(Dakota Lee Martinez, 1 year, 2 months ago)[m
+[33md62b68c[m Add coverage instructions for the IDE [31m(Avidor Turkewitz, 1 year, 6 months ago)[m
+[33m4d4b6e3[m overview, objectives [31m(AnnJohn, 1 year, 11 months ago)[m
+[33m00e745c[m Merge pull request #49 from gj/patch-1 [31m(Avi Flombaum, 2 years ago)[m
+[33m886d00e[m Removed specific error expectation on line 77 [31m(gj, 2 years ago)[m
+[33m14dd1a2[m Merge pull request #1 from gj/patch-2 [31m(gj, 2 years ago)[m
+[33m8c59672[m removed dupe Learn link [31m(gj, 2 years ago)[m
+[33m3cc5b9b[m convervets --> converts [31m(gj, 2 years ago)[m
+[33mb33ddf9[m Merge pull request #44 from learn-co-curriculum/master-fix [31m(Avidor Turkewitz, 2 years, 2 months ago)[m
+[33m291b48d[m Heading update to readme [31m(Avidor Turkewitz, 2 years, 2 months ago)[m
+[33m663016e[m Update readme and spec so position is 1-9 and index is 0-8 [31m(Avidor Turkewitz, 2 years, 2 months ago)[m
+[33m75dd83f[m Update readme to be clear about position [31m(Avidor Turkewitz, 2 years, 2 months ago)[m
+[33m79de161[m Update readme to warn about SO and revert spec [31m(Avidor Turkewitz, 2 years, 2 months ago)[m
+[33m5d81f36[m Add specific error if over? is called too many times [31m(Avidor Turkewitz, 2 years, 2 months ago)[m
+[33m9a48e78[m Update README to distinguish between position and user input [31m(Avidor Turkewitz, 2 years, 2 months ago)[m
+[33m7b95997[m Update valid_move? inputs and add tests for input_to_position [31m(Avidor Turkewitz, 2 years, 2 months ago)[m
+[33m2693e46[m Update readme to remove call for default 3rd arg on move [31m(Avidor Turkewitz, 2 years, 2 months ago)[m
+[33md90af07[m Merge pull request #41 from becky000/becky000-1462752675 [31m(AnnJohn, 2 years, 2 months ago)[m
+[33m2d49fed[m Merge pull request #43 from becky000/becky000-1462789701 [31m(AnnJohn, 2 years, 2 months ago)[m
+[33mdeda985[m Merge pull request #42 from becky000/becky000-1462758801 [31m(AnnJohn, 2 years, 2 months ago)[m
+[33m8433fd9[m added apostrophe [31m(Rebecca Sherman, 2 years, 2 months ago)[m
+[33m34cd08b[m corrected typo in word pseudocode [31m(Rebecca Sherman, 2 years, 2 months ago)[m
+[33m02ca7d7[m corrected typo in youtube embed to display height at 100% [31m(Rebecca Sherman, 2 years, 2 months ago)[m
+[33m6adaa0d[m Merge pull request #38 from learn-co-curriculum/master-fix [31m(Peter Bell, 2 years, 3 months ago)[m
+[33mf115a06[m Merge conflict [31m(Avidor Turkewitz, 2 years, 3 months ago)[m
+[33mbf8c785[m Add test to make draw? more clear [31m(Avidor Turkewitz, 2 years, 3 months ago)[m
+[33m77ff825[m optimize learn link [processing skip] [31m(Adam Jonas, 2 years, 6 months ago)[m
