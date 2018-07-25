@@ -98,9 +98,10 @@ def won?(board)
     elsif position_1 == "X" && position_2 == "X" && position_3 == "X"
       return win_combination
     else
-      FALSE
+      false
     end
   end
+  false
 end
 
 
@@ -119,7 +120,7 @@ end
 
 
 def over?(board)
- won?(board) || full?(board) 
+ won?(board) || draw?(board) 
 end
   
 def winner(board)
@@ -133,13 +134,13 @@ end
 
 
 def play(board)
-  until over?(board) == true
+  until over?(board) 
     turn(board)
   end
-  if won?(board) == true
-    puts "congrats!"
-  elsif draw(board) == true
-    puts "Its a draw"
+  if won?(board) 
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board) 
+    puts "Cat's Game!"
   end
 end
 
