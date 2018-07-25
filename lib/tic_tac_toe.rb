@@ -133,12 +133,12 @@ end
 
 
 def play(board)
-  until over?(board) == TRUE
+  until over?(board) == true
     turn(board)
   end
-  if won?(board) == TRUE
+  if won?(board) == true
     puts "congrats!"
-  elsif draw(board) == TRUE
+  elsif draw(board) == true
     puts "Its a draw"
   end
 end
