@@ -6,7 +6,7 @@ WIN_COMBINATIONS = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4
 
 def won?(board)
     
-    if full?(board) != true
+    if empty?(board)
       return false 
     end
   
@@ -27,6 +27,15 @@ def won?(board)
     
 end
 
+def empty?(board)
+  board.each do |entry|
+      if entry != " "
+       return false 
+     end
+    end
+  return true 
+end
+
 # full? method code #################################################################################
 
 def full?(board)
@@ -43,7 +52,7 @@ end
 
 def draw?(board)
   
-  if won?(board) == false && full?(board) == true 
+  if !won?(board) && full?(board) 
     return true
   else 
     return false 
@@ -54,7 +63,7 @@ end
 
 def over?(board)
   
-  if full?(board) == true || draw?(board) == true || won?(board) != false
+  if full?(board)  || draw?(board) || won?(board) 
     return true 
   else
     return false 
@@ -64,11 +73,25 @@ end
 # winner method code #################################################################################
 
 def winner(board)
-  
-  if won?(board) != false  
-    return board[won?(board)[0]]
-  end
-end
+
+    WIN_COMBINATIONS.each do |win_combo|
+    windex_1 = win_combo[0]
+    windex_2 = win_combo[1]
+    windex_3 = win_combo[2]
+    
+    position_1 = board[windex_1] 
+    position_2 = board[windex_2] 
+    position_3 = board[windex_3] 
+    
+      if (position_1 == "X" && position_2 == "X" && position_3 == "X") 
+        return "X"
+      elsif (position_1 == "O" &&   position_2 == "O" && position_3 == "O") 
+        return "O"
+      end
+    end
+    
+    return nil 
+ end
 
 # display_board method code ############################################################################
 
@@ -158,8 +181,8 @@ def play(board)
   end
     
   if won?(board) == true
-    puts "Congratulations, #{winner(board)}! You have won the game!"
+    puts "Congratulations #{winner(board)}!"
   elsif draw?(board) == true
-    puts "The game has ended in a draw! Thanks for playing."
+    puts "Cat's Game!"
   end
 end
