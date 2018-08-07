@@ -94,6 +94,13 @@ def winner(board)
   if winning_combo = won?(board)
   board[winning_combo[0]]
   end
+  
+  #this is the same as saying
+#   winning_combo = won?(board)
+#   if winning_combo
+#     board[winning_combo[0]]
+#   end
+#because the won? method will return false (or nil, but nil is falsey anyway).
 end
 
 def play(board)
