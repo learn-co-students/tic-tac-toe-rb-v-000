@@ -13,7 +13,7 @@ def input_to_index(index)
   index.to_i - 1
 end 
 
-def move(board, index, current_player(board))
+def move(board, index, token)
   board[index] = token
 end
 
@@ -100,13 +100,13 @@ def winner(board)
 end
 
 def play(board)
- input = gets.strip
- turn(board) until over?(board)
+  turn(board) until over?(board)
  if winner(board)
-   puts "Congratulation, you win!"
+   puts "Congratulations #{winner(board)}!"
  elsif draw?(board)
-   puts "It has been a draw."
+   puts "Cat's Game!"
  end
 end
+
 
 
