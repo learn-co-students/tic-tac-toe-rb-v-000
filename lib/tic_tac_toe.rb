@@ -44,7 +44,7 @@ end
   index = input_to_index(user_input)
   
  if valid_move?(board,index) 
-   move(board, index, value = "X")
+   move(board, index, current_player(board))
    display_board(board)
  else
    turn(board)
@@ -61,9 +61,9 @@ end
   turn
 end
  def current_player(board)
-  if turn_count(board) % 2 == 0 
+  if turn_count(board).even? 
     "X"
-  elsif turn_count(board) % 2 == 1 
+  elsif turn_count(board).odd?
     "O"
   end
  end 
@@ -84,7 +84,7 @@ end
   end
   
   def over?(board)
-    draw?(board) or won?(board) or full?(board)
+    draw?(board) || won?(board)
   end
   
   def winner(board)
@@ -93,17 +93,19 @@ end
     if winner 
       index = winner[0]
       board[index]
+      
+    else
+      nil
     end
   end 
 
 def play(board)
   until over?(board)
-    puts current_player(board)
     turn(board)
   end
  
   if won?(board)
-    puts "Congratulations #{current_player(board) + "!"}"
+    puts "Congratulations #{winner(board) + "!"}"
   else draw?(board)
   puts "Cat's Game!"
 end
