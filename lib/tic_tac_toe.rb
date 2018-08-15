@@ -103,13 +103,14 @@ def winner(board)
 end
 
 def play(board)
-  until over?(board) == true
-  turn(board) && draw?(board) && won?(board)
-
-  if won?(board) == true
-    puts "Congratulations #{boar[token]}!"
+  until over?(board)
+  turn(board)
+end
+  winner = ["X", "O"]
+  if won?(board)
+    puts "Congratulations #{winner[index]}!"
     
-  elsif draw?(board) == true
+  elsif draw?(board)
     puts "Cat's Game!"
   end
 end
