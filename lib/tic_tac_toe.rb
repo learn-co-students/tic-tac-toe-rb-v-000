@@ -18,27 +18,19 @@ def display_board(board)
 end
 
 def input_to_index(user_input)
-  converted_input = "#{user_input}".to_i - 1
+   user_input.to_i - 1
 end
 
-def move(board, converted_input, value)
-  board[converted_input] = value
+def move(board, index, player)
+  board[index] = player
 end
 
 def position_taken?(board, index)
-   if board[index] ==  "X" || board[index] == "O"
-    return true
-   elsif board[index] == " " ||  board[index] == "" ||  board[index] == nil
-    return false
-  end
+  board[index]== "X" || board[index] == "O"
 end
-
+ 
 def valid_move?(board, index)
-  if index.between?(0, 8) && position_taken?(board, index) == false
-    return true
-  elseif index < 0 || index > 8
-  return false
-  end
+  index.between?(0,8) && !position_taken?(board, index)
 end
 
 def turn(board)
@@ -46,34 +38,20 @@ def turn(board)
   user_input = gets.strip
   index = input_to_index(user_input)
   if valid_move?(board, index)
-    move(board, index, value = "X" || "O")
+    move(board, index, current_player(board))
     display_board(board)
   else
-    valid_move?(board, index) == false
     turn(board)
   end
 end
 
-
 def turn_count(board)
-  counter = 0
-
-  board.each do |turn|
-    if turn == "X" || turn == "O"
-      counter += 1
-      puts "#{counter}"
-    end
-  end
-
-  counter
+  board.count{|token| token == "X" || token == "O"}
 end
 
+
 def current_player(board)
-  if turn_count(board).even?
-    return "X"
-  else
-    return "O"
-  end
+  turn_count(board) % 2 == 0 ? "X" : "O"
 end
 
 def won?(board)
@@ -83,38 +61,30 @@ def won?(board)
 end
 
 def full?(board)
-  board.none? do |position|
-    position == " "
-  end
+  board.all?{|token| token == "X" || token == "O"}
 end
 
- def draw?(board)
-  full?(board) == true && !won?(board) == true
+def draw?(board)
+  !won?(board) && full?(board)
 end
 
  def over?(board)
   won?(board) || draw?(board)
 end
 
- def winner(board)
-  if won?(board)
-    return board[won?(board)[0]]
-  else
-    nil
+def winner(board)
+  if winning_combo = won?(board)
+    board[winning_combo.first]
   end
 end
 
 def play(board)
-  counter = 0
-  until over?(board) || counter == 9
+  while !over?(board)
     turn(board)
-    counter += 1
   end
-end
-
-  if won?(board)
+   if won?(board)
     puts "Congratulations #{winner(board)}!"
-  else draw?(board)
-    print "Cat's Game!"
+  elsif draw?(board)
+    puts "Cat's Game!"
   end
 end
