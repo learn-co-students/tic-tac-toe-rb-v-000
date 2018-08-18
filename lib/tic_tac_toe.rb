@@ -1,4 +1,4 @@
-
+# rspec spec/02_play_spec.rb
 
 WIN_COMBINATIONS = [
   [0,1,2], # top row
@@ -101,5 +101,16 @@ end
 def winner(board)
   if won?(board)
     return board[won?(board)[0]]
+end
+end
+
+def play(board)
+  until over?(board) == true 
+  turn(board)
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  else
+    puts "Cat's Game!"
 end
 end
