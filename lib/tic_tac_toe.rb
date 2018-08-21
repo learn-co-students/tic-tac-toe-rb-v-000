@@ -1,3 +1,9 @@
+###TODO 
+# Failed examples:
+
+# rspec ./spec/01_tic_tac_toe_spec.rb:68 # ./lib/tic_tac_toe.rb #move does not allow for a default third argument
+# rspec ./spec/01_tic_tac_toe_spec.rb:213 # ./lib/tic_tac_toe.rb #draw? returns false for a won game
+
 
 # #display_board
 # Should accept a board as an argument and print out the current state of the board for the user.
@@ -84,16 +90,18 @@ def full?(board)
 end
 
 def draw?(board)
-  #returns true if the board has not been won but is full,
-  if won?(board) == false && full?(board) == true
-    true 
-  #returns false if the board is not won and the board is not full,
-  elsif won?(board) == false && full?(board) == false 
-    false
-    #and returns false if the board is won 
-  elsif won?(board) == true
-    false
-  end
+  #returns true if the board has not been won but is full
+ (won?(board)) ? true : false
+ full?(board)
+  # if won?(board) == false && full?(board) == true
+  #   true 
+  # #returns false if the board is not won and the board is not full,
+  # elsif won?(board) == false && full?(board) == false 
+  #   false
+  #   #and returns false if the board is won 
+  # elsif won?(board) == true
+  #   false
+  # end
 end
 
 def over?(board)
