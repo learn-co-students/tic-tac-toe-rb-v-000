@@ -54,7 +54,7 @@ def turn(board)
     if valid_move?(board, indexNum) == true
       true; move(board, indexNum, character="X")
     else
-      false; turn(board)
+      false
       
 end
 end
@@ -110,8 +110,7 @@ def play(board)
   while var <= 8
   var += 1
   turn(board)
-  
-end
+  end
 end
 
 def turn_count(board)
