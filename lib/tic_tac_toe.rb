@@ -4,7 +4,6 @@
 # rspec ./spec/01_tic_tac_toe_spec.rb:68 # ./lib/tic_tac_toe.rb #move does not allow for a default third argument
 # rspec ./spec/01_tic_tac_toe_spec.rb:213 # ./lib/tic_tac_toe.rb #draw? returns false for a won game
 
-
 # #display_board
 # Should accept a board as an argument and print out the current state of the board for the user.
 def display_board(board)
@@ -34,7 +33,7 @@ def position_taken?(board, index)
 # #move
 # This method should accept a board, an index from the user (which was converted from their raw input with input_to_index), and a token to mark that position with (you can give that argument a default value of 'X'––we're not worrying about whose turn it is yet). The method should set the correct index value of that position within the board equal to the token.
 
-def move(board, userinput, character = "X")
+def move(board, userinput, character)
     board[userinput] = character
     display_board(board)
   end
@@ -53,7 +52,7 @@ def turn(board)
     indexNum = input_to_index(index)
         # if index is valid
     if valid_move?(board, indexNum) == true
-      true; move(board, indexNum)
+      true; move(board, indexNum, character="X")
     else
       false; turn(board)
       
@@ -90,18 +89,7 @@ def full?(board)
 end
 
 def draw?(board)
-  #returns true if the board has not been won but is full
- (won?(board)) ? true : false
- full?(board)
-  # if won?(board) == false && full?(board) == true
-  #   true 
-  # #returns false if the board is not won and the board is not full,
-  # elsif won?(board) == false && full?(board) == false 
-  #   false
-  #   #and returns false if the board is won 
-  # elsif won?(board) == true
-  #   false
-  # end
+    full?(board) && !won?(board)
 end
 
 def over?(board)
