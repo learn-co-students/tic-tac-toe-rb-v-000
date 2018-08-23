@@ -55,8 +55,8 @@ def turn(board)
       true; move(board, indexNum, character="X")
     else
       false
-      
-end
+      turn(board)
+    end
 end
 
   # Define your WIN_COMBINATIONS constant
@@ -106,10 +106,10 @@ def winner(board)
 end
 
 def play(board)
-  var = 0
-  while var <= 8
-  var += 1
-  turn(board)
+#   counter = 0
+  until over?(board)
+    turn(board)
+    # counter += 1
   end
 end
 
