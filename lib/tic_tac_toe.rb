@@ -51,8 +51,8 @@ def turn(board)
         # convert input to index
     indexNum = input_to_index(index)
         # if index is valid
-    if valid_move?(board, indexNum) == true
-      true; move(board, indexNum, character="X")
+    if valid_move?(board, indexNum)
+      true; move(board, indexNum, current_player(board))
     else
       false
       turn(board)
@@ -110,6 +110,13 @@ def play(board)
   until over?(board)
     turn(board)
     # counter += 1
+  end
+
+  if won?(board)
+    winningPlayer = winner(board)
+    puts "Congratulations #{winningPlayer}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
   end
 end
 
