@@ -130,8 +130,13 @@ def current_player(board)
 end 
 
 def play(board)
-  until won?(board)
+  until over?(board)
     turn(board)
+  end #ends until loop 
+  if won?(board)
+    puts "Congratulations! You won."
+  elsif draw?(board)
+    puts "Cat's Game!"
+  end #ends if statement 
 end #ends play 
   
- 
