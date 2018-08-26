@@ -90,7 +90,7 @@ def input_to_index(user_input)
 end
 
 
-def move(board, index)
+def move(board, index, current_player)
   board[index] = current_player
 end
 
@@ -108,6 +108,7 @@ def turn(board)
     else turn(board)
   end
 end
+  
 
 def turn_count(board)
   counter = 0
