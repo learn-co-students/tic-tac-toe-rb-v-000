@@ -129,8 +129,9 @@ def current_player(board)
   end
 end 
 
-def play
-  
+def play(board)
+  until won?(board)
+    turn(board)
 end #ends play 
   
  
