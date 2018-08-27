@@ -122,13 +122,13 @@ def winner (board)
 end
 
 def play (board)
-  #board=[" ", " ", " ", " ", " ", " ", " ", " ", " "]
+  board=[" ", " ", " ", " ", " ", " ", " ", " ", " "]
   until over?(board) == true do
     turn(board)
   end # of until
   if won?
     puts "Congratulations #{winner}!"
-  elsif draw?
+  else draw?
     puts "It is a draw."
   end # of if
 end #of play
