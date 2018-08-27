@@ -60,7 +60,7 @@ def turn_count (board)
 end
 
 def current_player (board)
-  who_turn = turn_count (board)
+  who_turn = turn_count(board)
     if who_turn % 2 == 0
       player = "X"
     else
@@ -70,19 +70,19 @@ def current_player (board)
 end
 
 def won? (board)
-  WIN_COMBINATIONS.each {|win_combination|
-     win_index_1 = win_combination[0]
-     win_index_2 = win_combination[1]
-     win_index_3 = win_combination[2]
+  WIN_COMBINATIONS.each {|win_comb|
+     win_index_1 = win_comb[0]
+     win_index_2 = win_comb[1]
+     win_index_3 = win_comb[2]
 
-     position_1 = board [win_index_1]
-     position_2 = board [win_index_2]
-     position_3 = board [win_index_3]
+     position_1 = board[win_index_1]
+     position_2 = board[win_index_2]
+     position_3 = board[win_index_3]
 
      if position_1 == "X" && position_2 == "X" && position_3 == "X"
-       return win_combination
+       return win_comb
      elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
-       return win_combination
+       return win_comb
      end
    }
    return false
@@ -109,7 +109,7 @@ end
 
 def winner (board)
   index = []
-  index = won? (board)
+  index = won?(board)
   if index == false
     return nil
   else
@@ -122,13 +122,12 @@ def winner (board)
 end
 
 def play (board)
-  board=[" ", " ", " ", " ", " ", " ", " ", " ", " "]
   until over?(board) == true do
     turn(board)
   end # of until
-  if won?
-    puts "Congratulations #{winner}!"
-  else draw?
-    puts "It is a draw."
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
   end # of if
 end #of play
