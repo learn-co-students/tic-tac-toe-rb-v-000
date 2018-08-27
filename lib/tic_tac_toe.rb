@@ -50,13 +50,13 @@ def turn (board)
 end
 
 def turn_count (board)
-  turn = 0
+  turnc = 0
   board.each do |index|
     if index == "X" || index == "O"
-       turn +=1
+       turnc +=1
     end
   end
-  return turn
+  return turnc
 end
 
 def current_player (board)
@@ -122,6 +122,7 @@ def winner (board)
 end
 
 def play (board)
+  #board=[" ", " ", " ", " ", " ", " ", " ", " ", " "]
   until over?(board) == true do
     turn(board)
   end # of until
