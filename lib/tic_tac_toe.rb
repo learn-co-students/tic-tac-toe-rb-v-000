@@ -17,10 +17,10 @@ def display_board (board)
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
-def input_to_index (user_input)
-  new_user_input =  user_input.to_i
-  new_user_input -= 1
-  return new_user_input
+def input_to_index (input)
+  index = input.to_i
+  index -= 1
+  return index
 end
 
 def move (board, index, pcharacter)
@@ -39,15 +39,13 @@ end
 def turn (board)
   puts "Please enter 1-9:"
   input = gets.chomp
-  #input ||= " "
-  #user_input = input.chomp
   index = input_to_index(input)
-  if !valid_move?(board, index)
-    turn(board)
-  else
+  if valid_move?(board, index)
     play_index = current_player(board)
-    move(board, index, pcharacter)
+    move(board, index, play_index)
     display_board(board)
+  else
+    turn(board)
   end
 end
 
@@ -58,7 +56,7 @@ def turn_count (board)
        turn +=1
     end
   end
-  return turn (board)
+  return turn
 end
 
 def current_player (board)
