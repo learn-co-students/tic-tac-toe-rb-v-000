@@ -103,7 +103,7 @@ def turn(board)
     user_input = gets.strip
     index = input_to_index(user_input)
     if valid_move?(board, index) == true
-      move(board, index, character='X')
+      move(board, index, character)
       display_board(board)
     else turn(board)
   end
@@ -140,5 +140,4 @@ def play(board)
   else draw?(board)
     puts "Cat's Game!"
   end #ends if statement 
-end #ends play 
-  
+end #ends def 
