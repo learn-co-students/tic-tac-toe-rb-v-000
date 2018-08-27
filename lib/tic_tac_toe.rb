@@ -10,7 +10,6 @@ WIN_COMBINATIONS = [
 ]
 
 def display_board (board)
-  board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
   puts " #{board[3]} | #{board[4]} | #{board[5]} "
@@ -19,8 +18,9 @@ def display_board (board)
 end
 
 def input_to_index (user_input)
-  user_input.to_i - 1  # takes string value and converts to integer and subtracts 1 for correct index value
-  return user_input
+  new_user_input =  user_input.to_i
+  new_user_input -= 1
+  return new_user_input
 end
 
 def move (board, index, pcharacter)
@@ -38,14 +38,16 @@ end
 
 def turn (board)
   puts "Please enter 1-9:"
-  user_input = gets.strip
-  index = input_to_index (user_input)
-  if valid_move? (board, index)
-    play_index = current_player (board)
-    move (board, index, pcharacter)
-    display_board (board)
+  input = gets.chomp
+  #input ||= " "
+  #user_input = input.chomp
+  index = input_to_index(input)
+  if !valid_move?(board, index)
+    turn(board)
   else
-    turn (board)
+    play_index = current_player(board)
+    move(board, index, pcharacter)
+    display_board(board)
   end
 end
 
@@ -91,7 +93,6 @@ end
 def full? (board)
   board.all? {|x| x == "X" || x == "O"}
 end
- 
 def draw? (board)
   if full?(board) && !won?(board)
     return true
@@ -121,3 +122,14 @@ def winner (board)
     end
   end
 end
+
+def play (board)
+  until over?(board) == true do
+    turn(board)
+  end # of until
+  if won?
+    puts "Congratulations #{winner}!"
+  elsif draw?
+    puts "It is a draw."
+  end # of if
+end #of play
