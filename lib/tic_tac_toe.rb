@@ -32,7 +32,6 @@ def turn(board)
   else 
     turn(board)
   end
-
 end
 
 def valid_move?(board, index)
@@ -55,8 +54,63 @@ end
 #   number.to_i - 1
 # end
 
+def turn_count(board)
+  count = 0 
+  board.each do |cell|
+    if cell == "X" || cell == "O"
+      count += 1
+    end
+  end
+  count
+end
+
+def current_player(board)
+  if turn_count(board) % 2 == 0 #eval
+    return "X" #positive
+  else
+    return "O" #negative
+  end
+end
+
+def draw?(board)
+  full?(board) && !won?(board)
+end
+
+def over?(board)
+  draw?(board) || won?(board)  || full?(board)
+end
+
+def won?(board)
+  WIN_COMBINATIONS.each do |win_combination|
+    # win_combination is a 3 element array of indexes that compose a win, [0,1,2]
+    # grab each index from the win_combination that composes a win.
+    win_index_1 = win_combination[0]
+    win_index_2 = win_combination[1]
+    win_index_3 = win_combination[2]
+   
+    position_1 = board[win_index_1] # load the value of the board at win_index_1
+    position_2 = board[win_index_2] # load the value of the board at win_index_2
+    position_3 = board[win_index_3] # load the value of the board at win_index_3
+   
+    if position_1 == "X" && position_2 == "X" && position_3 == "X"
+      return win_combination # return the win_combination indexes that won.
+    end
+  end
   
+  false
+end
+    
+def full?(board)
+   board.all? {|b| b != " " }
+end
 
-
+def winner(board)
+  winning_array = won?(board) #Setting winning_array to equal results from won?(board)
+  if won?(board) # Implicit return of boolean -> if true return which character won
+    return board[winning_array[0]] 
+  else
+    return nil
+  end
+end 
 
 
