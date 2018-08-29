@@ -1,4 +1,4 @@
-
+require 'pry'
 WIN_COMBINATIONS =  [
    [0,1,2], [3,4,5],[6,7,8],
    [0,3,6], [1,4,7], [2,5,8],
@@ -94,6 +94,8 @@ def won?(board)
    
     if position_1 == "X" && position_2 == "X" && position_3 == "X"
       return win_combination # return the win_combination indexes that won.
+    elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
+      return win_combination # return the win_combination indexes that won.
     end
   end
   
@@ -103,14 +105,16 @@ end
 def full?(board)
    board.all? {|b| b != " " }
 end
-
-def winner(board)
+    
+ def winner(board)
+   #binding.pry
   winning_array = won?(board) #Setting winning_array to equal results from won?(board)
   if won?(board) # Implicit return of boolean -> if true return which character won
-    return board[winning_array[0]] 
-  else
-    return nil
+    
+    return  board[winning_array[0]]
+  
+  
   end
 end 
 
-
+    
