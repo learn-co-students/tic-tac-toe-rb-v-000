@@ -105,7 +105,18 @@ end
 def full?(board)
    board.all? {|b| b != " " }
 end
-    
+
+def play(board)
+    while !over?(board)
+    turn(board)
+    end
+    if won?(board)
+      puts "Congratulations #{winner(board)}!"
+    elsif draw?(board)
+    puts "Cat's Game!"
+  end
+end
+
  def winner(board)
    #binding.pry
   winning_array = won?(board) #Setting winning_array to equal results from won?(board)
