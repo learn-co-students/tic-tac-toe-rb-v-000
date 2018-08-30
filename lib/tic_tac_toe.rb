@@ -30,15 +30,17 @@ def position_taken?(board, index)
 end
 
 def valid_move?(board,index)
-  index.between?(0,9) && !position_taken?(board, index)
+  index.between?(0,8) && !position_taken?(board, index)
 end
 
 def turn(board)
-  user_input = gets.chomp
+  puts "Pick a spot between 1-9"
+  user_input = gets.strip
   index = input_to_index(user_input)
   if valid_move?(board, index)
     token = current_player(board)
     move(board, index, token)
+    display_board(board)
   else
     turn(board)
   end
@@ -57,41 +59,27 @@ def current_player(board)
 end
 
 def won?(board)
-  WIN_COMBINATIONS.each do|win_combination|
+  WIN_COMBINATIONS.detect do|win_combination|
     win_index_1 = win_combination[0]
     win_index_2 = win_combination[1]
     win_index_3 = win_combination[2]
     position_1 = board[win_index_1]
     position_2 = board[win_index_2]
     position_3 = board[win_index_3]
-     if position_1 == "X" && position_2 == "X" && position_3 == "X"
-      return win_combination
-    elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
-      return win_combination
-    end
+    position_1 == "X" && position_2 == "X" && position_3 == "X" || position_1 == "O" && position_2 == "O" && position_3 == "O"
   end
-else
-  return false
 end
 
 def full?(board)
-  if board.any?{|moves| moves == " "}
-    return false
-  else
-    return true
-  end
+  board.all?{|moves| moves == "X" || moves == "O"}
 end
 
 def draw?(board)
-  if full?(board) == true && won?(board) == false
-    return true
-  else
-    return false
-  end
+  full?(board) && !won?(board)
 end
 
 def over?(board)
-  won?(board) || full?(board)
+  won?(board) || draw?(board)
 end
 
 def winner(board)
@@ -101,8 +89,13 @@ def winner(board)
 end
 
 def play(board)
-  until over?(board)
-    display_board(board)
+  display_board(board)
+  while !over?(board)
     turn(board)
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  else 
+    puts "Cat's Game!"
   end
 end
