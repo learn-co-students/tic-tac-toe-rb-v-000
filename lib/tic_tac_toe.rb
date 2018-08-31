@@ -130,14 +130,14 @@ end
 # end
 
 def play(board)
-  until over?(board) == true
+  until over?(board)
     # binding.pry
     turn(board)
 
   end
-  if won?(board) == true
-    return "Congratulations Player #{winner(board)}"
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
   else
-    print "Cat's Game!"
+    puts "Cat's Game!"
   end
 end
