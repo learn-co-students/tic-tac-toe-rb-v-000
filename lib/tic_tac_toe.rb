@@ -143,3 +143,18 @@ def play(board)
   end 
 end
 end
+
+def play(board)
+  until over?(board) do
+  turn(board)
+  end
+  if winner(board) == "X"
+    puts "Congratulations X!"
+  elsif winner(board) == "O"
+    puts "Congratulations O!"
+  else 
+    if draw?(board)
+    puts "Cat's Game!"
+  end 
+end
+end
