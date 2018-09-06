@@ -1,3 +1,4 @@
+
 WIN_COMBINATIONS = [
   [0,1,2],
   [3,4,5],
@@ -21,9 +22,10 @@ def input_to_index(user_input)
   user_input.to_i - 1
 end
 
-def player_move(board, index, player_character)
-  board[index] = player_character
+def player_move(board, input_to_index, players_character = 'X')
+ board[input_to_index] = players_character
 end
+
 
 def position_taken?(board, index)
   !(board[index].nil? || board[index] == " ")
@@ -38,7 +40,7 @@ def turn(board)
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board, index)
-    move(board, index)
+    player_move(board, index, player)
     display_board(board)
   else
     turn(board)
@@ -66,6 +68,8 @@ def current_player(board)
  end
 end
 
+
+
 def won?(board)
  WIN_COMBINATIONS.find do |i| 
    board[i[0]] == board[i[1]] && board[i[0]] == board[i[2]] && position_taken?(board, i[0])
@@ -91,10 +95,24 @@ end
 def winner(board)
   won?(board) && board[won?(board)[0]]
 end 
-  
-#def play(board)
-#  turn(board)
-#   |iterate|
-#  if over?(board) == false
+
+def play(board)
+  go = 0
+  until go == 9
+  go += 1
+  turn(board)
+if over?(board) == false
+  turn(board)
+end
+  if won?(board) 
+  puts "Congratulations you are the winner"
+else
+  puts "This game ended in a draw."
+end
+end
+
+
+ # |iterate|
+ 
 
 #rspec spec/01_tic_tac_toe_spec.rb
