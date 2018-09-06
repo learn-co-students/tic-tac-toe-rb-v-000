@@ -69,7 +69,6 @@ def current_player(board)
  end
 end
 
-
 def won?(board)
  WIN_COMBINATIONS.find do |i| 
    board[i[0]] == board[i[1]] && board[i[0]] == board[i[2]] && position_taken?(board, i[0])
@@ -96,17 +95,15 @@ def winner(board)
   won?(board) && board[won?(board)[0]]
 end 
 
-#def play(board)
- # go = 0
-  #until go == 9
-  #go += 1
-  #turn(board)
-#if over?(board) == false
- # turn(board)
-## if won?(board) 
-  #puts "Congratulations you are the winner"
-#else
-#  puts "This game ended in a draw."
-#end
-#end
+def play(board)
+ until over?(board) 
+  turn(board)
+ end
+  if won?(board)
+   puts "Congratulations #{winner(board)}"
+  else
+   puts "This game ended in a draw."
+end
+end
+
 
