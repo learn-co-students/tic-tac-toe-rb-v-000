@@ -18,12 +18,12 @@ def display_board(board)
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
-def input_to_index(user_input)
-  user_input.to_i - 1
+def input_to_index(input)
+  input.to_i - 1
 end
 
-def player_move(board, input_to_index, players_character = 'X')
- board[input_to_index] = players_character
+def player_move(board, index, token)
+ board[index] = token
 end
 
 
@@ -33,15 +33,16 @@ end
 
 def valid_move?(board, index)
   index.between?(0,8) && !position_taken?(board, index)
-end
+ end
 
 def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board, index)
-    player_move(board, index, player)
-    display_board(board)
+    token = current_player(board)
+player_move(board, index, token)
+     display_board(board)
   else
     turn(board)
   end
@@ -51,7 +52,7 @@ def turn_count(board)
   counter = 0
   board.each do |boards|
     if boards == "X" || boards == "O"
-      counter += 1
+     counter += 1
       puts "#{counter}"
     end
   end
@@ -60,27 +61,26 @@ end
 
 def current_player(board)
   loop do 
-    if turn_count(board).even? 
+   if turn_count(board).even? 
       return "X"
     else
-      return "O"
+     return "O"
     end
  end
 end
 
 
-
 def won?(board)
  WIN_COMBINATIONS.find do |i| 
    board[i[0]] == board[i[1]] && board[i[0]] == board[i[2]] && position_taken?(board, i[0])
+end  
 end
- end  
- 
+
 def full?(board) 
  board.each do |letter| 
    if letter == " " 
     return false 
-     end 
+    end 
      end
      end 
      
@@ -96,23 +96,17 @@ def winner(board)
   won?(board) && board[won?(board)[0]]
 end 
 
-def play(board)
-  go = 0
-  until go == 9
-  go += 1
-  turn(board)
-if over?(board) == false
-  turn(board)
-end
-  if won?(board) 
-  puts "Congratulations you are the winner"
-else
-  puts "This game ended in a draw."
-end
-end
+#def play(board)
+ # go = 0
+  #until go == 9
+  #go += 1
+  #turn(board)
+#if over?(board) == false
+ # turn(board)
+## if won?(board) 
+  #puts "Congratulations you are the winner"
+#else
+#  puts "This game ended in a draw."
+#end
+#end
 
-
- # |iterate|
- 
-
-#rspec spec/01_tic_tac_toe_spec.rb
