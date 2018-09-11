@@ -1,8 +1,3 @@
-require 'pry'
-def position_taken?(board, index)
-  !(board[index].nil? || board[index] == " ")
-end
-
 WIN_COMBINATIONS = [
     [0,1,2], 
     [3,4,5],
@@ -30,8 +25,8 @@ def player_move(board, index, current_player)
   board[index] = current_player
 end
 
-def position_taken?(board, location)
-  board[location] != " " && board[location] != ""
+def position_taken?(board, index)
+  board[index] == "X" || board[index] == "O"
 end
 
 def valid_move?(board, index)
@@ -78,11 +73,11 @@ def full?(board)
 end
 
 def draw?(board)
-  full?(board) && !won?(board)
+  !won?(board) && full?(board) 
 end
 
 def over?(board)
-  won?(board) || full?(board)
+  won?(board) || draw?(board)
 end
 
 def winner(board)
@@ -92,16 +87,12 @@ def winner(board)
 end
 
 def play(board)
-  turn_count = 0
-  until won?(board) || over?(board) || draw?(board)
+  until over?(board)
     turn(board)
-    turn_count+=1
   end
-    if winner(board)
-        winning_combo = won?(board)
-binding.pry
-        puts "Congratulations #{board[winning_combo.first]}!"
-    elsif draw?(board)
-        puts "Cat's Game!"
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
   end
 end
