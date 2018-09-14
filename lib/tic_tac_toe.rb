@@ -103,8 +103,8 @@ end
 
 def winner(board)
   if won?(board)
-  winner = board[ (won?(board)[0]) ]
-  return winner
+  winning_player = board[(won?(board)[0])]
+  return winning_player
 else
 end
 end
@@ -115,8 +115,8 @@ def play(board)
     turn(board)
   end
   if won?(board)
-    #winner(board)
-    puts "Congratulations #{winner}"
+    winning_player=winner(board)
+    puts "Congratulations #{winning_player}!"
   elsif draw?(board)
     puts "Cat's Game!"
   end
