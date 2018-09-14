@@ -94,7 +94,6 @@ describe './lib/tic_tac_toe.rb' do
 
       position = 8
       expect(position_taken?(board, position)).to be(true)
-
       position = 1
       expect(position_taken?(board, position)).to be(false)
 
