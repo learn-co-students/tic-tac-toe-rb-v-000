@@ -125,7 +125,7 @@ def over?(board)
   #   true
   # end
 
-  won?(board) || full?(board)
+  won?(board) || draw?(board)
 
 end
 
@@ -142,14 +142,12 @@ end
 
 
 def play(board)
-  turn_count = 0
-  while over?(board) == false && draw?(board) == false
+  while !over?(board)
     turn(board)
-    turn_count+=1
   end
-  if draw?(board) == false
+  if won?(board)
     puts "Congratulations #{winner(board)}!"
-  elsif draw?(board) == true
+  elsif draw?(board)
     puts "Cat's Game!"
   end
 end
