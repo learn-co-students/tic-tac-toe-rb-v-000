@@ -14,10 +14,41 @@ def player_move(array, index, value)
   array[index] = value
 end
 
-
+def valid_move?(board, index)
+ position_taken?(board, index) == false && index.between?(0,8)
+ end
 
 def position_taken?(board, index)
   !(board[index].nil? || board[index] == " ")
+end
+
+def turn(board)
+  puts "Please enter 1-9:"
+  input = gets.strip
+  index = input_to_index(input)
+  if valid_move?(board, index)
+    move(board, index)
+    display_board(board)
+  else
+    turn(board)
+  end
+end
+
+def turn_count(board)
+ counter = 0
+    board.each do |cell|
+      if cell != " " && cell != ""
+       counter +=1
+     end
+  end
+  counter
+end
+
+def current_player(board)
+ if turn_count(board).to_i.even?
+  return "X"
+ else return "O"
+end
 end
 
 WIN_COMBINATIONS = [
@@ -78,5 +109,13 @@ winning_array = won?(board)
   board[winning_array[0]]
  else
   nil
+  end
+end
+
+def play(board)
+    counter = 0
+    until counter == 9
+      turn(board)
+    counter += 1
   end
 end
