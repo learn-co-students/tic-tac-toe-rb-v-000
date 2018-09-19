@@ -112,10 +112,24 @@ winning_array = won?(board)
   end
 end
 
+
 def play(board)
-    counter = 0
-    until counter == 9
+    until over?(board)
       turn(board)
-    counter += 1
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
   end
 end
+
+# until the game is over
+#   take turns
+# end
+#
+# if the game was won
+#   congratulate the winner
+# else if the game was a draw
+#   tell the players it has been a draw
+# end
