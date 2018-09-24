@@ -112,23 +112,15 @@ def winner(board)
  end
 end
 
-#Game Over?
-#def game_over?(board)
-  #won?(board) || draw?(board)
-#end
-
 #Play
 def play(board)
-  while !won?(board) || !draw?(board)
-    #binding.pry
+  while !over?(board)
     turn(board)
   end
 if won?(board)
-  puts "Congratulations, #{winner(board)}"
+  puts "Congratulations #{winner(board)}!"
 elsif draw?(board)
   puts "Cat's Game!"
 end
 end
-
-#WARNING: You're overriding a previous stub implementation of `turn`. Called from /home/helloamandamurphy/tic-tac-toe-rb-v-000/spec/02_play_spec.rb:45:in `block(3 levels) in <top (required)>'.. Called from /home/helloamandamurphy/tic-tac-toe-rb-v-000/spec/02_play_spec.rb:45:in `block (3 levels) in <top (required)>'.
 
