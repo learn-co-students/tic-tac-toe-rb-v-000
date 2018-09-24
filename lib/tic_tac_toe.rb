@@ -1,3 +1,4 @@
+require 'pry'
 #Win Combinations
 WIN_COMBINATIONS = [
   [0,1,2], #top row
@@ -11,7 +12,7 @@ WIN_COMBINATIONS = [
   ]
 
 #Display Board
-def display_board(board = " ")
+def display_board(board)
 
 puts " #{board[0]} | #{board[1]} | #{board[2]} "
 puts "-----------"
@@ -41,11 +42,7 @@ end
 
 #Valid Move?
 def valid_move?(board,index)
-  if index < 0 || index > 8 || board[index] == "X" || board[index] == "O"
-    false
-  else (index == 0 || index > 0 || index < 8) && (board[index] == "" || board[index] == " " || board[index] == nil)
-    true
-  end
+  index.between?(0,8) && !position_taken?(board,index)
 end
 
 #Turn
@@ -80,26 +77,31 @@ def current_player(board)
     "O"
   end
 end
+
 #Won?
 def won?(board)
     WIN_COMBINATIONS.detect do |combo|
       board[combo[0]] == board[combo[1]] && board[combo[2]] == board[combo[0]] && position_taken?(board,combo[0])
     end
   end
+  
 #Full?
 def full?(board)
     board.all? do |positions|
       positions == "X" || positions == "O"
     end
 end
+
 #Draw?
 def draw?(board)
   !won?(board) && full?(board)
 end
+
 #Over?
 def over?(board)
   draw?(board) || won?(board)
 end
+
 #Winner
 def winner(board)
  if won?(board)
@@ -111,18 +113,22 @@ def winner(board)
 end
 
 #Game Over?
-def game_over(board)
-  won?(board) || draw?(board)
+#def game_over?(board)
+  #won?(board) || draw?(board)
+#end
+
+#Play
+def play(board)
+  while !won?(board) || !draw?(board)
+    #binding.pry
+    turn(board)
+  end
+if won?(board)
+  puts "Congratulations, #{winner(board)}"
+elsif draw?(board)
+  puts "Cat's Game!"
+end
 end
 
-#play
-def play(board)
-  while !game_over(board)
-  turn(board)
-  if won?(board)
-    puts "Congratulations, #{winner(board)}"
-    elsif draw?(board)
-    puts "Cat's Game!"
-end
-end
-end
+#WARNING: You're overriding a previous stub implementation of `turn`. Called from /home/helloamandamurphy/tic-tac-toe-rb-v-000/spec/02_play_spec.rb:45:in `block(3 levels) in <top (required)>'.. Called from /home/helloamandamurphy/tic-tac-toe-rb-v-000/spec/02_play_spec.rb:45:in `block (3 levels) in <top (required)>'.
+
