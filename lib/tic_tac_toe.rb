@@ -1,4 +1,3 @@
-require 'pry'
 #Win Combinations
 WIN_COMBINATIONS = [
   [0,1,2], #top row
