@@ -42,16 +42,17 @@ def valid_move?(board, index)
   !position_taken?(board, index) && index.between?(0, 8)
 end
 
+
 def turn(board)
-  puts "Please, select a spot on the board: 1-9"
+  puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
-    if valid_move?(board, index)
-      player_move(board, index, token = "X")
-      display_board(board)
-    else
-      turn(board)
-    end
+  if valid_move?(board, index)
+    move(board, index)
+    display_board(board)
+  else
+    turn(board)
+  end
 end
 
 def turn_count(board)
@@ -63,3 +64,27 @@ def turn_count(board)
     end
   return counter
 end
+
+#this seems like too many end's are being used
+def turn(board)
+  puts "Please, select a spot on the board: 1-9"
+  input = gets.strip
+  index = input_to_index(input)
+    if valid_move?(board, index)
+      player_move(board, index)
+      display_board(board)
+      else
+      turn(board)
+    end
+end
+
+
+def current_player(board)
+  if turn_count(board).even?
+    return "X"
+  else
+    return "O"
+  end
+end
+
+def won?(board)
