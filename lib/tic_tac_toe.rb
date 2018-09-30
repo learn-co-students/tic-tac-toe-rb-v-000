@@ -1,5 +1,3 @@
-#board variable with spaces in an array
-board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
 # array containing all possible winning play combinations
 WIN_COMBINATIONS = [
@@ -88,3 +86,42 @@ def current_player(board)
 end
 
 def won?(board)
+  WIN_COMBINATIONS.each do |win|
+    if position_taken?(board, win[0]) && board[win[0]] == board[win[1]] && board[win[2]] == board[win[2]]
+      return win
+    end
+  end
+ return false
+end
+
+def full?(board)
+  board.all? { |space| space == "X" || space == "O"}
+end
+
+def draw?(board)
+  full?(board) && !won?(board)
+end
+
+def over?(board)
+  won?(board) || draw?(board) || full?(board)
+end
+
+def winner(board)
+  if won?(board)
+     combo = won?(board)
+     board[combo[0]]
+    else
+      nil
+  end
+end
+
+def play(board)
+  turn(board) until over?(board)
+    if won?(board)
+      then print "Congratulations, Winner #{winner(board)}!"
+    elsif draw?(board)
+      then print "Cat's Game!"
+    else
+      nil
+    end
+end
