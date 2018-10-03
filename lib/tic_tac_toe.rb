@@ -28,8 +28,15 @@ def input_to_index(input)
   index = input.to_i - 1
 end
 
+=begin # ((Original method written & fails token test))
 def player_move(board, index, token)
-  board[index] = token
+  token = board[index]
+end
+=end
+
+def player_move(board, index, current_player)
+  token = current_player(board)
+  board[index] == "#{token}"
 end
 
 def position_taken?(board, index)
@@ -45,8 +52,8 @@ def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
-  if valid_move?(board, index)
-    move(board, index)
+  if index == valid_move?(board, index)
+    player_move(board, index)
     display_board(board)
   else
     turn(board)
@@ -108,20 +115,18 @@ end
 
 def winner(board)
   if won?(board)
-     combo = won?(board)
-     board[combo[0]]
+     win = won?(board)
+     board[win[0]]
     else
       nil
   end
 end
 
 def play(board)
-  turn(board) until over?(board)
-    if won?(board)
-      then print "Congratulations, Winner #{winner(board)}!"
-    elsif draw?(board)
-      then print "Cat's Game!"
-    else
-      nil
+  turn(board)
+  counter = 1
+    until counter == 9
+      turn(board)
+      counter += 1
     end
 end
