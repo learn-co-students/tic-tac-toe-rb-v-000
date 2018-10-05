@@ -34,9 +34,14 @@ def player_move(board, index, token)
 end
 =end
 
+
 def player_move(board, index, current_player)
   token = current_player(board)
   board[index] == "#{token}"
+end
+
+def player_move(board, index, current_player)
+board[index] = current_player(board)
 end
 
 def position_taken?(board, index)
