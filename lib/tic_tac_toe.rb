@@ -28,21 +28,11 @@ def input_to_index(input)
   index = input.to_i - 1
 end
 
-=begin # ((Original method written & fails token test))
-def player_move(board, index, token)
-  token = board[index]
-end
-=end
-
 
 def player_move(board, index, current_player)
-  token = current_player(board)
-  board[index] == "#{token}"
+  board[index] = current_player(board)
 end
 
-def player_move(board, index, current_player)
-board[index] = current_player(board)
-end
 
 def position_taken?(board, index)
   board[index] == "X" || board[index] == "O"
@@ -129,9 +119,10 @@ end
 
 def play(board)
   turn(board)
-  counter = 1
-    until counter == 9
-      turn(board)
-      counter += 1
+     loop do
+        turn(board)
+        until over?(board)
+        break
+      end
     end
 end
