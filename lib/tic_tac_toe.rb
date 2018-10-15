@@ -1,3 +1,4 @@
+require 'pry'
 WIN_COMBINATIONS = [[0,1,2],
                     [3,4,5],
                     [6,7,8],
@@ -135,7 +136,8 @@ def winner(board)
 end
 
 def play(board)
-  until over?(board) == true
+ 
+  until over?(board)
     turn(board)
   end
     
