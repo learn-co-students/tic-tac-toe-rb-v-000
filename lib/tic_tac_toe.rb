@@ -108,10 +108,8 @@ def winner(board)
 end
 
 def play(board)
-  turn(board)
-     loop do
-       puts "I'm in a loop"
-        turn(board)
-        break if over?(board)
-      end
-    end
+  loop do
+    turn(board)
+    break if over?(board)
+  end
+end
