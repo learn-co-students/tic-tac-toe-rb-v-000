@@ -29,8 +29,8 @@ def input_to_index(input)
 end
 
 
-def player_move(board, index, current_player)
-  board[index] = current_player(board)
+def player_move(board, index, token)
+  board[index] = token
 end
 
 
@@ -47,12 +47,12 @@ def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
-  if index == valid_move?(board, index)
-    player_move(board, index)
-    display_board(board)
-  else
-    turn(board)
-  end
+    if !valid_move?(board, index)
+      turn(board)
+    else
+      player_move(board, index, current_player(board))
+      display_board(board)
+    end
 end
 
 def turn_count(board)
@@ -65,20 +65,6 @@ def turn_count(board)
   return counter
 end
 
-#this seems like too many end's are being used
-def turn(board)
-  puts "Please, select a spot on the board: 1-9"
-  input = gets.strip
-  index = input_to_index(input)
-    if valid_move?(board, index)
-      player_move(board, index)
-      display_board(board)
-      else
-      turn(board)
-    end
-end
-
-
 def current_player(board)
   if turn_count(board).even?
     return "X"
@@ -87,14 +73,18 @@ def current_player(board)
   end
 end
 
+
 def won?(board)
-  WIN_COMBINATIONS.each do |win|
-    if position_taken?(board, win[0]) && board[win[0]] == board[win[1]] && board[win[2]] == board[win[2]]
-      return win
-    end
-  end
- return false
+      WIN_COMBINATIONS.each do |win|
+          if position_taken?(board, win[0]) && board[win[0]] == board[win[1]] && board[win[2]] == board[win[0]]
+              return win
+          end
+      end
+    false
 end
+
+
+
 
 def full?(board)
   board.all? { |space| space == "X" || space == "O"}
@@ -105,7 +95,7 @@ def draw?(board)
 end
 
 def over?(board)
-  won?(board) || draw?(board) || full?(board)
+  won?(board) || draw?(board)
 end
 
 def winner(board)
@@ -120,9 +110,8 @@ end
 def play(board)
   turn(board)
      loop do
+       puts "I'm in a loop"
         turn(board)
-        until over?(board)
-        break
+        break if over?(board)
       end
     end
-end
