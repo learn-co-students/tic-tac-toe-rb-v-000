@@ -80,7 +80,7 @@ def won?(board)
               return win
           end
       end
-    false
+      false
 end
 
 
@@ -108,8 +108,13 @@ def winner(board)
 end
 
 def play(board)
-  loop do
+  while !over?(board)
     turn(board)
-    break if over?(board)
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  else
+    draw?(board)
+    puts "Cat's Game!"
   end
 end
