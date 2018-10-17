@@ -1,4 +1,3 @@
-
 # array containing all possible winning play combinations
 WIN_COMBINATIONS = [
 [0,1,2], #row-wins
@@ -75,16 +74,13 @@ end
 
 
 def won?(board)
-      WIN_COMBINATIONS.each do |win|
-          if position_taken?(board, win[0]) && board[win[0]] == board[win[1]] && board[win[2]] == board[win[0]]
-              return win
-          end
-      end
-      false
+  WIN_COMBINATIONS.each do |win|
+    if position_taken?(board, win[0]) && board[win[0]] == board[win[1]] && board[win[2]] == board[win[0]]
+      return win
+    end
+  end
+false
 end
-
-
-
 
 def full?(board)
   board.all? { |space| space == "X" || space == "O"}
