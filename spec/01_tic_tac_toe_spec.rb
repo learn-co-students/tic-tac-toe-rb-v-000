@@ -120,7 +120,7 @@ describe './lib/tic_tac_toe.rb' do
 
   describe '#turn' do
     it 'makes valid moves' do
-      board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+      board = [" ", " ", " ", " ", " ", " ", " ", " ", "X"]
 
       allow($stdout).to receive(:puts)
 
@@ -196,10 +196,10 @@ describe './lib/tic_tac_toe.rb' do
       draw?(board)
     end
 
-    it 'calls full?' do 
+    it 'calls full?' do
       board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
 
-      expect(self).to receive(:full?).with(board)      
+      expect(self).to receive(:full?).with(board)
       draw?(board)
     end
 
