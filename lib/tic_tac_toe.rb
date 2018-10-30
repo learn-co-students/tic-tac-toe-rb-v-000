@@ -53,7 +53,6 @@ def turn(board)
     else
       character="O"
     end
-    # binding.pry
   if valid_move?(board, index)
     move(board, index, character)
     display_board(board)
@@ -63,14 +62,13 @@ def turn(board)
 end
 
 def turn_count(board)
-  turns=0
-  # binding.pry
+  num_of_turns=0
   board.each_with_index do |square, index|
     if board[index]=="X" || board[index]=="O"
-      turns+=1
+      num_of_turns+=1
     end
   end
-  return turns
+  return num_of_turns
 end
 
 def current_player(board)
@@ -90,7 +88,6 @@ def won?(board)
     position_1=board[win_index_1]
     position_2=board[win_index_2]
     position_3=board[win_index_3]
-
     if position_1==position_2 && position_2==position_3 && position_1 !=" "
       return win_combination
     end
@@ -117,7 +114,6 @@ def draw?(board)
   # end
   won=won?(board)
   full=full?(board)
-  # binding.pry
   if won==false && full==true
     return true
   elsif won==false && full==false
@@ -130,13 +126,27 @@ def draw?(board)
 end
 
 def over?(board)
-  if won?(board) ==true || draw?(board)==true||full?(board)==true
+  if draw?(board)==true || won?(board) || full?(board)==true
     return true
   end
 end
 
 def winner(board)
   if won?(board)
-    board[won?(board)[0]]
+    z=board[won?(board)[0]]
+    return z
   end
 end
+
+def play(board)
+  while !over?(board)
+    turn(board)
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
+  end
+end
+
+# play(["X", "O", "X", "O", "X", "O", "X", " ", " "])
