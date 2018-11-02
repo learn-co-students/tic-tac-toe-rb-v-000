@@ -2,9 +2,22 @@
 
 require_relative '../lib/tic_tac_toe'
 
+puts "Welcome to Tic Tac Toe!"
+puts "Please Enter 1-9:"
+
 board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
-puts "Welcome to Tic Tac Toe!"
 display_board(board)
-
+turn(board)
 play(board)
+input= gets.strip
+
+#puts "Welcome to Tic Tac Toe!"
+#puts "Please enter 1-9:"
+#input = gets.strip
+
+#index = input_to_index(input)
+
+#move(board, index)
+#display_board(board)
+#play(board)
