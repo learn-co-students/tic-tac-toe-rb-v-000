@@ -54,7 +54,7 @@ def turn(board)
     input_to_index(input)
     index = input_to_index(input)
   end
-  move(board, index, character="X")
+  move(board, index, current_player(board))
   display_board(board)
 end
 
