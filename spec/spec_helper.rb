@@ -1,6 +1,6 @@
 require 'simplecov'
 SimpleCov.start do
-  add_filter "/spec"
+  add_filter '/spec'
 end
 
 RSpec.configure do |config|
@@ -9,7 +9,7 @@ end
 
 RSpec::Matchers.define :include_array do |expected|
   match do |actual|
-    actual.any?{|array| match_array(expected).matches?(array)}
+    actual.any? { |array| match_array(expected).matches?(array) }
   end
 end
 
@@ -31,12 +31,10 @@ def get_variable_from_file(file, variable)
 end
 
 def capture_puts
-  begin
-    old_stdout = $stdout
-    $stdout = StringIO.new('','w')
-    yield
-    $stdout.string
-  ensure
-    $stdout = old_stdout
-  end
+  old_stdout = $stdout
+  $stdout = StringIO.new('', 'w')
+  yield
+  $stdout.string
+ensure
+  $stdout = old_stdout
 end
