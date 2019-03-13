@@ -11,8 +11,6 @@ WIN_COMBINATIONS = [
 [2,5,8], #vertical_row_c
 ]
 
-
-
 #display_board
 def display_board(board = [" "," "," "," "," "," "," "," "," "])
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
@@ -149,4 +147,25 @@ def winner(board)
  end
 end
 end
+end
+end
+
+def turn(board)
+puts "Please enter 1-9:"
+  position_taken = gets.strip
+  index = input_to_index(position_taken)
+  if !valid_move?(board,index)
+    turn(board)
+  else
+    move(board, index)
+   display_board(board)
+  end
+end
+
+def play(board)
+ counter = 0
+ until counter == 9
+ turn(board)
+ counter += 1
+ end
 end
