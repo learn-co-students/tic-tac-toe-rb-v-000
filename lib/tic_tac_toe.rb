@@ -23,7 +23,7 @@ end
 #input_to_index
 def input_to_index(user_input)
   return user_input.to_i-1
-End
+end
 
 #Move
 def move(board,index, value = "X")
@@ -55,7 +55,7 @@ def turn_count(board)
   end
   end
   return counter
-End
+end
 
 #current_player
 def current_player(board)
@@ -105,9 +105,6 @@ else
  end
 end
 
-
-
-
  #draw?
 
 #IS THERE A DRAW?
@@ -116,7 +113,6 @@ def draw?(board)
    return true
  end
 end
-
 
 #over?
 
@@ -147,8 +143,6 @@ def winner(board)
  end
 end
 end
-end
-end
 
 def turn(board)
 puts "Please enter 1-9:"
@@ -157,7 +151,7 @@ puts "Please enter 1-9:"
   if !valid_move?(board,index)
     turn(board)
   else
-    move(board, index)
+    move(board, index, current_player(board))
    display_board(board)
   end
 end
