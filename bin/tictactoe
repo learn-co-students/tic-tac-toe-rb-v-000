@@ -8,11 +8,3 @@ puts "Welcome to Tic Tac Toe!"
 display_board(board)
 
 play(board)
-#current_player eturns a position
-current_player(board)
-turn_count(board)
-move(board,index, value = "X")
-won?(board)
-full?(board)
-over?(board)
-winner?(board)
