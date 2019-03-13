@@ -1,3 +1,4 @@
+require "pry"
 #defines a constant WIN_COMBINATIONS with arrays for each win combination
 
 WIN_COMBINATIONS = [
@@ -26,9 +27,11 @@ def input_to_index(user_input)
 end
 
 #Move
-def move(board,index, value = "X")
+def move(board,index, value)
   return board[index] = value
 end
+
+
 
 #valid_move?
 def valid_move?(board,index)
@@ -118,29 +121,17 @@ end
 
 #HAS SOMETHING HAPPENED?
 def over?(board)
- puts 'is it over?'
- if won?(board) || draw?(board) || full?(board)
-   return true
- else
-   puts 'no keep going'
-   return false
- end
+  won?(board) || draw?(board)
 end
-
 
  #winner
 
 #WHO WON?
 def winner(board)
- if !won?(board)
-   return nil
- else WIN_COMBINATIONS.each do |win_combo|
-   if check_win_combination?(board, 'X', win_combo)
-     return 'X'
-   elsif check_win_combination?(board, 'O', win_combo)
-     return 'O'
-   end
- end
+if won?(board)
+  combo = won?(board)
+  #binding.pry
+return board[combo[0]]
 end
 end
 
@@ -157,9 +148,10 @@ puts "Please enter 1-9:"
 end
 
 def play(board)
- counter = 0
- until counter == 9
- turn(board)
- counter += 1
+turn(board) until over?(board)
+   if won?(board)
+     puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+  puts "Cat's Game!"
+   end
  end
-end
