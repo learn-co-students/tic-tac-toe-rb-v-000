@@ -1,3 +1,4 @@
+require 'pry'
 # Define your WIN_COMBINATIONS constant
 WIN_COMBINATIONS = [
     [0, 1, 2],
@@ -35,12 +36,18 @@ def valid_move?(board, index)
 end
 
 def turn(board)
+ # binding.pry
   puts "Please enter 1-9:"
   user_input = gets.strip
   index = input_to_index(user_input)
+ # binding.pry
   if valid_move?(board, index)
-    move(board, index, token = "X")
+    token = current_player(board)
+ #   binding.pry
+    move(board, index, token)
+ #   binding.pry
     display_board(board)
+ #   binding.pry
   else
     turn(board)
   end
@@ -70,34 +77,38 @@ def won?(board)
   
   def full?(board)
     board.all? do |position|
-      position == "X" || position == "O"
+      position == "X" || position == "O" 
     end
  end
 
 def draw?(board)
-  #if board is full and there are no winning combos return TRUE
   full?(board) && !won?(board)
 end
   
 def over?(board)
- full?(board) || won?(board)
+ full?(board) || draw?(board) || won?(board)
 end
 
 def winner(board)
-    #look in won? & return the value of any element oF the winning_combo: 
-    #I randomly chose to use winning_combo[0]
-  
+  #first test if there WAS a winner yet, 
+  #& if so, find out which player token (X or O)
+  #otherwise if  no winner, return nil. 
   if won?(board)
-    if board[won?(board)[0]] == "X"
-      "X"
-    else board[won?(board)[0]] == "O"
-      "O"
-    end
-  else
-    return nil
+    #if no winner, then this IF is falsey, so winner() returns nil. 
+    #If won? is true, board[won?(board)[0]] (if there WAS a winner) 
+    board[won?(board)[0]]
   end
 end
 
-
+def play(board)
+  while !over?(board)
+    turn(board)
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
+  end  
+end
 
 
