@@ -1,0 +1,13 @@
+current directory: /home/jons/code/labs/tic-tac-toe-rb-v-000/vendor/bundle/ruby/2.5.0/gems/json-2.2.0/ext/json
+/usr/bin/ruby2.5 -I /usr/local/lib/site_ruby/2.5.0 -r ./siteconf20190517-8224-1y71x1e.rb extconf.rb
+creating Makefile
+
+current directory: /home/jons/code/labs/tic-tac-toe-rb-v-000/vendor/bundle/ruby/2.5.0/gems/json-2.2.0/ext/json
+make "DESTDIR=" clean
+
+current directory: /home/jons/code/labs/tic-tac-toe-rb-v-000/vendor/bundle/ruby/2.5.0/gems/json-2.2.0/ext/json
+make "DESTDIR="
+make: Nothing to be done for 'all'.
+
+current directory: /home/jons/code/labs/tic-tac-toe-rb-v-000/vendor/bundle/ruby/2.5.0/gems/json-2.2.0/ext/json
+make "DESTDIR=" install
