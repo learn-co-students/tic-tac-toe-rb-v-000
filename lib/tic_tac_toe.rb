@@ -62,6 +62,18 @@ WIN_COMBINATIONS = [
 def won?(board)
   WIN_COMBINATIONS.detect do |combo|
     board[combo[0]] == board[combo[1]] && board[combo[2]] == board[combo[1]] && position_taken?(board,combo[1])
+
+win_index_1 = WIN_COMBINATIONS[0]
+win_index_2 = WIN_COMBINATIONS[1]
+win_index_3 = WIN_COMBINATIONS[2]
+win_index_4 = WIN_COMBINATIONS[3]
+win_index_5 = WIN_COMBINATIONS[4]
+win_index_6 = WIN_COMBINATIONS[5]
+win_index_7 = WIN_COMBINATIONS[6]
+win_index_8 = WIN_COMBINATIONS[7]
+def won?(board)
+  WIN_COMBINATIONS.detect do |combo|
+    board[combo[0]] == board[combo[1]] && board[combo[2]] == board[combo[1]] && board[combo[1]] != " "
   end
 end
 
@@ -76,7 +88,7 @@ def draw?(board)
 end
 
 def over?(board)
-  won?(board) || full?(board)
+  won?(board) || draw?(board)
 end
 
 def winner(board)
@@ -98,4 +110,5 @@ def play(board)
     puts "Cats Game!"
   end
   draw?(board)
+  end
 end
