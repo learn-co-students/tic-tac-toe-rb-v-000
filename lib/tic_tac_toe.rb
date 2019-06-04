@@ -18,38 +18,21 @@ def move(board, index, player_token)
 end
 
 def position_taken? (board, index)
-  if board[index] == "X" or board[index] == "O"
-    return true
-  end
-  false
+  (board[index] == "X" or board[index] == "O")
 end
 
 def valid_move?(board, index)
-  if index < 0 || index > 8
-    return false
-  elsif position_taken?(board, index) == true
-    return false
-  end
-  true
+  !((index < 0 || index > 8) or (position_taken?(board, index)))
 end
 
 def turn_count(board)
   turns = 0
-  board.each do |position|
-    if position == "X" || position == "O"
-      turns +=1
-    end
-  end
+  board.each {|position| (position == "X" || position == "O") ? turns += 1 : nil}
   return turns
 end
 
 def current_player(board)
-  turns = turn_count(board)
-  if turns == 0 || turns % 2 == 0
-    return "X"
-  else
-    return "O"
-  end
+  turn_count(board) % 2 == 0 ? "X" : "O"
 end
 
 def turn(board)
@@ -57,7 +40,7 @@ def turn(board)
   user_input=gets.strip
   index = input_to_index(user_input)
   player_token = current_player(board)
-  if valid_move?(board,index) == true
+  if valid_move?(board,index)
     move(board,index,player_token)
     display_board(board)
   else
@@ -66,7 +49,7 @@ def turn(board)
 end
 
 def won?(board)
-  WIN_COMBINATIONS.each do |win_combination|
+  WIN_COMBINATIONS.detect do |win_combination|
     win_index_1 = win_combination[0]
     win_index_2 = win_combination[1]
     win_index_3 = win_combination[2]
@@ -75,57 +58,36 @@ def won?(board)
     position_2 = board[win_index_2]
     position_3 = board[win_index_3]
 
-    if position_1 == "X" && position_2 == "X" && position_3 == "X"
-      return win_combination
-    elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
-      return win_combination
-    end
+    ((position_1 == position_2) && (position_2 == position_3) && (position_taken?(board,win_index_1))) ? (return win_combination) : nil
   end
-
   false
 end
 
 def full?(board)
-  board.each do |position|
-    if position == " "
-      return false
-    end
-  end
-  true
+  !(board.include?(" ") or board.include?(nil))
 end
 
 def draw?(board)
-  if full?(board) == true && won?(board) == false
-    return true
-  end
-  false
+  ((full?(board)) && !(won?(board)))
 end
 
 def over?(board)
-  if won?(board) != false || draw?(board) == true
-    return true
-  end
-  false
+  ((!won?(board)==false) || (draw?(board)))
 end
 
 def winner(board)
-  win_combination = won?(board)
-  if over?(board) == true && draw?(board) == false
-    win_index = win_combination[0]
-    letter = board[win_index]
-    return letter
-  end
+  ((over?(board)) && !(draw?(board))) ? board[won?(board)[0]] : nil
 end
 
 def play(board)
-  until over?(board) == true
+  until over?(board)
     turn(board)
   end
 
-  if won?(board) != false
+  if won?(board)
     winner = winner(board)
     puts "Congratulations #{winner}!"
-  else draw?(board) == true
+  else
     puts "Cat's Game!"
   end
 end
