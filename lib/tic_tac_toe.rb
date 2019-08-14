@@ -32,19 +32,12 @@ def turn(board)
 end
 
 def turn_count(board)
-    counter = 0
-    board.each do |arrayCell|
-      if arrayCell != " "
-        counter += 1
-      end
-    end
-    return counter
-  end
+      board.count {|x| x == "X" || x == "O"}
+end
 
-
-  def current_player(board)
-    turn_count(board) % 2 == 0 ? "X" : "O"
-  end
+def current_player(board)
+  turn_count(board) % 2 == 0 ? "X" : "O"
+end
 
   # Helper Method
 def position_taken?(board, index)
@@ -66,13 +59,11 @@ WIN_COMBINATIONS = [
 
 def won?(board)
 WIN_COMBINATIONS.detect do |combo|
-
     position_1 = board[combo[0]] # load the value of the board at win_index_1
     position_2 = board[combo[1]] # load the value of the board at win_index_2
     position_3 = board[combo[2]] # load the value of the board at win_index_3
-
     position_1 == position_2 && position_2 == position_3 && position_taken?(board, combo[0])
-end
+  end
 end
 
 def full?(board)
@@ -80,27 +71,22 @@ def full?(board)
 end
 
 def draw?(board)
-!won?(board) && full?(board)
+  !won?(board) && full?(board)
 end
 
 def over?(board)
-won?(board) || draw?(board)
+  won?(board) || draw?(board)
 end
 
 def winner(board)
-  if won?(board)
-      board[won?(board)[0]]
-  end
+  board[won?(board)[0]] if won?(board)
 end
 
 def play(board)
-until over?(board)
-  turn(board)
-end
-
-if won?(board)
-  puts "Congratulations #{winner(board)}!"
-  elsif draw?(board)
+  turn(board) until over?(board)
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?board
     puts "Cat's Game!"
   end
 end
