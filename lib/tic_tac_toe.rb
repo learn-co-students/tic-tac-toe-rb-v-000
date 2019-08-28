@@ -109,13 +109,16 @@ def winner(board)
   
   winning_trombo = won?(board) 
   
-  if winning_trombo != false && winning_trombo.all? {| i | board[i] == "X"}
-    "X" 
-  elsif winning_trombo != false && winning_trombo.all? {| i | board[i] == "O"}
-     "O"
-  else
-    nil
-  end 
+  if winning_trombo
+    binding.pry
+  end
+  # if winning_trombo != false && winning_trombo.all? {| i | board[i] == "X"}
+  #   "X" 
+  # elsif winning_trombo != false && winning_trombo.all? {| i | board[i] == "O"}
+  #   "O"
+  # else
+    # nil
+  # end 
 end
 
 # def play(board)
@@ -142,17 +145,17 @@ def play(board)
   # input = gets
   while over?(board) == false
     turn(board)
-    if won?(board) || draw?(board) == true
-      over?(board) == true
-        if winner(board) == "X"
-          puts "Congratulations X!"
-        elsif winner(board) == "O"
-          puts "Congratulations O!"
-        else
-          puts "Cat's Game"
-        end
-    else
-      turn(board)
+    if won?(board) || draw?(board) 
+      # over?(board) == true
+              if winner(board) == "X"
+                puts "Congratulations X!"
+              elsif winner(board) == "O"
+                puts "Congratulations O!"
+              else
+                puts "Cat's Game"
+              end
+    # else
+    #   turn(board)
     end  
   end
 end
