@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/blinded93-34207/code/labs/tic-tac-toe-rb-v-000/lib/tic_tac_toe.rb": [
+      "/home/blinded93/Code/Labs/tic-tac-toe-rb-v-000/lib/tic_tac_toe.rb": [
         1,
         null,
         null,
@@ -54,7 +54,7 @@
         null,
         20,
         14,
-        null,
+        6,
         6,
         null,
         null,
@@ -96,7 +96,7 @@
         null,
         405,
         18,
-        null,
+        387,
         6,
         null,
         null,
@@ -139,6 +139,6 @@
         null
       ]
     },
-    "timestamp": 1481947253
+    "timestamp": 1568080458
   }
 }
