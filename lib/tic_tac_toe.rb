@@ -32,7 +32,7 @@ def turn(board)
 end
 
 def turn_count(board)
-      board.count {|x| x == "X" || x == "O"}
+  board.count {|count| count == "X" || count == "O"}
 end
 
 def current_player(board)
