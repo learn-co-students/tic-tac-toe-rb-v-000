@@ -118,12 +118,7 @@ def winner(board)
 # notes for play method on 2/18 are #1: #i'm missing code here that references the won? method #2 I need to use gets somewhere like on the turn method in order to get the tests passing around receiving input for the board  #3 i might want to use the while or until loop for checking/allowing the game to take turns until it is over #4 or we might want a counter that keeps track of 9 different turns
 
 
-# def play(board)
-#   game_over = over?
-#   until game_over == over?
-#     turn(board)
-#   end
-# end
+
 
 def play(board)
   turn(board) until over?(board)
@@ -136,6 +131,9 @@ def play(board)
   end
 end
 
+play(board)
+
+#below is some other code i had written to try and solve the lab but that didn't get it working but all gave me hints as to how to solve it through TDD
 
 #   counter = 0
 #   while counter < 9
@@ -149,9 +147,12 @@ end
 #   end
 # end
 
-
-
-
+# def play(board)
+#   game_over = over?
+#   until game_over == over?  #interesting to see here that i was thinking about the play method with an until loop so that's cool to see
+#     turn(board)
+#   end
+# end
 
   # if over?(board)
   #   puts "Congratulations #{winner(board)}!"
