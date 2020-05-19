@@ -43,7 +43,7 @@ def turn(board)
   index = input_to_index(input)
   #If move valid, make move and display board:
   if valid_move?(board, index)
-    move(board, index, current_player = "X")
+    move(board, index, current_player(board))
     display_board(board)
   #If move invalid, ask user for new position until valid move received:
   else
@@ -107,7 +107,7 @@ def draw?(board)
 end
 #This method accepts a board and returns true if board has been won, is a draw, or is full:
 def over?(board)
-  if full?(board) || won?(board) || draw?(board)
+  if won?(board) || draw?(board)
     true
   else
     false
@@ -136,7 +136,7 @@ def play(board)
     turn(board)
   end
   if won?(board)
-    puts "Congratulations #{current_player(board)}!"
+    puts "Congratulations #{winner(board)}!"
   else
     puts "Cat's Game!"
   end
