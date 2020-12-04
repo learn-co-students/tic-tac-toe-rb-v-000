@@ -39,14 +39,24 @@ describe './lib/tic_tac_toe.rb' do
       allow($stdout).to receive(:puts)
       allow(self).to receive(:gets).and_return("1","2","3")
       allow(self).to receive(:over?).and_return(false, false, false, true)
-      allow(self).to receive(:turn) do
-        num_of_turns += 1
-        Process.exit!(true) if num_of_turns > 10
-      end.and_call_original
+      allow(self).to receive(:turn).and_call_original
 
       play(board)
 
       expect(board).to match_array(["X", "O", "X", " ", " ", " ", " ", " ", " "])
+    end
+
+    it 'plays the first few turns of the game' do
+      board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+      num_of_turns = 0
+      allow($stdout).to receive(:puts)
+      allow(self).to receive(:gets).and_return("1","2","3", "4")
+      allow(self).to receive(:over?).and_return(false, false, false, false, true)
+      allow(self).to receive(:turn).and_call_original
+
+      play(board)
+
+      expect(board).to match_array(["X", "O", "X", "O", " ", " ", " ", " ", " "])
     end
 
     it 'checks if the game is won after every turn' do
@@ -81,7 +91,7 @@ describe './lib/tic_tac_toe.rb' do
 
     it 'congratulates the winner X' do
       board = ["X", "X", "X", " ", " ", " ", " ", " ", " "]
-      allow($stdout).to receive(:puts)
+      allow($stdout).to receive(:puts).and_call_original
 
       expect($stdout).to receive(:puts).with("Congratulations X!")
 
@@ -90,7 +100,7 @@ describe './lib/tic_tac_toe.rb' do
 
     it 'congratulates the winner O' do
       board = [" ", " ", " ", " ", " ", " ", "O", "O", "O"]
-      allow($stdout).to receive(:puts)
+      allow($stdout).to receive(:puts).and_call_original
 
       expect($stdout).to receive(:puts).with("Congratulations O!")
 
