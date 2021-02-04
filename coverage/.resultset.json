@@ -1,0 +1,23 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/home/spetluri/tic-tac-toe-rb-v-000/lib/tic_tac_toe.rb": [
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "timestamp": 1612474583
+  }
+}
