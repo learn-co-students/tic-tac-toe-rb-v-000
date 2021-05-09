@@ -1,114 +1,124 @@
 require 'pry'
 # Define your WIN_COMBINATIONS constant
 WIN_COMBINATIONS = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
+  [0,1,2],
+  [3,4,5],
+  [6,7,8],
+  [0,3,6],
+  [1,4,7],
+  [2,5,8],
+  [0,4,8],
+  [2,4,6]
   ]
-  
-  def display_board(board)
-  puts " #{board[0]} | #{board[1]} | #{board[2]} "
-  puts "-----------"
-  puts " #{board[3]} | #{board[4]} | #{board[5]} "
-  puts "-----------"
-  puts " #{board[6]} | #{board[7]} | #{board[8]} "
+
+#display_board
+def display_board(board)
+  puts " #{board[0]} | #{board[1]} | #{board[2]} " #
+  puts "---------------"
+  puts " #{board[3]} | #{board[4]} | #{board[5]} " #
+  puts "---------------"
+  puts " #{board[6]} | #{board[7]} | #{board[8]} " #
 end
 
+#input_to_index
 def input_to_index(position)
   index = position.to_i - 1
 end
 
-def move(board, index, current_player)
-  board[index] = current_player
+#move
+def move(board, position, current_player)
+  board[position] = current_player
 end
 
-def position_taken?(board, location)
-  board[location] != " " && board[location] != ""
+#position_taken?
+def position_taken?(board, index)
+  board[index] == "X" || board[index] == "O"
 end
 
+#valid_move?
 def valid_move?(board, index)
-  index.between?(0,8) && !position_taken?(board, index)
+    index.between?(0,8) && !position_taken?(board, index)
 end
 
-def turn(board)
- # binding.pry
-  puts "Please enter 1-9:"
-  user_input = gets.strip
-  index = input_to_index(user_input)
- # binding.pry
-  if valid_move?(board, index)
-    token = current_player(board)
- #   binding.pry
-    move(board, index, token)
- #   binding.pry
-    display_board(board)
- #   binding.pry
-  else
-    turn(board)
-  end
-end 
-
+#turn_count
 def turn_count(board)
   turn_count = 0 
-  board.each do |position|
-    if position == "X" || position == "O"
+  board.each do |index|
+    if index == "X" || index == "O"
       turn_count += 1 
     end
   end
   turn_count  
 end
 
+#current_player
 def current_player(board)
-  turn_count(board).even? ?  "X" :  "O"
-end
-
-def won?(board)
-    WIN_COMBINATIONS.detect do |winning_combo|
-      #winning_combo could be [0, 1, 2], [3, 4, 5]...
-      (board[winning_combo[0]] == board[winning_combo[1]]) && 
-        (board[winning_combo[1]] == board[winning_combo[2]]) && (board[winning_combo[0]] != " ")
-    end
+   if turn_count(board) % 2 == 0 
+    "X"
+   else
+    "O"
   end
-  
-  def full?(board)
-    board.all? do |position|
-      position == "X" || position == "O" 
-    end
- end
+end
 
+#turn 
+def turn(board)
+  puts "Please enter 1 - 9 "
+  index = input_to_index(gets.strip)
+  
+  if valid_move?(board, index)
+    token = current_player(board)
+    move(board, index, token)
+    display_board(board)
+  else
+    puts "Please enter a valid unused position."
+    turn(board)
+  end
+end
+
+#won?
+def won?(board)
+  WIN_COMBINATIONS.detect do |win_combo|
+    board[win_combo[0]] == board[win_combo [1]] && board[win_combo [1]] == board[win_combo[2]] && board[win_combo[0]] != " "
+  end
+end
+
+#full?
+def full?(board)
+  board.all? do |index|
+    index == "X" || index == "O"
+  end
+end
+
+#draw?
 def draw?(board)
-  full?(board) && !won?(board)
-end
-  
-def over?(board)
- draw?(board) || won?(board)
+  !won?(board) && full?(board)
 end
 
+#over?
+def over?(board)
+  won?(board) || draw?(board) || full?(board)
+end
+
+#winner
 def winner(board)
-  #first test if there WAS a winner yet, 
-  #& if so, find out which player token (X or O)
-  #otherwise if  no winner, return nil. 
   if won?(board)
-    #if no winner, then this IF is falsey, so winner() returns nil. 
-    #If won? is true, board[won?(board)[0]] (if there WAS a winner) 
     board[won?(board)[0]]
   end
 end
 
-def play(board)
+=begin
+play is the actual game loop, allowing turns to alternate & tracks
+game progress after each turn to see if anyone won, lost, or if game is
+over due to a draw. 
+=end
+def play(board) 
   while !over?(board)
     turn(board)
-  end
-  if won?(board)
-    puts "Congratulations #{winner(board)}!"
-  elsif draw?(board)
-    puts "Cat's Game!"
   end  
+  if won?(board)
+    puts "Congratulations #{winner(board)}!" 
+  else if draw?(board)
+    puts "Cat's Game!"
+  end
+  end
 end
-
-
