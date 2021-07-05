@@ -1,9 +1,9 @@
 # A sample Gemfile
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 # gem "rails"
-gem 'rake'
-gem 'rspec'
 gem 'pry'
+gem 'rake'
 gem 'require_all'
+gem 'rspec'
 gem 'simplecov'
