@@ -9,7 +9,7 @@ WIN_COMBINATIONS = [
   [1, 4, 7], # Middle column
   [2, 5, 8], # Right column
   [0, 4, 8], # Left Diagonal
-  [2, 4, 6]  # Right Diagonal
+  [2, 4, 6] # Right Diagonal
 ]
 
 # Display board
@@ -38,7 +38,7 @@ end
 
 # Is the move valid?
 def valid_move?(board, index)
-  index.between?(0,8) && !position_taken?(board, index)
+  index.between?(0, 8) && !position_taken?(board, index)
 end
 
 # Completing a turn
@@ -78,14 +78,14 @@ end
 def won?(board)
   WIN_COMBINATIONS.detect do |combo|
     board[combo[0]] == board[combo[1]] &&
-    board[combo[1]] == board[combo[2]] &&
-    position_taken?(board, combo[0])
+      board[combo[1]] == board[combo[2]] &&
+      position_taken?(board, combo[0])
   end
 end
 
 # Is the board full?
 def full?(board)
-  board.all? {|position| position == "X" || position == "O"}
+  board.all? { |position| position == "X" || position == "O" }
 end
 
 # Is the game a draw?
