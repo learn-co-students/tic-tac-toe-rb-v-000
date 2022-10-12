@@ -1,1 +1,7 @@
 coverage/
+/.idea/.gitignore
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/tic-tac-toe-rb-v-000.iml
+/.idea/vcs.xml
